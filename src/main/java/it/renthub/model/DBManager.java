@@ -3,8 +3,6 @@ package it.renthub.model;
 import it.renthub.model.dao.UtenteDao;
 import it.renthub.model.dao.jdbc.UtenteDaoJdbc;
 
-import javax.sql.DataSource;
-
 public class DBManager {
 
     private static DBManager instance = null;
@@ -13,8 +11,7 @@ public class DBManager {
     static {
         try {
             Class.forName("org.postgresql.Driver");
-            //TODO prendere dati da file
-            dataSource = new DBSource("jdbc:postgresql://localhost:5432/RentHub_db", "postgres", "admin");
+            dataSource = new DBSource(Config.IP, Config.PORTA, Config.DBNAME, Config.USER, Config.PASSWORD);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Problema di connessione al database.");
