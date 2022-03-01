@@ -25,11 +25,14 @@ public class UtenteDaoJdbc implements UtenteDao {
             st.setString(1, u.getIdUtente());
             st.setString(2, u.getNome());
             st.setString(3, u.getCognome());
-            st.setString(4, u.getDataNascita().toString());
             st.setString(5, u.getNumTelefono() + "");
             st.setString(6, u.getEmail());
             st.setString(7, u.getPassword());
             st.setString(8, u.getRuolo());
+            if (u.getDataNascita() != null)
+                st.setDate(4, new Date(u.getDataNascita().getTime()));
+            else
+                st.setDate(4, null);
             st.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Problema nell'inserimento dell'utente " + u.getIdUtente());
@@ -49,8 +52,8 @@ public class UtenteDaoJdbc implements UtenteDao {
             while (rs.next()) {
                 String nome = rs.getString("nome");
                 String cognome = rs.getString("cognome");
-                String dataNascita = rs.getString("data_di_nascita");
-                int numTel = Integer.parseInt(rs.getString("num_telefono"));
+                Date dataNascita = rs.getDate("data_di_nascita");
+                String numTel = rs.getString("num_telefono");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String ruolo = rs.getString("ruolo");
@@ -87,7 +90,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 String idUtente = rs.getString("id_utente");
                 String nome = rs.getString("nome");
                 String cognome = rs.getString("cognome");
-                String dataNascita = rs.getString("data_di_nascita");
+                Date dataNascita = rs.getDate("data_di_nascita");
                 String numTel = (rs.getString("num_telefono"));
                 String email = rs.getString("email");
                 String password = rs.getString("password");
@@ -97,9 +100,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setNome(nome);
                 u.setCognome(cognome);
                 u.setDataNascita(dataNascita);
-                if (numTel != null || numTel == "") {
-                    u.setNumTelefono(Integer.parseInt(numTel));
-                }
+                u.setNumTelefono(numTel);
                 u.setEmail(email);
                 u.setPassword(password);
                 u.setRuolo(ruolo);

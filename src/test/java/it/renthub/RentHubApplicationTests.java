@@ -5,6 +5,9 @@ import it.renthub.model.bean.Utente;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -24,14 +27,15 @@ class RentHubApplicationTests {
     }
 
     @Test
-    void test2() {
+    void test2() throws ParseException {
         Utente u = new Utente();
-        u.setIdUtente("2423433432432");
+        u.setIdUtente("42");
         u.setNome("francesco");
         u.setCognome("curcio");
         u.setPassword("compra");
         u.setEmail("varca");
         u.setRuolo("COMPRATORE");
+        u.setDataNascita(new SimpleDateFormat("yy/MM/dd").parse("2010/10/9"));
         DBManager.getInstance().getUtenteDao().save(u);
     }
 

@@ -1,10 +1,6 @@
 package it.renthub.model.bean;
 
 
-import org.springframework.util.StringUtils;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Utente {
@@ -13,7 +9,7 @@ public class Utente {
     String nome;
     String cognome;
     Date dataNascita;
-    int numTelefono;
+    String numTelefono;
     String email;
     String password;
     String ruolo;
@@ -46,21 +42,15 @@ public class Utente {
         return dataNascita;
     }
 
-    public void setDataNascita(String dataNascita) {
-        if (StringUtils.isEmpty(dataNascita)) return;
-        try {
-            this.dataNascita = new SimpleDateFormat("yyyy-mm-dd").parse(dataNascita);
-        } catch (ParseException e) {
-            System.err.println("Errore nella lettura della data per l'utente: " + idUtente);
-            e.printStackTrace();
-        }
+    public void setDataNascita(Date dataNascita) {
+        this.dataNascita = dataNascita;
     }
 
-    public int getNumTelefono() {
+    public String getNumTelefono() {
         return numTelefono;
     }
 
-    public void setNumTelefono(int numTelefono) {
+    public void setNumTelefono(String numTelefono) {
         this.numTelefono = numTelefono;
     }
 
