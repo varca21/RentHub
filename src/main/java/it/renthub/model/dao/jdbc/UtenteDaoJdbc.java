@@ -1,6 +1,5 @@
 package it.renthub.model.dao.jdbc;
 
-import it.renthub.model.DBManager;
 import it.renthub.model.DBSource;
 import it.renthub.model.bean.Utente;
 import it.renthub.model.dao.UtenteDao;
@@ -26,7 +25,7 @@ public class UtenteDaoJdbc implements UtenteDao {
             st.setString(1, u.getIdUtente());
             st.setString(2, u.getNome());
             st.setString(3, u.getCognome());
-            st.setString(4, u.getDataNascita());
+            st.setString(4, u.getDataNascita().toString());
             st.setString(5, u.getNumTelefono() + "");
             st.setString(6, u.getEmail());
             st.setString(7, u.getPassword());
