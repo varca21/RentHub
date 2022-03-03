@@ -8,7 +8,9 @@ public interface UtenteDao {
 
     public void save(Utente u);
 
-    public Utente findByPrimaryKey(String idUtente); //trova un Utente con un dato ID
+    public Utente findById(String idUtente); //trova un Utente con un dato ID
+
+    public Utente findByEmail(String email);
 
     public List<Utente> findAll();
 

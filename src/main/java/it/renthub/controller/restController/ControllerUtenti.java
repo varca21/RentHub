@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/rest/utenti")
@@ -20,23 +21,29 @@ public class ControllerUtenti {
 
     @GetMapping("/ricerca")
     Utente ricercaUtente(@RequestParam String id) {
-        return DBManager.getInstance().getUtenteDao().findByPrimaryKey(id);
+        return DBManager.getInstance().getUtenteDao().findById(id);
     }
 
     @PostMapping("/registrazione")
-    Boolean registrazione(@RequestParam String id, @RequestParam String nome, @RequestParam String cognome, @RequestParam String dataNascita, @RequestParam String numTel, @RequestParam String email, @RequestParam String password) throws ParseException {
-        if (DBManager.getInstance().getUtenteDao().findByPrimaryKey(id) != null)
-            return false;
+    Boolean registrazione(@RequestBody Map<String, String> userData) throws ParseException {
+
+        if (DBManager.getInstance().getUtenteDao().findById(userData.get("id")) != null)
+            throw new RuntimeException("ID "+userData.get("id")+" già presente");
+
+
+
+        if (DBManager.getInstance().getUtenteDao().findByEmail(userData.get("email")) != null)
+            throw new RuntimeException("Email "+userData.get("email")+" già presente");
 
         Utente u = new Utente();
-        u.setIdUtente(id);
-        u.setNome(nome);
-        u.setCognome(cognome);
-        Date d = new SimpleDateFormat("yyyy-MM-dd").parse(dataNascita);
+        u.setIdUtente(userData.get("id"));
+        u.setNome(userData.get("nome"));
+        u.setCognome(userData.get("cognome"));
+        Date d = new SimpleDateFormat("yyyy-MM-dd").parse(userData.get("dataNascita"));
         u.setDataNascita(d);
-        u.setNumTelefono(numTel);
-        u.setEmail(email);
-        u.setPassword(password);
+        u.setNumTelefono(userData.get("numTel"));
+        u.setEmail(userData.get("email"));
+        u.setPassword(userData.get("password"));
         u.setRuolo("COMPRATORE"); //TODO da modificare
         DBManager.getInstance().getUtenteDao().save(u);
 

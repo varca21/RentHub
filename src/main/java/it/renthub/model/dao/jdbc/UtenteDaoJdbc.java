@@ -41,7 +41,7 @@ public class UtenteDaoJdbc implements UtenteDao {
     }
 
     @Override
-    public Utente findByPrimaryKey(String idUtente) {
+    public Utente findById(String idUtente) {
         Utente u = null;
         try {
             Connection conn = dbSource.getConnection();
@@ -71,6 +71,42 @@ public class UtenteDaoJdbc implements UtenteDao {
             }
         } catch (SQLException e) {
             System.err.println("Errore nella ricerca dell'utente " + idUtente);
+            e.printStackTrace();
+        }
+        return u;
+    }
+
+    @Override
+    public Utente findByEmail(String email) {
+        Utente u = null;
+        try {
+            Connection conn = dbSource.getConnection();
+            String query = "SELECT * FROM utente WHERE email=?";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String idUtente = rs.getString("id_utente");
+                String nome = rs.getString("nome");
+                String cognome = rs.getString("cognome");
+                Date dataNascita = rs.getDate("data_di_nascita");
+                String numTel = rs.getString("num_telefono");
+                String password = rs.getString("password");
+                String ruolo = rs.getString("ruolo");
+
+                u = new Utente();
+                u.setIdUtente(idUtente);
+                u.setNome(nome);
+                u.setCognome(cognome);
+                u.setDataNascita(dataNascita);
+                u.setNumTelefono(numTel);
+                u.setEmail(email);
+                u.setPassword(password);
+                u.setRuolo(ruolo);
+
+            }
+        } catch (SQLException e) {
+            System.err.println("Errore nella ricerca dell'utente " + email);
             e.printStackTrace();
         }
         return u;
