@@ -12,20 +12,52 @@
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 1</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
-        </li>
-    </ul>
-
-
-
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#Accedi" >Login</button>
+            </li>
+        </ul>
+    </div>
 </nav>
+
+<!-- The Modal -->
+<div class="modal" id="Accedi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">ACCEDI</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="/action_page.php">
+                    <div class="form-group">
+                        <label for="email">Email o UserID:</label>
+                        <input type="email" class="form-control" placeholder="Inserisci email o UserID" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" placeholder="Inserisci password" id="pwd">
+                    </div>
+
+                    <center>
+                        <button type="submit" class="btn btn-primary">Accedi</button>
+                    </center>
+                </form>
+            </div>
+
+                <center>
+                    <h6 class="modal-title">Non sei ancora registrato? Registrati!</h6>
+                </center>
+
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
