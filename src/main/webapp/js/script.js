@@ -67,3 +67,29 @@ function logout() {
         },
     })
 }
+
+function  impostazioniAccount(){
+    $('#modalRegistrazione').modal('show');
+    $.ajax({
+        url: "rest/utenti/utenteCorrente",
+        type: "GET",
+        success: function (data) {//se la chiamata ajax restituisce codice 200
+            $('h4.titoloRegistrazione').text('Modifica account');
+            $("#tastoRegistrati").text('Salva modifiche');
+            document.querySelector("#userID").value=data.idUtente;
+            document.querySelector("#userID").disabled=true;
+            document.querySelector("#nome").value=data.nome;
+            document.querySelector("#cognome").value=data.cognome;
+            document.querySelector("#emailreg").value=data.email;
+            document.querySelector("#emailreg").disabled=true;
+            $('#password').hide();
+            $('#labelPassword').hide();
+            document.querySelector("#numTel").value=data.numTelefono;
+            document.querySelector("#dataNascita").value=data.dataNascita;
+        },
+        error: function (jqxhr) {
+            var errore = JSON.parse(jqxhr.responseText).message;
+            alert(errore);
+        },
+    })
+}
