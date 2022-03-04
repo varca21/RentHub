@@ -19,8 +19,13 @@
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <button type="button" class="btn btn-success" data-toggle="modal"
-                                data-target="#Accedi">Login</button>
+                            <c:if test="${utenteLoggato==null}">
+                                <button type="button" class="btn btn-success" data-toggle="modal"data-target="#Accedi">Login</button>
+                            </c:if>
+                            <c:if test="${utenteLoggato!=null}">
+                                ciao, ${utenteLoggato.nome}
+                                <button type="button" class="btn btn-success"  onclick="javascript:logout()">Logout</button>
+                            </c:if>
                         </li>
                     </ul>
                 </div>
@@ -40,10 +45,10 @@
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            <form action="/action_page.php">
+                            <form  action="javascript:login()">
                                 <div class="form-group">
                                     <label for="email">Email o ID Utente:</label>
-                                    <input type="email" class="form-control" placeholder="Inserisci e-mail o ID Utente"
+                                    <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
                                         id="email" required>
                                 </div>
                                 <div class="form-group">

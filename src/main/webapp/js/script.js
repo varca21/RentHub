@@ -30,3 +30,40 @@ function registra() {
         },
     })
 }
+
+function login() {
+    var idUtente = document.querySelector("#email").value;
+    var password = document.querySelector("#pwd").value;
+    $.ajax({
+        url: "rest/utenti/login",
+        type: "POST",
+        data: JSON.stringify(
+            {
+                "id": idUtente,
+                "password": password
+            }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            window.location.replace("http://localhost:8080/");
+        },
+        error: function (jqxhr) {
+            var errore = JSON.parse(jqxhr.responseText).message;
+            alert(errore);
+        },
+    })
+}
+
+function logout() {
+    $.ajax({
+        url: "rest/utenti/logout",
+        type: "GET",
+        success: function (response) {
+            window.location.replace("http://localhost:8080/");
+        },
+        error: function (jqxhr) {
+            var errore = JSON.parse(jqxhr.responseText).message;
+            alert(errore);
+        },
+    })
+}
