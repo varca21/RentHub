@@ -25,6 +25,11 @@ public class ControllerUtenti {
         return DBManager.getInstance().getUtenteDao().findById(id);
     }
 
+    @GetMapping("/utenteCorrente")
+    Utente utenteCorrente(HttpSession sessione) {
+        return (Utente) sessione.getAttribute("utenteLoggato");
+    }
+
     @PostMapping("/registrazione")
     Boolean registrazione(@RequestBody Map<String, String> userData) throws ParseException {
 
