@@ -30,6 +30,7 @@
             <!-- MODAL LOGIN -->
             <div class="modal fade" id="Accedi">
                 <div class="modal-dialog">
+                    <div class="modal-content">
 
                         <!-- Modal Header -->
                         <div class="modal-header">
