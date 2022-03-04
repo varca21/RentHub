@@ -4,6 +4,7 @@ import it.renthub.model.DBManager;
 import it.renthub.model.bean.Utente;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,12 +29,11 @@ public class ControllerUtenti {
     Boolean registrazione(@RequestBody Map<String, String> userData) throws ParseException {
 
         if (DBManager.getInstance().getUtenteDao().findById(userData.get("id")) != null)
-            throw new RuntimeException("ID "+userData.get("id")+" già presente");
-
+            throw new RuntimeException("ID " + userData.get("id") + " già presente");
 
 
         if (DBManager.getInstance().getUtenteDao().findByEmail(userData.get("email")) != null)
-            throw new RuntimeException("Email "+userData.get("email")+" già presente");
+            throw new RuntimeException("Email " + userData.get("email") + " già presente");
 
         Utente u = new Utente();
         u.setIdUtente(userData.get("id"));
@@ -50,5 +50,26 @@ public class ControllerUtenti {
         return true;
     }
 
+    @PostMapping("/login")
+    public Boolean login(@RequestBody Map<String, String> parametri, HttpSession sessione) {
+
+        Utente u = DBManager.getInstance().getUtenteDao().findById(parametri.get("id"));
+        if (u == null)
+            u = DBManager.getInstance().getUtenteDao().findByEmail(parametri.get("id"));
+        if (u == null)
+            throw new RuntimeException("L'utente non esiste.");
+
+        if (!u.getPassword().equals(parametri.get("password")))
+            throw new RuntimeException("La password è errata.");
+
+        sessione.setAttribute("utenteLoggato", u); //cookies
+
+        return true;
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpSession sessione) {
+        sessione.invalidate();
+    }
 }
 
