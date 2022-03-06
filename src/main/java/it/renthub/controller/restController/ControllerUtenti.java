@@ -44,12 +44,20 @@ public class ControllerUtenti {
         u.setIdUtente(userData.get("id"));
         u.setNome(userData.get("nome"));
         u.setCognome(userData.get("cognome"));
-        Date d = new SimpleDateFormat("yyyy-MM-dd").parse(userData.get("dataNascita"));
-        u.setDataNascita(d);
         u.setNumTelefono(userData.get("numTel"));
         u.setEmail(userData.get("email"));
         u.setPassword(userData.get("password"));
         u.setRuolo("COMPRATORE"); //TODO da modificare
+
+        Date d;
+        try {
+            d = new SimpleDateFormat("yyyy-MM-dd").parse(userData.get("dataNascita"));
+        }
+        catch (Exception parseException){
+            throw new RuntimeException("Errore nel parsing della data");
+        }
+
+        u.setDataNascita(d);
         DBManager.getInstance().getUtenteDao().save(u);
 
         return true;
