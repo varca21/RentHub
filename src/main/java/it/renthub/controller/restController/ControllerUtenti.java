@@ -63,6 +63,37 @@ public class ControllerUtenti {
         return true;
     }
 
+    @PostMapping("/aggiornaUtente")
+    Boolean aggiornaUtente(@RequestBody Map<String, String> parametri) throws ParseException {
+
+        Utente u = DBManager.getInstance().getUtenteDao().findById(parametri.get("id"));
+        if (u == null)
+            u = DBManager.getInstance().getUtenteDao().findByEmail(parametri.get("id"));
+        if (u == null)
+            throw new RuntimeException("Account non esistente");
+
+        u.setIdUtente(parametri.get("id"));
+        u.setNome(parametri.get("nome"));
+        u.setCognome(parametri.get("cognome"));
+        u.setNumTelefono(parametri.get("numTel"));
+        u.setEmail(parametri.get("email"));
+        u.setRuolo("COMPRATORE"); //TODO da modificare
+
+        Date d;
+        try {
+            d = new SimpleDateFormat("yyyy-MM-dd").parse(parametri.get("dataNascita"));
+        }
+        catch (Exception parseException){
+            d=null;
+        }
+
+        u.setDataNascita(d);
+        DBManager.getInstance().getUtenteDao().update(u);
+
+        return true;
+    }
+
+
     @PostMapping("/login")
     public Boolean login(@RequestBody Map<String, String> parametri, HttpSession sessione) {
 
