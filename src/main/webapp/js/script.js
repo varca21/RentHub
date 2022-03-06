@@ -59,7 +59,7 @@ function aggiornaUtente() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            window.location.replace("http://localhost:8080/");
+            logout();
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
