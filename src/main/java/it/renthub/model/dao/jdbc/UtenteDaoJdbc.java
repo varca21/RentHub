@@ -116,7 +116,7 @@ public class UtenteDaoJdbc implements UtenteDao {
     public void update(Utente u) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE utente SET nome=?,cognome=?,data_di_nascita=?,num_telefono=?,email=?,password=?,ruolo=? WHERE id_utente=?";
+            String query = "UPDATE utente "+"SET nome=?"+", cognome=?"+", data_di_nascita=?"+", num_telefono=?"+", email=?"+", password=?"+", ruolo=?"+" WHERE id_utente=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, u.getNome());
             st.setString(2, u.getCognome());
@@ -124,7 +124,7 @@ public class UtenteDaoJdbc implements UtenteDao {
             st.setString(5, u.getEmail());
             st.setString(6, u.getPassword());
             st.setString(7, u.getRuolo());
-            st.setString(8, u.getRuolo());
+            st.setString(8, u.getIdUtente());
             if (u.getDataNascita() != null)
                 st.setDate(3, new Date(u.getDataNascita().getTime()));
             else
