@@ -6,6 +6,8 @@ function registra() {
     var password = document.querySelector("#password").value;
     var numTel = document.querySelector("#numTel").value;
     var dataNascita = document.querySelector("#dataNascita").value;
+    cancellaValidazione(document.querySelector("#emailreg"), document.querySelector("#messaggioValidazioneEmailreg"));
+    cancellaValidazione(document.querySelector("#userID"), document.querySelector("#messaggioValidazioneUserId"));
     $.ajax({
         url: "rest/utenti/registrazione",
         type: "POST",
@@ -26,7 +28,12 @@ function registra() {
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
-            alert(errore);
+            if(errore== "ID presente"){
+                invalidaCampo(document.querySelector("#userID"), document.querySelector("#messaggioValidazioneUserID"), "Id gia presente");
+            }
+            else if(errore=="Email presente"){
+                invalidaCampo(document.querySelector("#emailreg"), document.querySelector("#messaggioValidazioneEmailreg"), "Email gia presente");
+            }
         },
     })
 }
@@ -34,6 +41,8 @@ function registra() {
 function login() {
     var idUtente = document.querySelector("#email").value;
     var password = document.querySelector("#pwd").value;
+    cancellaValidazione(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"));
+    cancellaValidazione(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"));
     $.ajax({
         url: "rest/utenti/login",
         type: "POST",
@@ -50,14 +59,11 @@ function login() {
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
             if (errore == "L'utente non esiste.") {
-                cancellaValidazione(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"));
                 invalidaCampo(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"), errore);
             } else {
                 validaCampo(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"));
                 invalidaCampo(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"), errore);
             }
-
-
         },
     })
 }
@@ -106,7 +112,7 @@ function impostazioniAccount() {
 function invalidaCampo(campo, label, messaggio) {
     campo.classList.remove("is-valid");
     campo.classList.add("is-invalid");
-    label.text = messaggio;
+    label.text =messaggio;
     label.show;
 }
 

@@ -29,11 +29,11 @@ public class ControllerUtenti {
     Boolean registrazione(@RequestBody Map<String, String> userData) throws ParseException {
 
         if (DBManager.getInstance().getUtenteDao().findById(userData.get("id")) != null)
-            throw new RuntimeException("ID " + userData.get("id") + " già presente");
+            throw new RuntimeException("ID presente");
 
 
         if (DBManager.getInstance().getUtenteDao().findByEmail(userData.get("email")) != null)
-            throw new RuntimeException("Email " + userData.get("email") + " già presente");
+            throw new RuntimeException("Email presente");
 
         Utente u = new Utente();
         u.setIdUtente(userData.get("id"));
