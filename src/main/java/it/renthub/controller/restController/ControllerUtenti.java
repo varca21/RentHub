@@ -54,7 +54,7 @@ public class ControllerUtenti {
             d = new SimpleDateFormat("yyyy-MM-dd").parse(userData.get("dataNascita"));
         }
         catch (Exception parseException){
-            throw new RuntimeException("Errore nel parsing della data");
+            d=null;
         }
 
         u.setDataNascita(d);
