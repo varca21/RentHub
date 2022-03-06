@@ -1,0 +1,15 @@
+2022-03-06T16:07:39.991273800:Account dsadsads non esiste
+2022-03-06T16:08:17.080256900:Account dsadsads non esiste
+2022-03-06T16:08:17.643962700:Account dsadsads non esiste
+2022-03-06T16:08:18.063329800:Account dsadsads non esiste
+2022-03-06T16:08:22.647902100:Password errata per l'utente admin
+2022-03-06T16:08:23.695966400:Password errata per l'utente admin
+2022-03-06T16:08:23.865593:Password errata per l'utente admin
+2022-03-06T16:08:24.111127900:Password errata per l'utente admin
+2022-03-06T16:08:30.576516200:Account mario_rossiii non esiste
+2022-03-06T16:08:31.525001400:Account mario_rossiii non esiste
+2022-03-06T16:08:45.476248100:utente mario_rossiii registrato con successo
+2022-03-06T16:11:16.706888500:Password errata per l'utente admin
+2022-03-06T16:11:17.192792100:Password errata per l'utente admin
+2022-03-06T16:11:17.613179800:Password errata per l'utente admin
+2022-03-06T16:11:17.996087200:Password errata per l'utente admin

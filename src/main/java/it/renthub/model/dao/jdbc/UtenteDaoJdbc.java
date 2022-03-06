@@ -1,5 +1,6 @@
 package it.renthub.model.dao.jdbc;
 
+import it.renthub.Logger;
 import it.renthub.model.DBSource;
 import it.renthub.model.bean.Utente;
 import it.renthub.model.dao.UtenteDao;
@@ -35,8 +36,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 st.setDate(4, null);
             st.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Problema nell'inserimento dell'utente " + u.getIdUtente());
-            e.printStackTrace();
+            Logger.LOG("Problema nell'inserimento dell'utente " + u.getIdUtente() + "\n" + e.toString());
         }
     }
 
@@ -70,8 +70,7 @@ public class UtenteDaoJdbc implements UtenteDao {
 
             }
         } catch (SQLException e) {
-            System.err.println("Errore nella ricerca dell'utente " + idUtente);
-            e.printStackTrace();
+            Logger.LOG("Errore nella ricerca dell'utente " + idUtente + "\n" + e.toString());
         }
         return u;
     }
@@ -106,8 +105,7 @@ public class UtenteDaoJdbc implements UtenteDao {
 
             }
         } catch (SQLException e) {
-            System.err.println("Errore nella ricerca dell'utente " + email);
-            e.printStackTrace();
+            Logger.LOG("Errore nella ricerca dell'utente " + email + "\n" + e.toString());
         }
         return u;
     }
@@ -142,8 +140,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 utenti.add(u);
             }
         } catch (SQLException e) {
-            System.err.println("Errore nella ricerca degli utenti");
-            e.printStackTrace();
+            Logger.LOG("Errore nella ricerca degli utenti" + "\n" + e.toString());
         }
         return utenti;
     }
@@ -153,7 +150,7 @@ public class UtenteDaoJdbc implements UtenteDao {
     public void update(Utente u) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE utente "+"SET nome=?"+", cognome=?"+", data_di_nascita=?"+", num_telefono=?"+", email=?"+", password=?"+", ruolo=?"+" WHERE id_utente=?";
+            String query = "UPDATE utente " + "SET nome=?" + ", cognome=?" + ", data_di_nascita=?" + ", num_telefono=?" + ", email=?" + ", password=?" + ", ruolo=?" + " WHERE id_utente=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, u.getNome());
             st.setString(2, u.getCognome());
@@ -168,8 +165,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 st.setDate(3, null);
             st.executeUpdate();
         } catch (SQLException e) {
-            System.err.println("Problema nell'aggiornamento dell'utente " + u.getIdUtente());
-            e.printStackTrace();
+            Logger.LOG("Problema nell'aggiornamento dell'utente " + "\n" + u.getIdUtente() + e.toString());
         }
     }
 

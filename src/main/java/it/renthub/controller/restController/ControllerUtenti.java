@@ -1,5 +1,6 @@
 package it.renthub.controller.restController;
 
+import it.renthub.Logger;
 import it.renthub.model.DBManager;
 import it.renthub.model.bean.Utente;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +34,16 @@ public class ControllerUtenti {
     @PostMapping("/registrazione")
     Boolean registrazione(@RequestBody Map<String, String> userData) throws ParseException {
 
-        if (DBManager.getInstance().getUtenteDao().findById(userData.get("id")) != null)
+        if (DBManager.getInstance().getUtenteDao().findById(userData.get("id")) != null) {
+            Logger.LOG("registrazione di account con id già esistente, id: " + userData.get("id"));
             throw new RuntimeException("ID presente");
+        }
 
 
-        if (DBManager.getInstance().getUtenteDao().findByEmail(userData.get("email")) != null)
+        if (DBManager.getInstance().getUtenteDao().findByEmail(userData.get("email")) != null) {
+            Logger.LOG("registrazione di account con email già esistente, email: " + userData.get("email"));
             throw new RuntimeException("Email presente");
+        }
 
         Utente u = new Utente();
         u.setIdUtente(userData.get("id"));
@@ -52,14 +57,13 @@ public class ControllerUtenti {
         Date d;
         try {
             d = new SimpleDateFormat("yyyy-MM-dd").parse(userData.get("dataNascita"));
-        }
-        catch (Exception parseException){
-            d=null;
+        } catch (Exception parseException) {
+            d = null;
         }
 
         u.setDataNascita(d);
         DBManager.getInstance().getUtenteDao().save(u);
-
+        Logger.LOG("utente " + u.getIdUtente() + " registrato con successo");
         return true;
     }
 
@@ -82,14 +86,13 @@ public class ControllerUtenti {
         Date d;
         try {
             d = new SimpleDateFormat("yyyy-MM-dd").parse(parametri.get("dataNascita"));
-        }
-        catch (Exception parseException){
-            d=null;
+        } catch (Exception parseException) {
+            d = null;
         }
 
         u.setDataNascita(d);
         DBManager.getInstance().getUtenteDao().update(u);
-
+        Logger.LOG("utente " + u.getIdUtente() + " aggiornato con successo");
         return true;
     }
 
@@ -100,11 +103,16 @@ public class ControllerUtenti {
         Utente u = DBManager.getInstance().getUtenteDao().findById(parametri.get("id"));
         if (u == null)
             u = DBManager.getInstance().getUtenteDao().findByEmail(parametri.get("id"));
-        if (u == null)
+        if (u == null) {
+            Logger.LOG("Account " + parametri.get("id") + " non esiste");
             throw new RuntimeException("Account non esistente");
+        }
 
-        if (!u.getPassword().equals(parametri.get("password")))
+        if (!u.getPassword().equals(parametri.get("password"))) {
+            Logger.LOG("Password errata per l'utente " + u.getIdUtente());
             throw new RuntimeException("Password errata");
+
+        }
 
         sessione.setAttribute("utenteLoggato", u); //cookies
 
