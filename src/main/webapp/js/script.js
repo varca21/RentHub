@@ -6,6 +6,8 @@ function registra() {
     var password = document.querySelector("#password").value;
     var numTel = document.querySelector("#numTel").value;
     var dataNascita = document.querySelector("#dataNascita").value;
+    cancellaValidazione(document.querySelector("#emailreg"), document.querySelector("#messaggioValidazioneEmailreg"));
+    cancellaValidazione(document.querySelector("#userID"), document.querySelector("#messaggioValidazioneUserId"));
     $.ajax({
         url: "rest/utenti/registrazione",
         type: "POST",
@@ -26,7 +28,11 @@ function registra() {
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
-            alert(errore);
+            if (errore == "ID presente") {
+                invalidaCampo(document.querySelector("#userID"), document.querySelector("#messaggioValidazioneUserID"), "Id gia presente");
+            } else if (errore == "Email presente") {
+                invalidaCampo(document.querySelector("#emailreg"), document.querySelector("#messaggioValidazioneEmailreg"), "Email gia presente");
+            }
         },
     })
 }
@@ -34,6 +40,8 @@ function registra() {
 function login() {
     var idUtente = document.querySelector("#email").value;
     var password = document.querySelector("#pwd").value;
+    cancellaValidazione(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"));
+    cancellaValidazione(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"));
     $.ajax({
         url: "rest/utenti/login",
         type: "POST",
@@ -49,7 +57,13 @@ function login() {
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
-            alert(errore);
+            if (errore == "Account non esistente") {
+                invalidaCampo(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"), errore);
+            }
+            if (errore == "Password errata") {
+                validaCampo(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"));
+                invalidaCampo(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"), errore);
+            }
         },
     })
 }
@@ -68,7 +82,7 @@ function logout() {
     })
 }
 
-function  impostazioniAccount(){
+function impostazioniAccount() {
     $('#modalRegistrazione').modal('show');
     $.ajax({
         url: "rest/utenti/utenteCorrente",
@@ -76,16 +90,16 @@ function  impostazioniAccount(){
         success: function (data) {//se la chiamata ajax restituisce codice 200
             $('h4.titoloRegistrazione').text('Modifica account');
             $("#tastoRegistrati").text('Salva modifiche');
-            document.querySelector("#userID").value=data.idUtente;
-            document.querySelector("#userID").disabled=true;
-            document.querySelector("#nome").value=data.nome;
-            document.querySelector("#cognome").value=data.cognome;
-            document.querySelector("#emailreg").value=data.email;
-            document.querySelector("#emailreg").disabled=true;
+            document.querySelector("#userID").value = data.idUtente;
+            document.querySelector("#userID").disabled = true;
+            document.querySelector("#nome").value = data.nome;
+            document.querySelector("#cognome").value = data.cognome;
+            document.querySelector("#emailreg").value = data.email;
+            document.querySelector("#emailreg").disabled = true;
             $('#password').hide();
             $('#labelPassword').hide();
-            document.querySelector("#numTel").value=data.numTelefono;
-            document.querySelector("#dataNascita").value=data.dataNascita;
+            document.querySelector("#numTel").value = data.numTelefono;
+            document.querySelector("#dataNascita").value = data.dataNascita;
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
@@ -93,3 +107,26 @@ function  impostazioniAccount(){
         },
     })
 }
+
+
+function invalidaCampo(campo, label, messaggio) {
+    campo.classList.remove("is-valid");
+    campo.classList.add("is-invalid");
+    label.text = messaggio;
+    label.show;
+}
+
+function cancellaValidazione(campo, label) {
+    var listaClassi = campo.classList;
+    campo.classList.remove("is-valid");
+    campo.classList.remove("is-invalid");
+    label.hide;
+}
+
+function validaCampo(campo, label) {
+    campo.classList.remove("is-invalid");
+    campo.classList.add("is-valid");
+    label.hide;
+}
+
+

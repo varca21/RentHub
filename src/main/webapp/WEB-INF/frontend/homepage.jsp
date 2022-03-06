@@ -62,11 +62,13 @@
                                     <label for="email">Email o ID Utente:</label>
                                     <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
                                         id="email" required>
+                                    <div class="invalid-feedback" id="messaggioValidazioneId">Account non esistente.</div>   
                                 </div>
                                 <div class="form-group">
                                     <label for="pwd">Password:</label>
                                     <input type="password" class="form-control" placeholder="Inserisci password"
                                         id="pwd" required>
+                                    <div class="invalid-feedback" id="messaggioValidazionePwd">Password errata.</div>
                                 </div>
 
                                 <center>
@@ -102,11 +104,13 @@
                                     <label for="userID">ID Utente:</label>
                                     <input type="text" class="form-control" placeholder="Inserisci ID Utente"
                                         id="userID" required>
+                                    <div class="invalid-feedback" id="messaggioValidazioneUserID">Id gia' esistente</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="emailreg">Email:</label>
                                     <input type="email" class="form-control" placeholder="Inserisci e-mail"
                                         id="emailreg" required>
+                                    <div class="invalid-feedback" id="messaggioValidazioneEmailreg">email gia' esistente</div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" id="labelPassword">Password:</label>
