@@ -37,6 +37,38 @@ function registra() {
     })
 }
 
+function aggiornaUtente() {
+    var idUtente = document.querySelector("#userID").value;
+    var nome = document.querySelector("#nome").value;
+    var cognome = document.querySelector("#cognome").value;
+    var email = document.querySelector("#emailreg").value;
+    var numTel = document.querySelector("#numTel").value;
+    var dataNascita = document.querySelector("#dataNascita").value;
+    $.ajax({
+        url: "rest/utenti/aggiornaUtente",
+        type: "POST",
+        data: JSON.stringify(
+            {
+                "id": idUtente,
+                "nome": nome,
+                "cognome": cognome,
+                "dataNascita": dataNascita,
+                "numTel": numTel,
+                "email": email
+            }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {//se la chiamata ajax restituisce codice 200
+            window.location.replace("http://localhost:8080/");
+        },
+        error: function (jqxhr) {
+            var errore = JSON.parse(jqxhr.responseText).message;
+            console.log(errore);
+        },
+    })
+}
+
+
 function login() {
     var idUtente = document.querySelector("#email").value;
     var password = document.querySelector("#pwd").value;
@@ -100,6 +132,8 @@ function impostazioniAccount() {
             $('#labelPassword').hide();
             document.querySelector("#numTel").value = data.numTelefono;
             document.querySelector("#dataNascita").value = data.dataNascita;
+            $('#tastoRegistrati').remove('onclick');
+            $('#tastoRegistrati').attr('onclick', 'aggiornaUtente()');
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
