@@ -28,10 +28,9 @@ function registra() {
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
-            if(errore== "ID presente"){
+            if (errore == "ID presente") {
                 invalidaCampo(document.querySelector("#userID"), document.querySelector("#messaggioValidazioneUserID"), "Id gia presente");
-            }
-            else if(errore=="Email presente"){
+            } else if (errore == "Email presente") {
                 invalidaCampo(document.querySelector("#emailreg"), document.querySelector("#messaggioValidazioneEmailreg"), "Email gia presente");
             }
         },
@@ -58,9 +57,10 @@ function login() {
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
-            if (errore == "L'utente non esiste.") {
+            if (errore == "Account non esistente") {
                 invalidaCampo(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"), errore);
-            } else {
+            }
+            if (errore == "Password errata") {
                 validaCampo(document.querySelector("#email"), document.querySelector("#messaggioValidazioneId"));
                 invalidaCampo(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"), errore);
             }
@@ -112,7 +112,7 @@ function impostazioniAccount() {
 function invalidaCampo(campo, label, messaggio) {
     campo.classList.remove("is-valid");
     campo.classList.add("is-invalid");
-    label.text =messaggio;
+    label.text = messaggio;
     label.show;
 }
 
