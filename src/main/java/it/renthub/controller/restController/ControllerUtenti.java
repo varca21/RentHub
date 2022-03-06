@@ -34,11 +34,11 @@ public class ControllerUtenti {
     Boolean registrazione(@RequestBody Map<String, String> userData) throws ParseException {
 
         if (DBManager.getInstance().getUtenteDao().findById(userData.get("id")) != null)
-            throw new RuntimeException("ID " + userData.get("id") + " già presente");
+            throw new RuntimeException("ID presente");
 
 
         if (DBManager.getInstance().getUtenteDao().findByEmail(userData.get("email")) != null)
-            throw new RuntimeException("Email " + userData.get("email") + " già presente");
+            throw new RuntimeException("Email presente");
 
         Utente u = new Utente();
         u.setIdUtente(userData.get("id"));
@@ -62,10 +62,10 @@ public class ControllerUtenti {
         if (u == null)
             u = DBManager.getInstance().getUtenteDao().findByEmail(parametri.get("id"));
         if (u == null)
-            throw new RuntimeException("L'utente non esiste.");
+            throw new RuntimeException("Account non esistente");
 
         if (!u.getPassword().equals(parametri.get("password")))
-            throw new RuntimeException("La password è errata.");
+            throw new RuntimeException("Password errata");
 
         sessione.setAttribute("utenteLoggato", u); //cookies
 
