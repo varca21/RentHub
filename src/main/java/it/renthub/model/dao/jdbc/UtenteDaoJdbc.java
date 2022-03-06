@@ -78,7 +78,6 @@ public class UtenteDaoJdbc implements UtenteDao {
 
     @Override
     public List<Utente> findAll() {
-
         List<Utente> utenti = new ArrayList<>();
         try {
             Connection conn = dbSource.getConnection();
@@ -117,19 +116,19 @@ public class UtenteDaoJdbc implements UtenteDao {
     public void update(Utente u) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE utente VALUES(?,?,?,?,?,?,?,?)";
+            String query = "UPDATE utente SET nome=?,cognome=?,data_di_nascita=?,num_telefono=?,email=?,password=?,ruolo=? WHERE id_utente=?";
             PreparedStatement st = conn.prepareStatement(query);
-            st.setString(1, u.getIdUtente());
-            st.setString(2, u.getNome());
-            st.setString(3, u.getCognome());
-            st.setString(5, u.getNumTelefono() + "");
-            st.setString(6, u.getEmail());
-            st.setString(7, u.getPassword());
+            st.setString(1, u.getNome());
+            st.setString(2, u.getCognome());
+            st.setString(4, u.getNumTelefono() + "");
+            st.setString(5, u.getEmail());
+            st.setString(6, u.getPassword());
+            st.setString(7, u.getRuolo());
             st.setString(8, u.getRuolo());
             if (u.getDataNascita() != null)
-                st.setDate(4, new Date(u.getDataNascita().getTime()));
+                st.setDate(3, new Date(u.getDataNascita().getTime()));
             else
-                st.setDate(4, null);
+                st.setDate(3, null);
             st.executeUpdate();
         } catch (SQLException e) {
             System.err.println("Problema nell'aggiornamento dell'utente " + u.getIdUtente());
