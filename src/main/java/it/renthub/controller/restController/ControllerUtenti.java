@@ -72,13 +72,11 @@ public class ControllerUtenti {
         if (u == null)
             throw new RuntimeException("Account non esistente");
 
-
         u.setIdUtente(parametri.get("id"));
         u.setNome(parametri.get("nome"));
         u.setCognome(parametri.get("cognome"));
         u.setNumTelefono(parametri.get("numTel"));
         u.setEmail(parametri.get("email"));
-        u.setPassword(parametri.get("password"));
         u.setRuolo("COMPRATORE"); //TODO da modificare
 
         Date d;
