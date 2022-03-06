@@ -152,7 +152,26 @@ public class UtenteDaoJdbc implements UtenteDao {
     //TODO update utente
     @Override
     public void update(Utente u) {
-
+        try {
+            Connection conn = dbSource.getConnection();
+            String query = "UPDATE utente VALUES(?,?,?,?,?,?,?,?)";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, u.getIdUtente());
+            st.setString(2, u.getNome());
+            st.setString(3, u.getCognome());
+            st.setString(5, u.getNumTelefono() + "");
+            st.setString(6, u.getEmail());
+            st.setString(7, u.getPassword());
+            st.setString(8, u.getRuolo());
+            if (u.getDataNascita() != null)
+                st.setDate(4, new Date(u.getDataNascita().getTime()));
+            else
+                st.setDate(4, null);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Problema nell'aggiornamento dell'utente " + u.getIdUtente());
+            e.printStackTrace();
+        }
     }
 
     //TODO delete utente
