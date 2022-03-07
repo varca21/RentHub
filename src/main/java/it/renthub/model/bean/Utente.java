@@ -13,6 +13,7 @@ public class Utente {
     String email;
     String password;
     String ruolo;
+    Boolean bannato;
 
     public String getIdUtente() {
         return idUtente;
@@ -76,6 +77,14 @@ public class Utente {
 
     public void setRuolo(String ruolo) {
         this.ruolo = ruolo;
+    }
+
+    public Boolean getBannato() {
+        return bannato;
+    }
+
+    public void setBannato(Boolean bannato) {
+        this.bannato = bannato;
     }
 
     @Override

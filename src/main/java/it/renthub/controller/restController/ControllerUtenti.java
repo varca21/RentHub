@@ -123,5 +123,34 @@ public class ControllerUtenti {
     public void logout(HttpSession sessione) {
         sessione.invalidate();
     }
-}
+
+    @GetMapping("/bannautente")
+    public Boolean bannaUtente(HttpSession sessione, @RequestParam String id) {
+        if (isUtenteCorrenteAmministratore(sessione)) {
+            Utente u = DBManager.getInstance().getUtenteDao().findById(id);
+            if (u != null) {
+                u.setBannato(true);
+                DBManager.getInstance().getUtenteDao().update(u);
+                Logger.LOG("Utente "+ id + " bannato!");
+            }
+            Logger.LOG("Impossibile bannare l' utente "+ id + ", non esiste!");
+            throw new RuntimeException("L'utente non esiste");
+        }
+        return false;
+    }
+
+        private boolean isUtenteCorrenteBannato (HttpSession sessione){
+            Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
+            if (utenteLoggato != null && utenteLoggato.getBannato())
+                return true;
+            return false;
+        }
+
+        private boolean isUtenteCorrenteAmministratore (HttpSession sessione){
+            Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
+            if (utenteLoggato != null && utenteLoggato.getRuolo().equals("AMMINISTRATORE"))
+                return true;
+            return false;
+        }
+    }
 

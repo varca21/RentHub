@@ -21,7 +21,7 @@ public class UtenteDaoJdbc implements UtenteDao {
     public void save(Utente u) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "INSERT INTO utente VALUES(?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO utente VALUES(?,?,?,?,?,?,?,?,false)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, u.getIdUtente());
             st.setString(2, u.getNome());
@@ -57,6 +57,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String ruolo = rs.getString("ruolo");
+                Boolean bannato = rs.getBoolean("bannato");
 
                 u = new Utente();
                 u.setIdUtente(idUtente);
@@ -67,6 +68,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setEmail(email);
                 u.setPassword(password);
                 u.setRuolo(ruolo);
+                u.setBannato(bannato);
 
             }
         } catch (SQLException e) {
@@ -92,6 +94,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 String numTel = rs.getString("num_telefono");
                 String password = rs.getString("password");
                 String ruolo = rs.getString("ruolo");
+                Boolean bannato = rs.getBoolean("bannato");
 
                 u = new Utente();
                 u.setIdUtente(idUtente);
@@ -102,6 +105,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setEmail(email);
                 u.setPassword(password);
                 u.setRuolo(ruolo);
+                u.setBannato(bannato);
 
             }
         } catch (SQLException e) {
@@ -128,6 +132,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String ruolo = rs.getString("ruolo");
+                Boolean bannato = rs.getBoolean("bannato");
 
                 u.setIdUtente(idUtente);
                 u.setNome(nome);
@@ -137,6 +142,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setEmail(email);
                 u.setPassword(password);
                 u.setRuolo(ruolo);
+                u.setBannato(bannato);
                 utenti.add(u);
             }
         } catch (SQLException e) {
@@ -150,7 +156,7 @@ public class UtenteDaoJdbc implements UtenteDao {
     public void update(Utente u) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE utente " + "SET nome=?" + ", cognome=?" + ", data_di_nascita=?" + ", num_telefono=?" + ", email=?" + ", password=?" + ", ruolo=?" + " WHERE id_utente=?";
+            String query = "UPDATE utente " + "SET nome=?" + ", cognome=?" + ", data_di_nascita=?" + ", num_telefono=?" + ", email=?" + ", password=?" + ", ruolo=?" + ", bannato=?" + " WHERE id_utente=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, u.getNome());
             st.setString(2, u.getCognome());
@@ -158,7 +164,8 @@ public class UtenteDaoJdbc implements UtenteDao {
             st.setString(5, u.getEmail());
             st.setString(6, u.getPassword());
             st.setString(7, u.getRuolo());
-            st.setString(8, u.getIdUtente());
+            st.setBoolean(8, u.getBannato());
+            st.setString(9, u.getIdUtente());
             if (u.getDataNascita() != null)
                 st.setDate(3, new Date(u.getDataNascita().getTime()));
             else
