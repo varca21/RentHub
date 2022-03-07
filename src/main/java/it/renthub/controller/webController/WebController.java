@@ -19,6 +19,8 @@ public class WebController {
 
     @GetMapping("/amministrazione")
     public String amministrazione(HttpSession sessione) {
+        if (isUtenteCorrenteBannato(sessione))
+            return "bannato";
         if (isUtenteCorrenteAmministratore(sessione)) {
             sessione.setAttribute("utenti", DBManager.getInstance().getUtenteDao().findAll());
             return "amministrazione";

@@ -125,19 +125,22 @@ public class ControllerUtenti {
     }
 
     @GetMapping("/bannautente")
-    public Boolean bannaUtente(HttpSession sessione, @RequestParam String id) {
+    public Boolean bannaUtente(HttpSession sessione, @RequestParam String id, @RequestParam Boolean flag) {
         if (isUtenteCorrenteAmministratore(sessione)) {
             Utente u = DBManager.getInstance().getUtenteDao().findById(id);
             if (u != null) {
-                u.setBannato(true);
+                u.setBannato(flag);
                 DBManager.getInstance().getUtenteDao().update(u);
-                Logger.LOG("Utente "+ id + " bannato!");
+                Logger.LOG("Utente "+ id + " bannato! " + flag);
             }
-            Logger.LOG("Impossibile bannare l' utente "+ id + ", non esiste!");
-            throw new RuntimeException("L'utente non esiste");
+            else {
+                Logger.LOG("Impossibile bannare l' utente "+ id + ", non esiste!");
+                throw new RuntimeException("L'utente non esiste");
+            }
         }
         return false;
     }
+
 
         private boolean isUtenteCorrenteBannato (HttpSession sessione){
             Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");

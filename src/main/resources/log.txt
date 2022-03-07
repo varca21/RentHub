@@ -13,3 +13,20 @@
 2022-03-06T16:11:17.192792100:Password errata per l'utente admin
 2022-03-06T16:11:17.613179800:Password errata per l'utente admin
 2022-03-06T16:11:17.996087200:Password errata per l'utente admin
+2022-03-07T22:15:25.362:Utente carlo_97 bannato!
+2022-03-07T22:15:25.363:Impossibile bannare l' utente carlo_97, non esiste!
+2022-03-07T22:15:47.933:Utente admin bannato!
+2022-03-07T22:15:47.933:Impossibile bannare l' utente admin, non esiste!
+2022-03-07T22:20:16.669:Utente pippo97 bannato!
+2022-03-07T22:25:41.523:Utente alfio87 bannato!
+2022-03-07T22:25:50.032:Utente alfio87 bannato!
+2022-03-07T22:28:19.384:Utente mario_rossi bannato! true
+2022-03-07T22:28:23.899:Utente mario_rossi bannato! false
+2022-03-07T22:28:43.170:Utente alfio87 bannato! false
+2022-03-07T22:28:54.110:Utente alfio87 bannato! true
+2022-03-07T22:29:12.953:Utente admin bannato! true
+2022-03-07T22:29:56.722:Utente admin bannato! false
+2022-03-07T22:31:49.924:Utente admin bannato! true
+2022-03-07T22:34:27.794:Utente admin bannato! true
+2022-03-07T22:34:31.736:Utente admin bannato! false
+2022-03-07T22:34:43.072:Utente admin bannato! true

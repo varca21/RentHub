@@ -9,10 +9,13 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="/js/amministrazione.js"></script> 
       <title> AMMINISTRAZIONE </title>
+      <link rel="stylesheet" href="/css/amministrazione.css">
     </head>
 
     <body>
+      <!-- TABELLA AMMINISTRAZIONE UTENTI -->
       <table class="table table-dark table-hover table-bordered">
         <thead>
           <tr>
@@ -29,10 +32,10 @@
               <td>${utente.email}</td>
               <td>
                 <c:if test="${utente.bannato}">
-                  <button>SBANNA</button>
+                  <button onclick='sbanna("${utente.idUtente}")'>SBANNA</button>
                 </c:if>
                 <c:if test="${!utente.bannato}">
-                  <button>BANNA</button>
+                  <button onclick='banna("${utente.idUtente}")'>BANNA</button>
                 </c:if>
               </td>
               <td>
@@ -48,6 +51,29 @@
           </c:forEach>
         </tbody>
       </table>
+
+      <!-- Modal FINESTRA DI DIALOGO DI CONFERMA -->
+      <div class="modal fade" id="FinestraDialogoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="TitoloFinestraDialogo">Sei sicuro di voler confermare?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Sei sicuro di voler confermare?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+              <button type="button" id="tastoConferma"class="btn btn-primary">Conferma</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </body>
 
     </html>
