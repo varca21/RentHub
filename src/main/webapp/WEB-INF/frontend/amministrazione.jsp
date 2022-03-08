@@ -16,7 +16,6 @@
     </head>
 
     <body>
-      Ciao ${utenteLoggato.nome},${utenteLoggato.bannato}
       <table class="table table-dark table-hover table-bordered">
         <thead>
           <tr>
