@@ -143,7 +143,24 @@ public class ControllerUtenti {
         return false;
     }
 
-    
+    @GetMapping("/promuoviamministratore")
+    public Boolean promuoviAmministratore(HttpSession sessione, @RequestParam String id, @RequestParam Boolean flag) {
+        if (isUtenteCorrenteAmministratore(sessione)) {
+            Utente u = DBManager.getInstance().getUtenteDao().findById(id);
+            if (u != null) {
+                if (flag)
+                    u.setRuolo("AMMINISTRATORE");
+                else
+                    u.setRuolo("COMPRATORE");
+                DBManager.getInstance().getUtenteDao().update(u);
+                Logger.LOG("Utente " + id + " promosso amministratore! " + flag);
+            } else {
+                Logger.LOG("Impossibile promuovere l' utente " + id + ", non esiste!");
+                throw new RuntimeException("L'utente non esiste");
+            }
+        }
+        return false;
+    }
 
     private boolean isUtenteCorrenteBannato(HttpSession sessione) {
         if (utenteCorrente(sessione) != null && utenteCorrente(sessione).getBannato())
