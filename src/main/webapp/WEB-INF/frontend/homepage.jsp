@@ -42,11 +42,12 @@
 
 
                                 <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE'}">
-    
-                                    <button type="button" class="btn btn-success" onclick="window.location.href='/amministrazione'">Amministrazione
+
+                                    <button type="button" class="btn btn-success"
+                                        onclick="window.location.href='/amministrazione'">Amministrazione
                                     </button>
                                 </c:if>
-                                
+
 
 
                                 <!-- TASTO LOGOUT -->
