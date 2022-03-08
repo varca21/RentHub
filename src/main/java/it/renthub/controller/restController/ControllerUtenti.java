@@ -131,6 +131,9 @@ public class ControllerUtenti {
             if (u != null) {
                 u.setBannato(flag);
                 DBManager.getInstance().getUtenteDao().update(u);
+                if(utenteCorrente(sessione).equals(u)){
+                    sessione.setAttribute("utenteLoggato",u);
+                }
                 Logger.LOG("Utente " + id + " bannato! " + flag);
             } else {
                 Logger.LOG("Impossibile bannare l' utente " + id + ", non esiste!");
@@ -143,17 +146,17 @@ public class ControllerUtenti {
     
 
     private boolean isUtenteCorrenteBannato(HttpSession sessione) {
-        Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
-        if (utenteLoggato != null && utenteLoggato.getBannato())
+        if (utenteCorrente(sessione) != null && utenteCorrente(sessione).getBannato())
             return true;
         return false;
     }
 
     private boolean isUtenteCorrenteAmministratore(HttpSession sessione) {
-        Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
-        if (utenteLoggato != null && utenteLoggato.getRuolo().equals("AMMINISTRATORE"))
+        if (utenteCorrente(sessione) != null && utenteCorrente(sessione).getRuolo().equals("AMMINISTRATORE"))
             return true;
         return false;
     }
+
+
 }
 

@@ -2,6 +2,7 @@ package it.renthub.model.bean;
 
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Utente {
 
@@ -100,4 +101,13 @@ public class Utente {
                 ", ruolo='" + ruolo + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Utente utente = (Utente) o;
+        return idUtente.equals(utente.idUtente) && email.equals(utente.email);
+    }
+
 }

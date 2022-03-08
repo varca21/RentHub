@@ -19,8 +19,6 @@ public class WebController {
 
     @GetMapping("/amministrazione")
     public String amministrazione(HttpSession sessione) {
-        if (isUtenteCorrenteBannato(sessione))
-            return "bannato";
         if (isUtenteCorrenteAmministratore(sessione)) {
             sessione.setAttribute("utenti", DBManager.getInstance().getUtenteDao().findAll());
             return "amministrazione";
@@ -38,7 +36,7 @@ public class WebController {
 
     private boolean isUtenteCorrenteAmministratore(HttpSession sessione) {
         Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
-        if (utenteLoggato != null && utenteLoggato.getRuolo().equals("AMMINISTRATORE"))
+        if (utenteLoggato != null && !(isUtenteCorrenteBannato(sessione)) && utenteLoggato.getRuolo().equals("AMMINISTRATORE"))
             return true;
         return false;
     }
