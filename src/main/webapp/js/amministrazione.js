@@ -19,7 +19,7 @@ function messaggio(messaggio, link, utente, flag) {
                 flag:flag
             },
             success: function (response) {
-                window.location.replace("http://localhost:8080/amministrazione");
+                window.location.replace("/amministrazione");
             },
             error: function (jqxhr) {
                 var errore = JSON.parse(jqxhr.responseText).message;

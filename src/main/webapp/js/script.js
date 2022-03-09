@@ -24,7 +24,7 @@ function registra() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            window.location.replace("http://localhost:8080/");
+            document.location.href="/";
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
@@ -85,7 +85,7 @@ function login() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            window.location.replace("http://localhost:8080/");
+            window.location.replace("/");
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
@@ -105,7 +105,7 @@ function logout() {
         url: "rest/utenti/logout",
         type: "GET",
         success: function (response) {
-            window.location.replace("http://localhost:8080/");
+            window.location.replace("/");
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
