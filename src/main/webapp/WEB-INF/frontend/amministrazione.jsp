@@ -5,7 +5,6 @@
     <html>
 
     <head>
-      <link rel="stylesheet" href="/css/amministrazione.css">
       <script src="/js/amministrazione.js"></script>
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,6 +12,8 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <title> AMMINISTRAZIONE </title>
+
+      <link rel="stylesheet" href="/css/amministrazione.css">
     </head>
 
     <body>
@@ -57,7 +58,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Conferma</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Sei sicuro di voler continuare?</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -66,8 +67,8 @@
               ...
             </div>
             <div class="modal-footer">
-              <button type="button" id="tastoConferma" class="btn btn-primary">Conferma</button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Annulla</button>
+              <button type="button" id="tastoConferma" class="tastoConferma">Conferma</button>
+              <button type="button" class="tastoAnnulla" data-dismiss="modal">Annulla</button>
             </div>
           </div>
         </div>

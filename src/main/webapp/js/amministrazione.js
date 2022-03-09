@@ -11,7 +11,7 @@ function rendiAmministratore(idUtente){
 }
 
 function togliAmministratore(idUtente){
-    conferma("Rendi amministratore: ","/rest/utenti/promuoviamministratore",idUtente,false);
+    conferma("Rimuovi amministratore: ","/rest/utenti/promuoviamministratore",idUtente,false);
 }
 
 function conferma(messaggio, link, utente, flag) {
