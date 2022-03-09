@@ -40,10 +40,10 @@
               </td>
               <td>
                 <c:if test="${utente.ruolo=='AMMINISTRATORE'}">
-                  <button>RIMUOVI AMMINISTRATORE</button>
+                  <button onclick="togliAmministratore('${utente.idUtente}')">RIMUOVI AMMINISTRATORE</button>
                 </c:if>
                 <c:if test="${utente.ruolo!='AMMINISTRATORE'}">
-                  <button>PROMUOVI AMMINISTRATORE</button>
+                  <button  onclick="rendiAmministratore('${utente.idUtente}')">PROMUOVI AMMINISTRATORE</button>
                 </c:if>
               </td>
 

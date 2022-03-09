@@ -131,9 +131,8 @@ public class ControllerUtenti {
             if (u != null) {
                 u.setBannato(flag);
                 DBManager.getInstance().getUtenteDao().update(u);
-                if(utenteCorrente(sessione).equals(u)){
+                if(utenteCorrente(sessione).equals(u))
                     sessione.setAttribute("utenteLoggato",u);
-                }
                 Logger.LOG("Utente " + id + " bannato! " + flag);
             } else {
                 Logger.LOG("Impossibile bannare l' utente " + id + ", non esiste!");
@@ -153,6 +152,8 @@ public class ControllerUtenti {
                 else
                     u.setRuolo("COMPRATORE");
                 DBManager.getInstance().getUtenteDao().update(u);
+                if(utenteCorrente(sessione).equals(u))
+                    sessione.setAttribute("utenteLoggato",u);
                 Logger.LOG("Utente " + id + " promosso amministratore! " + flag);
             } else {
                 Logger.LOG("Impossibile promuovere l' utente " + id + ", non esiste!");

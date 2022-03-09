@@ -1,12 +1,20 @@
 function banna(idUtente) {
-    messaggio("Ban utente: ", "/rest/utenti/bannautente", idUtente, true);
+    conferma("Ban utente: ", "/rest/utenti/bannautente", idUtente, true);
 }
 
 function sbanna(idUtente) {
-    messaggio("Sban utente: ", "/rest/utenti/bannautente", idUtente, false);
+    conferma("Sban utente: ", "/rest/utenti/bannautente", idUtente, false);
 }
 
-function messaggio(messaggio, link, utente, flag) {
+function rendiAmministratore(idUtente){
+    conferma("Rendi amministratore: ","/rest/utenti/promuoviamministratore",idUtente,true);
+}
+
+function togliAmministratore(idUtente){
+    conferma("Rendi amministratore: ","/rest/utenti/promuoviamministratore",idUtente,false);
+}
+
+function conferma(messaggio, link, utente, flag) {
     $('#FinestraDialogoModal').modal();
     $('#FinestraDialogoModal').modal().find('.modal-body').text(messaggio + " " + utente);
     $('#tastoConferma').remove('onclick');
