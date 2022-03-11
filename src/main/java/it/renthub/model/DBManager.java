@@ -1,6 +1,10 @@
 package it.renthub.model;
 
+import it.renthub.model.dao.AnnuncioDao;
+import it.renthub.model.dao.RecensioneDao;
 import it.renthub.model.dao.UtenteDao;
+import it.renthub.model.dao.jdbc.AnnuncioDaoJdbc;
+import it.renthub.model.dao.jdbc.RecensioneDaoJdbc;
 import it.renthub.model.dao.jdbc.UtenteDaoJdbc;
 
 public class DBManager {
@@ -34,6 +38,14 @@ public class DBManager {
 
     public UtenteDao getUtenteDao() {
         return new UtenteDaoJdbc(dataSource);
+    }
+
+    public RecensioneDao getRecensioneDao() {
+        return new RecensioneDaoJdbc(dataSource);
+    }
+
+    public AnnuncioDao getAnnuncioDao() {
+        return new AnnuncioDaoJdbc(dataSource);
     }
 
 }
