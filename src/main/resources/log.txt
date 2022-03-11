@@ -36,3 +36,5 @@
 2022-03-09T21:16:14.883:Utente varca_21 promosso amministratore! true
 2022-03-09T21:31:40.392:Utente mario_rossi bannato! true
 2022-03-09T21:31:44.339:Utente mario_rossi bannato! false
+2022-03-11T15:46:49.854635200:Password errata per l'utente admin
+2022-03-11T15:46:52.905086700:Password errata per l'utente admin

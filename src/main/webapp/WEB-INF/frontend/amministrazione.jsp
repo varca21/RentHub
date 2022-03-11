@@ -17,42 +17,56 @@
     </head>
 
     <body>
-      <table class="table table-dark table-hover table-bordered">
-        <thead>
-          <tr>
-            <th>ID Utente</th>
-            <th>e-mail</th>
-            <th>Bannato</th>
-            <th>Amministratore</th>
-          </tr>
-        </thead>
-        <tbody>
-          <c:forEach var="utente" items="${utenti}">
-            <tr>
-              <td>${utente.idUtente}</td>
-              <td>${utente.email}</td>
-              <td>
-                <c:if test="${utente.bannato}">
-                  <button onclick="sbanna('${utente.idUtente}')">SBANNA</button>
-                </c:if>
-                <c:if test="${!utente.bannato}">
-                  <button onclick="banna('${utente.idUtente}')">BANNA</button>
-                </c:if>
-              </td>
-              <td>
-                <c:if test="${utente.ruolo=='AMMINISTRATORE'}">
-                  <button onclick="togliAmministratore('${utente.idUtente}')">RIMUOVI AMMINISTRATORE</button>
-                </c:if>
-                <c:if test="${utente.ruolo!='AMMINISTRATORE'}">
-                  <button  onclick="rendiAmministratore('${utente.idUtente}')">PROMUOVI AMMINISTRATORE</button>
-                </c:if>
-              </td>
+      <section class="ftco-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+              <h2 class="heading-section">Amministrazione</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th>ID Utente</th>
+                      <th>e-mail</th>
+                      <th>Bannato</th>
+                      <th>Amministratore</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <c:forEach var="utente" items="${utenti}">
+                      <tr class="alert" role="alert">
+                        <td>${utente.idUtente}</td>
+                        <td>${utente.email}</td>
+                        <td>
+                          <c:if test="${utente.bannato}">
+                            <button onclick="sbanna('${utente.idUtente}')">SBANNA</button>
+                          </c:if>
+                          <c:if test="${!utente.bannato}">
+                            <button onclick="banna('${utente.idUtente}')">BANNA</button>
+                          </c:if>
+                        </td>
+                        <td>
+                          <c:if test="${utente.ruolo=='AMMINISTRATORE'}">
+                            <button onclick="togliAmministratore('${utente.idUtente}')">RIMUOVI AMMINISTRATORE</button>
+                          </c:if>
+                          <c:if test="${utente.ruolo!='AMMINISTRATORE'}">
+                            <button onclick="rendiAmministratore('${utente.idUtente}')">PROMUOVI AMMINISTRATORE</button>
+                          </c:if>
+                        </td>
 
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <div class="modal fade" id="FinestraDialogoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
