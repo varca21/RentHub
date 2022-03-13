@@ -37,3 +37,9 @@ function conferma(messaggio, link, utente, flag) {
     };
 
 }
+
+$(function() {
+    $("#tabellaAmministrazione").tablesorter();
+  });
+
+
