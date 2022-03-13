@@ -10,7 +10,7 @@ public class Annuncio {
     String titolo;
     String foto;
     double prezzo;
-    double metriQuadri;
+    int metriQuadri;
 
 
     public Utente getUtente() {
@@ -61,11 +61,11 @@ public class Annuncio {
         this.prezzo = prezzo;
     }
 
-    public double getMetriQuadri() {
+    public int getMetriQuadri() {
         return metriQuadri;
     }
 
-    public void setMetriQuadri(double metriQuadri) {
+    public void setMetriQuadri(int metriQuadri) {
         this.metriQuadri = metriQuadri;
     }
 
