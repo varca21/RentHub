@@ -31,7 +31,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(3, annuncio.getPosizione().getLongitudine());
             st.setString(4, annuncio.getDescrizione());
             st.setDouble(5, annuncio.getPrezzo());
-            st.setDouble(6, annuncio.getMetriQuadri());
+            st.setInt(6, annuncio.getMetriQuadri());
             st.setString(7, annuncio.getTitolo());
             st.setString(8, annuncio.getFoto());
             st.executeUpdate();
@@ -59,7 +59,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
-                Double metriQuadri = rs.getDouble("metri_quadri");
+                int metriQuadri = rs.getInt("metri_quadri");
 
                 a = new Annuncio();
                 a.setUtente(u);
@@ -98,7 +98,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
-                Double metriQuadri = rs.getDouble("metri_quadri");
+                int metriQuadri = rs.getInt("metri_quadri");
 
 
                 annuncio.setUtente(u);
@@ -140,7 +140,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
-                Double metriQuadri = rs.getDouble("metri_quadri");
+                int metriQuadri = rs.getInt("metri_quadri");
 
 
                 annuncio.setUtente(u);
@@ -171,7 +171,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(2, a.getPosizione().getLongitudine());
             st.setString(3, a.getDescrizione());
             st.setDouble(4, a.getPrezzo());
-            st.setDouble(5, a.getMetriQuadri());
+            st.setInt(5, a.getMetriQuadri());
             st.setString(6, a.getTitolo());
             st.setString(7, a.getFoto());
             st.setInt(8,a.getIdAnnuncio());
