@@ -71,7 +71,31 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane p-4 fade show active" id="tabCompra" role="tabpanel" aria-labelledby="tab1-tab">
-                    test compra
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container-fluid">
+            
+                       
+                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">                       
+                              <li class="nav-item dropdown">
+                                <li class="nav-item">
+                                    <select class="custom-select">
+                                      <option selected>Open this select menu</option>
+                                      <option value="1">One</option>
+                                      <option value="2">Two</option>
+                                      <option value="3">Three</option>
+                                    </select>
+                                  </li>
+                              </li>
+                            
+                            </ul>
+                            <form class="d-flex">
+                              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                              <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                          </div>
+                        </div>
+                      </nav>
                 </div>
                 <div class="tab-pane p-4 fade" id="tabAffitta" role="tabpanel" aria-labelledby="tab2-tab">
                     test vendi
