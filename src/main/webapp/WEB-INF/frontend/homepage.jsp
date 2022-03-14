@@ -15,8 +15,12 @@
 
             <!--BARRA DI NAVIGAZIONE-->
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                      </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <c:if test="${utenteLoggato==null}">
@@ -59,7 +63,23 @@
                     </ul>
                 </div>
             </nav>
-
+            
+            <!-- barra -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+              
 
             <!-- MODAL LOGIN -->
             <div class="modal fade" id="Accedi">
