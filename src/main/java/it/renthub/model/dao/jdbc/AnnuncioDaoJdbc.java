@@ -115,6 +115,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per l'utente " + u.getIdUtente() + "\n" + e.toString());
         }
+        if (annunci.isEmpty())
+            throw new RuntimeException("Impossibile trovare annunci dell'utente " + u.getIdUtente());
+
         return annunci;
 
 
@@ -174,7 +177,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(5, a.getMetriQuadri());
             st.setString(6, a.getTitolo());
             st.setString(7, a.getFoto());
-            st.setInt(8,a.getIdAnnuncio());
+            st.setInt(8, a.getIdAnnuncio());
 
             st.executeUpdate();
         } catch (SQLException e) {
