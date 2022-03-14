@@ -61,6 +61,8 @@ public class RecensioneDaoJdbc implements RecensioneDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca delle recensioni per l'utente " + u.getIdUtente() + "\n" + e.toString());
         }
+        if (recensioni.isEmpty())
+            throw new RuntimeException("Nessuna recensione trovata per l'utente " + u.getIdUtente());
         return recensioni;
     }
 
@@ -89,6 +91,8 @@ public class RecensioneDaoJdbc implements RecensioneDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca delle recensioni per l'annuncio " + annuncio.getIdAnnuncio() + "\n" + e.toString());
         }
+        if (recensioni.isEmpty())
+            throw new RuntimeException("Nessuna recensione trovata per l'annuncio " + annuncio.getIdAnnuncio());
         return recensioni;
     }
 
@@ -111,9 +115,6 @@ public class RecensioneDaoJdbc implements RecensioneDao {
                 r.setAnnuncio(a);
                 r.setTitolo(titolo);
                 r.setDescrizione(descrizione);
-
-
-
             }
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca delle recensioni per l'annuncio " + a.getIdAnnuncio() + "e utente "+u.getIdUtente()+ "\n" + e.toString());
