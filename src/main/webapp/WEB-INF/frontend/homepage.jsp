@@ -60,6 +60,27 @@
                 </div>
             </nav>
 
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item"><a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tabCompra" role="tab"
+                        aria-controls="tabCompra" aria-selected="true">Compra</a></li>
+                <li class="nav-item"><a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tabVendi" role="tab"
+                        aria-controls="tabVendi" aria-selected="false">Vendi</a></li>
+                <li class="nav-item"><a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tabAffitta" role="tab"
+                        aria-controls="tabAffitta" aria-selected="false">Affitta</a></li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane p-4 fade show active" id="tabCompra" role="tabpanel" aria-labelledby="tab1-tab">
+                    test compra
+                </div>
+                <div class="tab-pane p-4 fade" id="tabAffitta" role="tabpanel" aria-labelledby="tab2-tab">
+                    test vendi
+                </div>
+                <div class="tab-pane p-4 fade" id="tabVendi" role="tabpanel" aria-labelledby="tab3-tab">
+                    test affitta
+                </div>
+            </div>
+
 
             <!-- MODAL LOGIN -->
             <div class="modal fade" id="Accedi">
