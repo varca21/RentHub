@@ -68,7 +68,7 @@ public class ControllerUtenti {
     }
 
     @PostMapping("/aggiornaUtente")
-    Boolean aggiornaUtente(@RequestBody Map<String, String> parametri) throws ParseException {
+    Boolean aggiornaUtente(HttpSession sessione, @RequestBody Map<String, String> parametri) throws ParseException {
 
         Utente u = DBManager.getInstance().getUtenteDao().findById(parametri.get("id"));
         if (u == null)
@@ -92,6 +92,8 @@ public class ControllerUtenti {
 
         u.setDataNascita(d);
         DBManager.getInstance().getUtenteDao().update(u);
+        sessione.setAttribute("utenteLoggato", u);
+
         Logger.LOG("utente " + u.getIdUtente() + " aggiornato con successo");
         return true;
     }
@@ -114,7 +116,7 @@ public class ControllerUtenti {
 
         }
 
-        sessione.setAttribute("utenteLoggato", u); //cookies
+        sessione.setAttribute("utenteLoggato", u);
 
         return true;
     }
@@ -131,8 +133,8 @@ public class ControllerUtenti {
             if (u != null) {
                 u.setBannato(flag);
                 DBManager.getInstance().getUtenteDao().update(u);
-                if(utenteCorrente(sessione).equals(u))
-                    sessione.setAttribute("utenteLoggato",u);
+                if (utenteCorrente(sessione).equals(u))
+                    sessione.setAttribute("utenteLoggato", u);
                 Logger.LOG("Utente " + id + " bannato! " + flag);
             } else {
                 Logger.LOG("Impossibile bannare l' utente " + id + ", non esiste!");
@@ -152,8 +154,8 @@ public class ControllerUtenti {
                 else
                     u.setRuolo("COMPRATORE");
                 DBManager.getInstance().getUtenteDao().update(u);
-                if(utenteCorrente(sessione).equals(u))
-                    sessione.setAttribute("utenteLoggato",u);
+                if (utenteCorrente(sessione).equals(u))
+                    sessione.setAttribute("utenteLoggato", u);
                 Logger.LOG("Utente " + id + " promosso amministratore! " + flag);
             } else {
                 Logger.LOG("Impossibile promuovere l' utente " + id + ", non esiste!");

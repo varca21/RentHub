@@ -151,7 +151,6 @@ public class UtenteDaoJdbc implements UtenteDao {
         return utenti;
     }
 
-    //TODO update utente
     @Override
     public void update(Utente u) {
         try {
