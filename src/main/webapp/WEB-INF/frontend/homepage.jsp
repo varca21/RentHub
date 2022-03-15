@@ -61,8 +61,8 @@
             </nav>
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item"><a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tabCompra" role="tab"
-                        aria-controls="tabCompra" aria-selected="true">Compra</a></li>
+                <li class="nav-item"><a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tabCompra"
+                        role="tab" aria-controls="tabCompra" aria-selected="true">Compra</a></li>
                 <li class="nav-item"><a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tabVendi" role="tab"
                         aria-controls="tabVendi" aria-selected="false">Vendi</a></li>
                 <li class="nav-item"><a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tabAffitta" role="tab"
@@ -73,29 +73,31 @@
                 <div class="tab-pane p-4 fade show active" id="tabCompra" role="tabpanel" aria-labelledby="tab1-tab">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-            
-                       
-                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">                       
-                              <li class="nav-item dropdown">
-                                <li class="nav-item">
-                                    <select class="custom-select">
-                                      <option selected>Open this select menu</option>
-                                      <option value="1">One</option>
-                                      <option value="2">Two</option>
-                                      <option value="3">Three</option>
-                                    </select>
-                                  </li>
-                              </li>
-                              <form class="d-flex">
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                              </form>
-                            </ul>
-                            
-                          </div>
+
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown">
+                                    <li class="nav-item">
+                                        <select class="custom-select">
+                                            <option selected>Seleziona tipologia</option>
+                                            <c:forEach var="tipologia" items="${tipologie}">
+                                                <option value="2">${tipologia}</option>
+                                            </c:forEach>
+                                            
+                                        </select>
+                                    </li>
+                                    </li>
+                                    <form class="d-flex">
+                                        <input class="form-control me-2" type="search" placeholder="Search"
+                                            aria-label="Search">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </ul>
+
+                            </div>
                         </div>
-                      </nav>
+                    </nav>
                 </div>
                 <div class="tab-pane p-4 fade" id="tabAffitta" role="tabpanel" aria-labelledby="tab2-tab">
                     test vendi

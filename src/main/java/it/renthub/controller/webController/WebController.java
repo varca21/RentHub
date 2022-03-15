@@ -1,6 +1,7 @@
 package it.renthub.controller.webController;
 
 import it.renthub.model.DBManager;
+import it.renthub.model.bean.Tipologia;
 import it.renthub.model.bean.Utente;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ public class WebController {
     public String homepage(HttpSession sessione) {
         if (isUtenteCorrenteBannato(sessione))
             return "bannato";
+        sessione.setAttribute("tipologie", Tipologia.values());
         return "homepage";
     }
 
