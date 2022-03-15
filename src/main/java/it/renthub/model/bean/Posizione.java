@@ -36,5 +36,13 @@ public class Posizione {
         return latitudine == posizione.latitudine && longitudine == posizione.longitudine;
     }
 
+    public Posizione(int latitudine, int longitudine) {
+        this.latitudine = latitudine;
+        this.longitudine = longitudine;
+    }
 
+    public Posizione() {
+        latitudine=0;
+        longitudine=0;
+    }
 }
