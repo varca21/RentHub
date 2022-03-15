@@ -11,6 +11,7 @@ public class Annuncio {
     String foto;
     double prezzo;
     int metriQuadri;
+    Tipologia tipologia;
 
 
     public Utente getUtente() {
@@ -77,6 +78,14 @@ public class Annuncio {
         this.idAnnuncio = idAnnuncio;
     }
 
+    public Tipologia getTipologia() {
+        return tipologia;
+    }
+
+    public void setTipologia(Tipologia tipologia) {
+        this.tipologia = tipologia;
+    }
+
     @Override
     public String toString() {
         return "Annuncio{" +
@@ -88,6 +97,7 @@ public class Annuncio {
                 ", foto='" + foto + '\'' +
                 ", prezzo=" + prezzo +
                 ", metriQuadri=" + metriQuadri +
+                ", tipologia=" + tipologia +
                 '}';
     }
 
@@ -96,7 +106,7 @@ public class Annuncio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Annuncio annuncio = (Annuncio) o;
-        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && Double.compare(annuncio.metriQuadri, metriQuadri) == 0 && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto);
+        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && metriQuadri == annuncio.metriQuadri && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia;
     }
 
 }

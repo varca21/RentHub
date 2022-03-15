@@ -5,6 +5,7 @@ import it.renthub.model.DBManager;
 import it.renthub.model.DBSource;
 import it.renthub.model.bean.Annuncio;
 import it.renthub.model.bean.Posizione;
+import it.renthub.model.bean.Tipologia;
 import it.renthub.model.bean.Utente;
 import it.renthub.model.dao.AnnuncioDao;
 
@@ -23,9 +24,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void save(Annuncio annuncio) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "INSERT INTO annuncio (id_utente,latitudine,longitudine,descrizione,prezzo,metri_quadri,titolo,foto) VALUES(?,?,?,?,?,?,?,?)";
+            String query = "INSERT INTO annuncio (id_utente,latitudine,longitudine,descrizione,prezzo,metri_quadri,titolo,foto,tipologia) VALUES(?,?,?,?,?,?,?,?,CAST(? AS tipologia))";
             PreparedStatement st = conn.prepareStatement(query);
-
             st.setString(1, annuncio.getUtente().getIdUtente());
             st.setInt(2, annuncio.getPosizione().getLatitudine());
             st.setInt(3, annuncio.getPosizione().getLongitudine());
@@ -34,6 +34,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(6, annuncio.getMetriQuadri());
             st.setString(7, annuncio.getTitolo());
             st.setString(8, annuncio.getFoto());
+            st.setString(9,annuncio.getTipologia().toString());
             st.executeUpdate();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
@@ -60,6 +61,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
                 int metriQuadri = rs.getInt("metri_quadri");
+                Tipologia tipologia=Tipologia.valueOf(rs.getString("Tipologia"));
 
                 a = new Annuncio();
                 a.setUtente(u);
@@ -70,6 +72,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 a.setFoto(foto);
                 a.setPrezzo(prezzo);
                 a.setMetriQuadri(metriQuadri);
+                a.setTipologia(tipologia);
             }
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca dell' annuncio " + idAnnuncio + "\n" + e.toString());
@@ -99,6 +102,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
                 int metriQuadri = rs.getInt("metri_quadri");
+                Tipologia tipologia=Tipologia.valueOf(rs.getString("Tipologia"));
 
 
                 annuncio.setUtente(u);
@@ -109,6 +113,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 annuncio.setFoto(foto);
                 annuncio.setPrezzo(prezzo);
                 annuncio.setMetriQuadri(metriQuadri);
+                annuncio.setTipologia(tipologia);
 
                 annunci.add(annuncio);
             }
@@ -144,7 +149,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
                 int metriQuadri = rs.getInt("metri_quadri");
-
+                Tipologia tipologia=Tipologia.valueOf(rs.getString("Tipologia"));
 
                 annuncio.setUtente(u);
                 annuncio.setIdAnnuncio(idAnnuncio);
@@ -154,6 +159,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 annuncio.setFoto(foto);
                 annuncio.setPrezzo(prezzo);
                 annuncio.setMetriQuadri(metriQuadri);
+                annuncio.setTipologia(tipologia);
 
                 annunci.add(annuncio);
             }
@@ -168,7 +174,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         try {
             Connection conn = dbSource.getConnection();
             String query = "UPDATE annuncio" + " SET latitudine=?" + ", longitudine=?" + ", descrizione=?" + ", prezzo=?"
-                    + ", metri_quadri=?" + ", titolo=?" + ", foto=?" + " WHERE id_annuncio=?";
+                    + ", metri_quadri=?" + ", titolo=?" + ", foto=?" +", tipologia=CAST(? AS tipologia)" + " WHERE id_annuncio=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, a.getPosizione().getLatitudine());
             st.setInt(2, a.getPosizione().getLongitudine());
@@ -177,11 +183,13 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(5, a.getMetriQuadri());
             st.setString(6, a.getTitolo());
             st.setString(7, a.getFoto());
-            st.setInt(8, a.getIdAnnuncio());
+            st.setString(8,a.getTipologia().toString());
+            st.setInt(9, a.getIdAnnuncio());
+
 
             st.executeUpdate();
         } catch (SQLException e) {
-            Logger.LOG("Problema nell'aggiornamento della recensione dell' annuncio " + a.getIdAnnuncio() + "\n" + e.toString());
+            Logger.LOG("Problema nell'aggiornamento dell' annuncio " + a.getIdAnnuncio() + "\n" + e.toString());
         }
     }
 
