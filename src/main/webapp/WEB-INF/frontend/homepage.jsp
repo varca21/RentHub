@@ -105,7 +105,8 @@
                         </div>
                     </nav>
                 </div>
-                <!-- TAB VENDI -->
+              
+                <!-- TAB AFFITTA -->
                 <div class="tab-pane p-4 fade" id="tabAffitta" role="tabpanel" aria-labelledby="tab2-tab">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -129,7 +130,7 @@
                     </nav>
                 </div>
 
-                <!-- TAB AFFITTA -->
+                  <!-- TAB VENDI -->
                 <div class="tab-pane p-4 fade" id="tabVendi" role="tabpanel" aria-labelledby="tab3-tab">
                     <div class="card border-info mb-3">
                         <div class="card-header">
