@@ -12,6 +12,7 @@ public class Annuncio {
     double prezzo;
     int metriQuadri;
     Tipologia tipologia;
+    boolean affitto;
 
 
     public Utente getUtente() {
@@ -78,6 +79,14 @@ public class Annuncio {
         this.idAnnuncio = idAnnuncio;
     }
 
+    public boolean isAffitto() {
+        return affitto;
+    }
+
+    public void setAffitto(boolean affitto) {
+        this.affitto = affitto;
+    }
+
     public Tipologia getTipologia() {
         return tipologia;
     }
@@ -98,6 +107,7 @@ public class Annuncio {
                 ", prezzo=" + prezzo +
                 ", metriQuadri=" + metriQuadri +
                 ", tipologia=" + tipologia +
+                ", affitto=" + affitto +
                 '}';
     }
 
@@ -106,7 +116,8 @@ public class Annuncio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Annuncio annuncio = (Annuncio) o;
-        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && metriQuadri == annuncio.metriQuadri && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia;
+        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && metriQuadri == annuncio.metriQuadri && affitto == annuncio.affitto && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia;
     }
+
 
 }
