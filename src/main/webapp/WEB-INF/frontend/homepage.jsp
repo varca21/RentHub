@@ -62,9 +62,9 @@
             <!-- NAV TABS -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tabCompra" role="tab"
-                        aria-controls="tabCompra" aria-selected="true">
-                        Compra
+                    <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tabCerca" role="tab"
+                        aria-controls="tabCerca" aria-selected="true">
+                        Cerca
                     </a>
                 </li>
                 <li class="nav-item">
@@ -73,21 +73,19 @@
                         Vendi
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="tab3-tab" data-toggle="tab" href="#tabAffitta" role="tab"
-                        aria-controls="tabAffitta" aria-selected="false">
-                        Affitta
-                    </a>
-                </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <!-- TAB COMPRA -->     
-                <div class="tab-pane p-4 fade show active" id="tabCompra" role="tabpanel" aria-labelledby="tab1-tab">
+                <!-- TAB CERCA -->
+                <div class="tab-pane p-4 fade show active" id="tabCerca" role="tabpanel" aria-labelledby="tab1-tab">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li class="nav-item dropdown">
+                                    <select class="custom-select">
+                                        <option selected>Affito</option>
+                                        <option selected>Vendita</option>
+                                    </select>
                                     <select class="custom-select">
                                         <option selected>Seleziona tipologia</option>
                                         <c:forEach var="tipologia" items="${tipologie}">
@@ -96,107 +94,95 @@
                                     </select>
                                 </li>
                                 <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Search"aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">
-                                            Cerca
-                                        </button>
-                                </form>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-              
-                <!-- TAB AFFITTA -->
-                <div class="tab-pane p-4 fade" id="tabAffitta" role="tabpanel" aria-labelledby="tab2-tab">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
-                                    <select class="custom-select">
-                                        <option selected>Seleziona tipologia</option>
-                                        <c:forEach var="tipologia" items="${tipologie}">
-                                            <option>${tipologia}</option>
-                                        </c:forEach>
-                                    </select>
-                                </li>
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Search"aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit">
-                                            cerca
-                                        </button>
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">
+                                        Cerca
+                                    </button>
                                 </form>
                             </ul>
                         </div>
                     </nav>
                 </div>
 
-                  <!-- TAB VENDI -->
+
+                <!-- TAB VENDI -->
                 <div class="tab-pane p-4 fade" id="tabVendi" role="tabpanel" aria-labelledby="tab3-tab">
                     <div class="card border-info mb-3">
                         <div class="card-header">
-                            <center>Inserisci annuncio di vendita</center>
+                            <center>Inserisci annuncio di vendita/affitto</center>
                         </div>
-                        <form method="POST" action="javascript:registra()">
+                        <c:if test="${utenteLoggato==null}">
+                            <form method="POST" action="javascript:apriModalAccesso()">
+                        </c:if>
+                        <c:if test="${utenteLoggato!=null}">
+                            <form method="POST" action="javascript:inserisciAnnuncio()">
+                        </c:if>
                             <div class="form-group">
-                                <label for="userID">Titolo annuncio:</label>
+                                <label for="venditaTitolo">Titolo annuncio:</label>
                                 <input type="text" class="form-control" placeholder="Inserisci titolo annuncio"
-                                    id="userID" required>
+                                    id="venditaTitolo" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Descrizione</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="venditaDescrizione">Descrizione</label>
+                                <textarea class="form-control" id="venditaDescrizione" rows="3"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="nome">Prezzo:</label>
-                                <input type="number" class="form-control" placeholder="Inserisci il prezzo" id="nome"
-                                    required>
+                                <label for="venditaPrezzo">Prezzo:</label>
+                                <input type="number" class="form-control" placeholder="Inserisci il prezzo"
+                                    id="venditaPrezzo" required>
                             </div>
                             <div class="form-group">
-                                <label for="nome">Metri quadri:</label>
-                                <input type="number" class="form-control" placeholder="Inserisci metri quadri" id="nome"
-                                    required>
+                                <label for="venditaMetriQuadri">Metri quadri:</label>
+                                <input type="number" class="form-control" placeholder="Inserisci metri quadri"
+                                    id="venditaMetriQuadri" required>
                             </div>
                             <div class="form-group">
-                                <label for="selezionaTipologiaVendita">Seleziona tipologia immobile</label>
-                                <select class="custom-select" id="selezionaTipologiaVendita">
+                                <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
+                                <select class="custom-select" id="selezioneTipologiaVendita">
                                     <option selected>Seleziona tipologia</option>
                                     <c:forEach var="tipologia" items="${tipologie}">
-                                        <option>${tipologia}</option>
+                                        <option value=${tipologia}>${tipologia}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-4 ">         
-                                    <label for="venditaVia">Via:</label>
-                                    <input type="text" class="form-control" placeholder="Inserisci via" id="venditaVia"
-                                    required>
-                                </div>
                                 <div class="form-group col-md-4 ">
-                                    <label for="venditaNumeroCivico">Numero Civico:</label>
-                                    <input type="number" class="form-control" placeholder="Inserisci il prezzo" id="venditaNumeroCivico"
-                                    required>
-                                </div>
-                                <div class="form-group col-md-4 ">
-                                    <div class="form-group col-md-4 ">
-                                        <label for="venditaCap">CAP:</label>
-                                        <input type="number" class="form-control" placeholder="Inserisci il prezzo" id="venditaCap"
+                                    <label for="venditaIndirizzo">Indirizzo:</label>
+                                    <input type="text" class="form-control" placeholder="Inserisci via" id="venditaIndirizzo"
                                         required>
-                                    </div>
+                                </div>
+                                <div class="form-group col-md-4 ">
+                                    <label for="venditaCap">Cap:</label>
+                                    <input type="number" class="form-control" placeholder="Inserisci cap"
+                                        id="venditaCap" required>
+                                </div>
+                                <div class="form-group col-md-4 ">
+                                    <label for="venditaCitta">Citta:</label>
+                                    <input type="text" class="form-control" placeholder="Inserisci citta"
+                                        id="venditaCitta" required>
                                 </div>
                             </div>
-                            
-                                
-                            
-
+                            <div class="form-row">
+                                <div class="form-group col-md-2 ">
+                                    <label class="form-check-label" for="flexRadioDefault2">Affitta</label>
+                                    <input class="form-check-input" type="radio" id="flexRadioDefault2" checked>
+                                    
+                                </div>
+                                <div class="form-group col-md-4 ">
+                                    <label class="form-check-label" for="rbVendi">Vendi</label>
+                                    <input class="form-check-input" type="radio" id="rbVendi">        
+                                </div>
+                            </div>
                             <center>
-                                <button type="submit" class="btn btn-primary"
-                                    id="tastoRegistrati">Salva</button>
+                                
+                                <button type="submit" class="btn btn-primary">Pubblica annuncio</button>
                             </center>
                         </form>
                     </div>
                 </div>
             </div>
-            
+
 
 
             <!-- MODAL LOGIN -->

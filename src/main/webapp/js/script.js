@@ -1,3 +1,7 @@
+function apriModalAccesso(){
+    $("#Accedi").modal("show");
+}
+
 function registra() {
     var idUtente = document.querySelector("#userID").value;
     var nome = document.querySelector("#nome").value;
@@ -163,4 +167,47 @@ function validaCampo(campo, label) {
     label.hide;
 }
 
+function inserisciAnnuncio() {
+    var titolo = document.querySelector("#venditaTitolo").value;
+    var descrizione = document.querySelector("#venditaDescrizione").value;
+    var prezzo = document.querySelector("#venditaPrezzo").value;
+    var metriQuadri = document.querySelector("#venditaMetriQuadri").value;
+    var tipologia = document.querySelector("#selezioneTipologiaVendita").value;
+    var citta = document.querySelector("#venditaCitta").value;
+    var indirizzo = document.querySelector("#venditaIndirizzo").value;
+    var cap = document.querySelector("#venditaCap").value;
+    console.log(titolo);
+    console.log(descrizione);
+    console.log(metriQuadri);
+    console.log(tipologia);
+    console.log(prezzo);
+    console.log(citta);
+    console.log(indirizzo);
+    console.log(cap);
+    $.ajax({
+        url: "rest/annunci/nuovo",
+        type: "POST",
+        data: JSON.stringify(
+            {
+                "titolo": titolo,
+                "descrizione": descrizione,
+                "prezzo": prezzo,
+                "metriQuadri": metriQuadri,
+                "tipologia": tipologia,
+                "citta": citta,
+                "indirizzo": indirizzo,
+                "cap": cap
+            }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {//se la chiamata ajax restituisce codice 200
+            document.location.href="/";
+        },
+        error: function (jqxhr) {
+            console.log(jqxhr);
+            var errore = JSON.parse(jqxhr.responseText).message;
+            console.log(errore);
+        },
+    })
+}
 
