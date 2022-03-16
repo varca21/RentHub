@@ -24,17 +24,18 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void save(Annuncio annuncio) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "INSERT INTO annuncio (id_utente,latitudine,longitudine,descrizione,prezzo,metri_quadri,titolo,foto,tipologia) VALUES(?,?,?,?,?,?,?,?,CAST(? AS tipologia))";
+            String query = "INSERT INTO annuncio (id_utente,citta,indirizzo,cap,descrizione,prezzo,metri_quadri,titolo,foto,tipologia) VALUES(?,?,?,?,?,?,?,?,?,CAST(? AS tipologia))";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, annuncio.getUtente().getIdUtente());
-            st.setInt(2, annuncio.getPosizione().getLatitudine());
-            st.setInt(3, annuncio.getPosizione().getLongitudine());
-            st.setString(4, annuncio.getDescrizione());
-            st.setDouble(5, annuncio.getPrezzo());
-            st.setInt(6, annuncio.getMetriQuadri());
-            st.setString(7, annuncio.getTitolo());
-            st.setString(8, annuncio.getFoto());
-            st.setString(9,annuncio.getTipologia().toString());
+            st.setString(2, annuncio.getPosizione().getCitta());
+            st.setString(3, annuncio.getPosizione().getIndirizzo());
+            st.setInt(4, annuncio.getPosizione().getCap());
+            st.setString(5, annuncio.getDescrizione());
+            st.setDouble(6, annuncio.getPrezzo());
+            st.setInt(7, annuncio.getMetriQuadri());
+            st.setString(8, annuncio.getTitolo());
+            st.setString(9, annuncio.getFoto());
+            st.setString(10,annuncio.getTipologia().toString());
             st.executeUpdate();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
@@ -54,8 +55,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 Utente u = DBManager.getInstance().getUtenteDao().findById(rs.getString("id_utente"));
 
                 Posizione posizione = new Posizione();
-                posizione.setLatitudine(rs.getInt("latitudine"));
-                posizione.setLongitudine(rs.getInt("longitudine"));
+                posizione.setCap(rs.getInt("cap"));
+                posizione.setCitta(rs.getString("citta"));
+                posizione.setIndirizzo(rs.getString("indirizzo"));
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
@@ -95,8 +97,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
                 int idAnnuncio = rs.getInt("id_annuncio");
                 Posizione posizione = new Posizione();
-                posizione.setLatitudine(rs.getInt("latitudine"));
-                posizione.setLongitudine(rs.getInt("longitudine"));
+                posizione.setCap(rs.getInt("cap"));
+                posizione.setCitta(rs.getString("citta"));
+                posizione.setIndirizzo(rs.getString("indirizzo"));
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
@@ -142,8 +145,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 int idAnnuncio = rs.getInt("id_annuncio");
                 Utente u = DBManager.getInstance().getUtenteDao().findById("id_utente");
                 Posizione posizione = new Posizione();
-                posizione.setLatitudine(rs.getInt("latitudine"));
-                posizione.setLongitudine(rs.getInt("longitudine"));
+                posizione.setCap(rs.getInt("cap"));
+                posizione.setCitta(rs.getString("citta"));
+                posizione.setIndirizzo(rs.getString("indirizzo"));
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
@@ -173,18 +177,19 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void update(Annuncio a) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE annuncio" + " SET latitudine=?" + ", longitudine=?" + ", descrizione=?" + ", prezzo=?"
+            String query = "UPDATE annuncio" + " SET indirizzo=?" + ", citta=?" +", cap=?" + ", descrizione=?" + ", prezzo=?"
                     + ", metri_quadri=?" + ", titolo=?" + ", foto=?" +", tipologia=CAST(? AS tipologia)" + " WHERE id_annuncio=?";
             PreparedStatement st = conn.prepareStatement(query);
-            st.setInt(1, a.getPosizione().getLatitudine());
-            st.setInt(2, a.getPosizione().getLongitudine());
-            st.setString(3, a.getDescrizione());
-            st.setDouble(4, a.getPrezzo());
-            st.setInt(5, a.getMetriQuadri());
-            st.setString(6, a.getTitolo());
-            st.setString(7, a.getFoto());
-            st.setString(8,a.getTipologia().toString());
-            st.setInt(9, a.getIdAnnuncio());
+            st.setString(1, a.getPosizione().getIndirizzo());
+            st.setString(2, a.getPosizione().getCitta());
+            st.setInt(3, a.getPosizione().getCap());
+            st.setString(4, a.getDescrizione());
+            st.setDouble(5, a.getPrezzo());
+            st.setInt(6, a.getMetriQuadri());
+            st.setString(7, a.getTitolo());
+            st.setString(8, a.getFoto());
+            st.setString(9,a.getTipologia().toString());
+            st.setInt(10, a.getIdAnnuncio());
 
 
             st.executeUpdate();
