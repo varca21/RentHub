@@ -1,48 +1,31 @@
 package it.renthub.model.bean;
 
 public class Posizione {
-    int latitudine;
-    int longitudine;
+    String indirizzo;
+    String citta;
+    int cap;
 
-    public int getLatitudine() {
-        return latitudine;
+    public String getIndirizzo() {
+        return indirizzo;
     }
 
-    public void setLatitudine(int latitudine) {
-        this.latitudine = latitudine;
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
     }
 
-    public int getLongitudine() {
-        return longitudine;
+    public String getCitta() {
+        return citta;
     }
 
-    public void setLongitudine(int longitudine) {
-        this.longitudine = longitudine;
+    public void setCitta(String citta) {
+        this.citta = citta;
     }
 
-    @Override
-    public String toString() {
-        return "Posizione{" +
-                "latitudine=" + latitudine +
-                ", longitudine=" + longitudine +
-                '}';
+    public int getCap() {
+        return cap;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Posizione posizione = (Posizione) o;
-        return latitudine == posizione.latitudine && longitudine == posizione.longitudine;
-    }
-
-    public Posizione(int latitudine, int longitudine) {
-        this.latitudine = latitudine;
-        this.longitudine = longitudine;
-    }
-
-    public Posizione() {
-        latitudine=0;
-        longitudine=0;
+    public void setCap(int cap) {
+        this.cap = cap;
     }
 }
