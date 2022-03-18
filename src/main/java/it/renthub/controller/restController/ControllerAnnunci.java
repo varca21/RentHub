@@ -8,7 +8,6 @@ import it.renthub.model.bean.Utente;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,23 +37,27 @@ public class ControllerAnnunci {
         nuovaPosizione.setIndirizzo(parametri.get("indirizzo"));
         nuovaPosizione.setCap(Integer.parseInt(parametri.get("cap")));
         nuovoAnnuncio.setPosizione(nuovaPosizione);
-        nuovoAnnuncio.setAffitto(true);
 
+        if (parametri.get("affitto").equals("affitto"))
+            nuovoAnnuncio.setAffitto(true);
+        else if (parametri.get("affitto").equals("vendita"))
+            nuovoAnnuncio.setAffitto(false);
+        else throw new RuntimeException("tipologia di vendita non valida");
 
-        if(utenteCorrente(sessione)==null)
-            throw  new RuntimeException("utente non loggato");
+        if (utenteCorrente(sessione) == null)
+            throw new RuntimeException("utente non loggato");
         if (nuovoAnnuncio.getTitolo() == null)
-            throw  new RuntimeException("inserire titolo");
+            throw new RuntimeException("inserire titolo");
         if (nuovoAnnuncio.getDescrizione() == null)
-            throw  new RuntimeException("inserire descrizione");
+            throw new RuntimeException("inserire descrizione");
         if (nuovoAnnuncio.getTipologia() == null)
-            throw  new RuntimeException("inserire tiplogia");
+            throw new RuntimeException("inserire tiplogia");
         if (nuovaPosizione.getCitta() == null)
-            throw  new RuntimeException("inserire citta");
+            throw new RuntimeException("inserire citta");
         if (nuovaPosizione.getCap() == 0)
-            throw  new RuntimeException("inserire cap");
+            throw new RuntimeException("inserire cap");
         if (nuovaPosizione.getIndirizzo() == null)
-            throw  new RuntimeException("inserire indirizzo");
+            throw new RuntimeException("inserire indirizzo");
 
 
         DBManager.getInstance().getAnnuncioDao().save(nuovoAnnuncio);

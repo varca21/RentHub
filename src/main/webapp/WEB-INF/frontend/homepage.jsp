@@ -118,66 +118,71 @@
                         <c:if test="${utenteLoggato!=null}">
                             <form method="POST" action="javascript:inserisciAnnuncio()">
                         </c:if>
-                            <div class="form-group">
-                                <label for="venditaTitolo">Titolo annuncio:</label>
-                                <input type="text" class="form-control" placeholder="Inserisci titolo annuncio"
-                                    id="venditaTitolo" required>
+                        <div class="form-group">
+                            <label for="venditaTitolo">Titolo annuncio:</label>
+                            <input type="text" class="form-control" placeholder="Inserisci titolo annuncio"
+                                id="venditaTitolo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="venditaDescrizione">Descrizione</label>
+                            <textarea class="form-control" id="venditaDescrizione" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="venditaPrezzo">Prezzo:</label>
+                            <input type="number" class="form-control" placeholder="Inserisci il prezzo"
+                                id="venditaPrezzo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="venditaMetriQuadri">Metri quadri:</label>
+                            <input type="number" class="form-control" placeholder="Inserisci metri quadri"
+                                id="venditaMetriQuadri" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
+                            <select class="custom-select" id="selezioneTipologiaVendita">
+                                <option selected>Seleziona tipologia</option>
+                                <c:forEach var="tipologia" items="${tipologie}">
+                                    <option value=${tipologia}>${tipologia}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4 ">
+                                <label for="venditaIndirizzo">Indirizzo:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci via"
+                                    id="venditaIndirizzo" required>
                             </div>
-                            <div class="form-group">
-                                <label for="venditaDescrizione">Descrizione</label>
-                                <textarea class="form-control" id="venditaDescrizione" rows="3"></textarea>
+                            <div class="form-group col-md-4 ">
+                                <label for="venditaCap">Cap:</label>
+                                <input type="number" class="form-control" placeholder="Inserisci cap" id="venditaCap"
+                                    required>
                             </div>
-                            <div class="form-group">
-                                <label for="venditaPrezzo">Prezzo:</label>
-                                <input type="number" class="form-control" placeholder="Inserisci il prezzo"
-                                    id="venditaPrezzo" required>
+                            <div class="form-group col-md-4 ">
+                                <label for="venditaCitta">Citta:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci citta" id="venditaCitta"
+                                    required>
                             </div>
-                            <div class="form-group">
-                                <label for="venditaMetriQuadri">Metri quadri:</label>
-                                <input type="number" class="form-control" placeholder="Inserisci metri quadri"
-                                    id="venditaMetriQuadri" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioAffitta" value="affitto"
+                                    checked>
+                                <label class="form-check-label" for="radioAffitta">
+                                    Affitta
+                                </label>
                             </div>
-                            <div class="form-group">
-                                <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
-                                <select class="custom-select" id="selezioneTipologiaVendita">
-                                    <option selected>Seleziona tipologia</option>
-                                    <c:forEach var="tipologia" items="${tipologie}">
-                                        <option value=${tipologia}>${tipologia}</option>
-                                    </c:forEach>
-                                </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioAffitta" value="vendita">
+                                <label class="form-check-label" for="radioCompra">
+                                    Vendi
+                                </label>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4 ">
-                                    <label for="venditaIndirizzo">Indirizzo:</label>
-                                    <input type="text" class="form-control" placeholder="Inserisci via" id="venditaIndirizzo"
-                                        required>
-                                </div>
-                                <div class="form-group col-md-4 ">
-                                    <label for="venditaCap">Cap:</label>
-                                    <input type="number" class="form-control" placeholder="Inserisci cap"
-                                        id="venditaCap" required>
-                                </div>
-                                <div class="form-group col-md-4 ">
-                                    <label for="venditaCitta">Citta:</label>
-                                    <input type="text" class="form-control" placeholder="Inserisci citta"
-                                        id="venditaCitta" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-2 ">
-                                    <label class="form-check-label" for="flexRadioDefault2">Affitta</label>
-                                    <input class="form-check-input" type="radio" id="flexRadioDefault2" checked>
-                                    
-                                </div>
-                                <div class="form-group col-md-4 ">
-                                    <label class="form-check-label" for="rbVendi">Vendi</label>
-                                    <input class="form-check-input" type="radio" id="rbVendi">        
-                                </div>
-                            </div>
-                            <center>
-                                
-                                <button type="submit" class="btn btn-primary">Pubblica annuncio</button>
-                            </center>
+                        </div>
+
+                        <center>
+
+                            <button type="submit" class="btn btn-primary">Pubblica annuncio</button>
+                        </center>
                         </form>
                     </div>
                 </div>

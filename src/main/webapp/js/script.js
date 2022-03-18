@@ -1,4 +1,4 @@
-function apriModalAccesso(){
+function apriModalAccesso() {
     $("#Accedi").modal("show");
 }
 
@@ -28,7 +28,7 @@ function registra() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            document.location.href="/";
+            document.location.href = "/";
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
@@ -176,14 +176,7 @@ function inserisciAnnuncio() {
     var citta = document.querySelector("#venditaCitta").value;
     var indirizzo = document.querySelector("#venditaIndirizzo").value;
     var cap = document.querySelector("#venditaCap").value;
-    console.log(titolo);
-    console.log(descrizione);
-    console.log(metriQuadri);
-    console.log(tipologia);
-    console.log(prezzo);
-    console.log(citta);
-    console.log(indirizzo);
-    console.log(cap);
+    var affitto = document.querySelector('input[name="radioAffitta"]:checked').value;
     $.ajax({
         url: "rest/annunci/nuovo",
         type: "POST",
@@ -196,12 +189,13 @@ function inserisciAnnuncio() {
                 "tipologia": tipologia,
                 "citta": citta,
                 "indirizzo": indirizzo,
-                "cap": cap
+                "cap": cap,
+                "affitto": affitto
             }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            document.location.href="/";
+            document.location.href = "/";
         },
         error: function (jqxhr) {
             console.log(jqxhr);
