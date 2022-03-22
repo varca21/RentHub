@@ -50,12 +50,16 @@
                                             class="glyphicon glyphicon-chevron-right"></span> </a>
                                 </div>
                             </div>
+                            <c:if test="${annuncio.data!=null}"> 
+                                    <p class="data">Pubblicato il ${annuncio.data}</p>
+                            </c:if>
                         </div>
 
                         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                             <h2 class="name">
                                 ${annuncio.titolo}
                                 <small>Annuncio di <a href="javascript:void(0);">${annuncio.utente.nome}</a></small>
+                               
                             </h2>
                             <hr />
                             <h3 class="price-container">

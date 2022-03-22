@@ -221,7 +221,8 @@ body{
 }
 
 .product-deatil .name small {
-    display: block
+    display: block;
+    font-size: 15px;
 }
 
 .product-deatil .name a {
@@ -323,6 +324,10 @@ body{
 .message img.online {
     width:40px;
     height:40px;
+}
+
+.data {
+    font-size: x-small;
 }
 
 label {
