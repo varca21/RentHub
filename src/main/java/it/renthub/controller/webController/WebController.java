@@ -1,10 +1,12 @@
 package it.renthub.controller.webController;
 
 import it.renthub.model.DBManager;
+import it.renthub.model.bean.Annuncio;
 import it.renthub.model.bean.Tipologia;
 import it.renthub.model.bean.Utente;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 
@@ -43,5 +45,13 @@ public class WebController {
         return false;
     }
 
+    @GetMapping("/annuncio/{idAnnuncio}")
+    public String annuncio(@PathVariable String idAnnuncio, HttpSession sessione) {
+        Annuncio a = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(idAnnuncio));
+        if (a != null)
+            sessione.setAttribute("annuncio", a);
+
+        return "paginaProdotto";
+    }
 
 }
