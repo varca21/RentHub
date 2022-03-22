@@ -4,7 +4,7 @@
 
         <head>
             <meta charset="utf-8">
-            <title>product full detail - Bootdey.com</title>
+            <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
             <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -114,6 +114,7 @@
                                             <dt>CAP:</dt>
                                             <dd>${annuncio.posizione.cap} </dd>
                                             <br />
+                                            <iframe src="https://www.google.com/maps/embed?pb=!" width=90% height=60% style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                         </dl>
                                     </div>
                                     <div class="tab-pane fade" id="reviews">
