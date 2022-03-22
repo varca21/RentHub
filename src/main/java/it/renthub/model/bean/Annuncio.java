@@ -1,5 +1,6 @@
 package it.renthub.model.bean;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Annuncio {
@@ -13,6 +14,7 @@ public class Annuncio {
     int metriQuadri;
     Tipologia tipologia;
     boolean affitto;
+    Date data;
 
 
     public Utente getUtente() {
@@ -95,6 +97,14 @@ public class Annuncio {
         this.tipologia = tipologia;
     }
 
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
     @Override
     public String toString() {
         return "Annuncio{" +
@@ -108,6 +118,7 @@ public class Annuncio {
                 ", metriQuadri=" + metriQuadri +
                 ", tipologia=" + tipologia +
                 ", affitto=" + affitto +
+                " data=" + data +
                 '}';
     }
 
@@ -116,7 +127,7 @@ public class Annuncio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Annuncio annuncio = (Annuncio) o;
-        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && metriQuadri == annuncio.metriQuadri && affitto == annuncio.affitto && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia;
+        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && metriQuadri == annuncio.metriQuadri && affitto == annuncio.affitto && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia && annuncio.getData().compareTo(data) == 0;
     }
 
 
