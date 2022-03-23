@@ -11,6 +11,7 @@ import it.renthub.model.dao.AnnuncioDao;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AnnuncioDaoJdbc implements AnnuncioDao {
@@ -24,7 +25,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void save(Annuncio annuncio) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "INSERT INTO annuncio (id_utente,citta,indirizzo,cap,descrizione,prezzo,metri_quadri,titolo,foto,tipologia) VALUES(?,?,?,?,?,?,?,?,?,CAST(? AS tipologia))";
+            String query = "INSERT INTO annuncio (id_utente,citta,indirizzo,cap,descrizione,prezzo,metri_quadri,titolo,foto,tipologia,affitto,data) VALUES(?,?,?,?,?,?,?,?,?,CAST(? AS tipologia),?,?)";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, annuncio.getUtente().getIdUtente());
             st.setString(2, annuncio.getPosizione().getCitta());
@@ -35,7 +36,10 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(7, annuncio.getMetriQuadri());
             st.setString(8, annuncio.getTitolo());
             st.setString(9, annuncio.getFoto());
-            st.setString(10,annuncio.getTipologia().toString());
+            st.setString(10, annuncio.getTipologia().toString());
+            st.setBoolean(11, annuncio.isAffitto());
+            st.setDate(12, new java.sql.Date(System.currentTimeMillis()));
+
             st.executeUpdate();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
@@ -63,7 +67,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
                 int metriQuadri = rs.getInt("metri_quadri");
-                Tipologia tipologia=Tipologia.valueOf(rs.getString("Tipologia"));
+                Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
+                Boolean isAffitto = rs.getBoolean("affitto");
+                Date data = rs.getDate("data");
 
                 a = new Annuncio();
                 a.setUtente(u);
@@ -75,6 +81,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 a.setPrezzo(prezzo);
                 a.setMetriQuadri(metriQuadri);
                 a.setTipologia(tipologia);
+                a.setAffitto(isAffitto);
+                a.setData(data);
             }
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca dell' annuncio " + idAnnuncio + "\n" + e.toString());
@@ -105,8 +113,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
                 int metriQuadri = rs.getInt("metri_quadri");
-                Tipologia tipologia=Tipologia.valueOf(rs.getString("Tipologia"));
-
+                Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
+                Boolean isAffitto = rs.getBoolean("affitto");
+                Date data = rs.getDate("data");
 
                 annuncio.setUtente(u);
                 annuncio.setIdAnnuncio(idAnnuncio);
@@ -117,6 +126,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 annuncio.setPrezzo(prezzo);
                 annuncio.setMetriQuadri(metriQuadri);
                 annuncio.setTipologia(tipologia);
+                annuncio.setAffitto(isAffitto);
+                annuncio.setData(data);
 
                 annunci.add(annuncio);
             }
@@ -153,7 +164,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
                 int metriQuadri = rs.getInt("metri_quadri");
-                Tipologia tipologia=Tipologia.valueOf(rs.getString("Tipologia"));
+                Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
+                Boolean isAffitto = rs.getBoolean("affitto");
+                Date data = rs.getDate("data");
 
                 annuncio.setUtente(u);
                 annuncio.setIdAnnuncio(idAnnuncio);
@@ -164,6 +177,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 annuncio.setPrezzo(prezzo);
                 annuncio.setMetriQuadri(metriQuadri);
                 annuncio.setTipologia(tipologia);
+                annuncio.setAffitto(isAffitto);
+                annuncio.setData(data);
 
                 annunci.add(annuncio);
             }
@@ -177,8 +192,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void update(Annuncio a) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE annuncio" + " SET indirizzo=?" + ", citta=?" +", cap=?" + ", descrizione=?" + ", prezzo=?"
-                    + ", metri_quadri=?" + ", titolo=?" + ", foto=?" +", tipologia=CAST(? AS tipologia)" + " WHERE id_annuncio=?";
+            String query = "UPDATE annuncio" + " SET indirizzo=?" + ", citta=?" + ", cap=?" + ", descrizione=?" + ", prezzo=?"
+                    + ", metri_quadri=?" + ", titolo=?" + ", foto=?" + ", tipologia=CAST(? AS tipologia)" + ", affitto=?" + " WHERE id_annuncio=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, a.getPosizione().getIndirizzo());
             st.setString(2, a.getPosizione().getCitta());
@@ -188,8 +203,9 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(6, a.getMetriQuadri());
             st.setString(7, a.getTitolo());
             st.setString(8, a.getFoto());
-            st.setString(9,a.getTipologia().toString());
-            st.setInt(10, a.getIdAnnuncio());
+            st.setString(9, a.getTipologia().toString());
+            st.setBoolean(10, a.isAffitto());
+            st.setInt(11, a.getIdAnnuncio());
 
 
             st.executeUpdate();

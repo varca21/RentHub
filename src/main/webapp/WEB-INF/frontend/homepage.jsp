@@ -15,7 +15,6 @@
 
             <!--BARRA DI NAVIGAZIONE-->
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -59,6 +58,136 @@
                     </ul>
                 </div>
             </nav>
+
+            <!-- NAV TABS -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="tab1-tab" data-toggle="tab" href="#tabCerca" role="tab"
+                        aria-controls="tabCerca" aria-selected="true">
+                        Cerca
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab2-tab" data-toggle="tab" href="#tabVendi" role="tab"
+                        aria-controls="tabVendi" aria-selected="false">
+                        Vendi
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <!-- TAB CERCA -->
+                <div class="tab-pane p-4 fade show active" id="tabCerca" role="tabpanel" aria-labelledby="tab1-tab">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <select class="custom-select">
+                                        <option selected>Affito</option>
+                                        <option selected>Vendita</option>
+                                    </select>
+                                    <select class="custom-select">
+                                        <option selected>Seleziona tipologia</option>
+                                        <c:forEach var="tipologia" items="${tipologie}">
+                                            <option>${tipologia}</option>
+                                        </c:forEach>
+                                    </select>
+                                </li>
+                                <form class="d-flex">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">
+                                        Cerca
+                                    </button>
+                                </form>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+
+                <!-- TAB VENDI -->
+                <div class="tab-pane p-4 fade" id="tabVendi" role="tabpanel" aria-labelledby="tab3-tab">
+                    <div class="card border-info mb-3">
+                        <div class="card-header">
+                            <center>Inserisci annuncio di vendita/affitto</center>
+                        </div>
+                        <c:if test="${utenteLoggato==null}">
+                            <form method="POST" action="javascript:apriModalAccesso()">
+                        </c:if>
+                        <c:if test="${utenteLoggato!=null}">
+                            <form method="POST" action="javascript:inserisciAnnuncio()">
+                        </c:if>
+                        <div class="form-group">
+                            <label for="venditaTitolo">Titolo annuncio:</label>
+                            <input type="text" class="form-control" placeholder="Inserisci titolo annuncio"
+                                id="venditaTitolo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="venditaDescrizione">Descrizione</label>
+                            <textarea class="form-control" id="venditaDescrizione" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="venditaPrezzo">Prezzo:</label>
+                            <input type="number" class="form-control" placeholder="Inserisci il prezzo"
+                                id="venditaPrezzo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="venditaMetriQuadri">Metri quadri:</label>
+                            <input type="number" class="form-control" placeholder="Inserisci metri quadri"
+                                id="venditaMetriQuadri" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
+                            <select class="custom-select" id="selezioneTipologiaVendita">
+                                <option selected>Seleziona tipologia</option>
+                                <c:forEach var="tipologia" items="${tipologie}">
+                                    <option value=${tipologia}>${tipologia}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4 ">
+                                <label for="venditaIndirizzo">Indirizzo:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci via"
+                                    id="venditaIndirizzo" required>
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="venditaCap">Cap:</label>
+                                <input type="number" class="form-control" placeholder="Inserisci cap" id="venditaCap"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="venditaCitta">Citta:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci citta" id="venditaCitta"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioAffitta" value="affitto"
+                                    checked>
+                                <label class="form-check-label" for="radioAffitta">
+                                    Affitta
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioAffitta" value="vendita">
+                                <label class="form-check-label" for="radioCompra">
+                                    Vendi
+                                </label>
+                            </div>
+                        </div>
+
+                        <center>
+
+                            <button type="submit" class="btn btn-primary">Pubblica annuncio</button>
+                        </center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
 
             <!-- MODAL LOGIN -->
@@ -157,7 +286,6 @@
                                     <input type="text" class="form-control" placeholder="Inserisci numero di telefono"
                                         id="numTel">
                                 </div>
-
                                 <center>
                                     <button type="submit" class="btn btn-primary"
                                         id="tastoRegistrati">Registrati</button>

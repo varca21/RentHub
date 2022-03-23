@@ -36,5 +36,4 @@
 2022-03-09T21:16:14.883:Utente varca_21 promosso amministratore! true
 2022-03-09T21:31:40.392:Utente mario_rossi bannato! true
 2022-03-09T21:31:44.339:Utente mario_rossi bannato! false
-2022-03-14T16:22:12.379846100:utente admin aggiornato con successo
-2022-03-14T16:22:16.616524700:utente admin aggiornato con successo
+2022-03-13T11:10:45.307:utente alfio87 aggiornato con successo
