@@ -3,6 +3,7 @@ package it.renthub.model.dao;
 import it.renthub.model.bean.Annuncio;
 import it.renthub.model.bean.Utente;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface AnnuncioDao {
@@ -17,5 +18,7 @@ public interface AnnuncioDao {
     public void update(Annuncio a);
 
     public void delete(Annuncio a);
+
+    public Long getNextId() throws SQLException;
 
 }

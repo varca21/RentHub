@@ -202,4 +202,16 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void delete(Annuncio a) {
 
     }
+
+    @Override
+    public Long getNextId() throws SQLException {
+        Connection conn = dbSource.getConnection();
+        String query2 = "select  last_value  from annuncio_idannuncio_seq";
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query2);
+        while (rs.next()) {
+            return rs.getLong(1) + 1;
+        }
+        return null;
+    }
 }
