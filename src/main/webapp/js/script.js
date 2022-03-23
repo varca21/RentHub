@@ -177,23 +177,26 @@ function inserisciAnnuncio() {
     var indirizzo = document.querySelector("#venditaIndirizzo").value;
     var cap = document.querySelector("#venditaCap").value;
     var affitto = document.querySelector('input[name="radioAffitta"]:checked').value;
+    var formData = new FormData();
+    $.each($("input[type='file']")[0].files, function(i, file) {
+        formData.append('foto', file);
+    });
+    formData.append("titolo",titolo);
+    formData.append("descrizione",descrizione);
+    formData.append("prezzo",prezzo);
+    formData.append("metriQuadri",metriQuadri);
+    formData.append("tipologia",tipologia);
+    formData.append("citta",citta);
+    formData.append("indirizzo",indirizzo);
+    formData.append("titolo",titolo);
+    formData.append("cap",cap);
+    formData.append("affitto",affitto);
     $.ajax({
         url: "rest/annunci/nuovo",
-        type: "POST",
-        data: JSON.stringify(
-            {
-                "titolo": titolo,
-                "descrizione": descrizione,
-                "prezzo": prezzo,
-                "metriQuadri": metriQuadri,
-                "tipologia": tipologia,
-                "citta": citta,
-                "indirizzo": indirizzo,
-                "cap": cap,
-                "affitto": affitto
-            }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
+        method: "POST",
+        data:formData,
+        contentType: false,
+        processData: false,
         success: function (response) {//se la chiamata ajax restituisce codice 200
             document.location.href = "/";
         },
