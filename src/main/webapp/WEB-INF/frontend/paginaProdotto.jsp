@@ -36,12 +36,12 @@
                                         <c:forEach var="immagine" items="${immagini}" varStatus="loop">
                                             <c:if test="${loop.index==0}">
                                                 <div class="item active">
-                                                    <img src="${immagine}"class="img-responsive" alt="" />
+                                                    <img src="${immagine}"class="immagini" alt="" />
                                                 </div>
                                             </c:if>
                                             <c:if test="${loop.index!=0}">
                                                 <div class="item">
-                                                    <img src="${immagine}"class="img-responsive" alt="" />
+                                                    <img src="${immagine}"class="immagini" alt="" />
                                                 </div>
                                             </c:if>                             
                                         </c:forEach>                     
