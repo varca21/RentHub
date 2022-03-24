@@ -2,14 +2,15 @@
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
         <html>
 
-        <head>
-            <meta charset="utf-8">
+        <head>     
+            <script src="/js/paginaProdotto.js"></script>
             <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
             <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
             <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             <link rel="stylesheet" href="/css/paginaProdotto.css">
+            <script src="/js/paginaProdotto.js"></script>
         </head>
 
         <body>
@@ -60,8 +61,10 @@
                         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                             <h2 class="name">
                                 ${annuncio.titolo}
-                                <small>Annuncio di <a href="javascript:void(0);">${annuncio.utente.nome}</a></small>
-                               
+                                <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
+                                    <button class="btn"><i class="fa fa-bars" data-toggle="modal" data-target="#modalModifica"></i></button>
+                                </c:if>
+                                <small>Annuncio di <a href="javascript:void(0);">${annuncio.utente.nome}</a></small>                
                             </h2>
                             <hr />
                             <h3 class="price-container">
@@ -72,7 +75,7 @@
 
                             </h3>
                             <c:if test="${annuncio.affitto}">
-                                <label><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                <label.tipologia><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
                                         <path
                                             d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
@@ -81,7 +84,7 @@
                                     </svg>Affitto</label>
                             </c:if>
                             <c:if test="${!annuncio.affitto}">
-                                <label><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                <label.tipologia><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
                                         <path
                                             d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
@@ -120,7 +123,7 @@
                                             <dt>CAP:</dt>
                                             <dd>${annuncio.posizione.cap} </dd>
                                             <br />
-                                            <iframe src="https://www.google.com/maps/embed?pb=!" width=90% height=60% style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                            <iframe src="https://maps.google.com/maps?q=10.305385,77.923029&hl=es;z=14&amp;output=embed" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                         </dl>
                                     </div>
                                     <div class="tab-pane fade" id="reviews">
@@ -225,10 +228,77 @@
                         </div>
                     </div>
                 </div>
-                <!-- end product -->
             </div>
 
 
+            <!-- MODAL LOGIN -->
+            <div class="modal fade" id="modalModifica">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><center>MODIFICA ARTICOLO</center></h4
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form method="POST" action="javascript:modificaAnnuncio">
+                                <input type="hidden" value="${annuncio.idAnnuncio}" id="idAnnuncio" />
+                                <div class="form-group">
+                                    <label for="venditaTitolo">Titolo annuncio:</label>
+                                    <input type="text" class="form-control" placeholder="Inserisci titolo annuncio"
+                                        id="venditaTitolo" value="${annuncio.titolo}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="venditaDescrizione">Descrizione:</label>
+                                    <textarea class="form-control"  id="venditaDescrizione" rows="3">${annuncio.descrizione}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="venditaMetriQuadri">Metri quadri:</label>
+                                    <input type="number" class="form-control" placeholder="Inserisci metri quadri"
+                                        id="venditaMetriQuadri" value="${annuncio.metriQuadri}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
+                                    <select class="custom-select" id="selezioneTipologiaVendita">
+                                        <option selected>${annuncio.tipologia}</option>
+                                        <c:forEach var="tipologia" items="${tipologie}">
+                                            <c:if test="${tipologia!=annuncio.tipologia}">
+                                                <option value=${tipologia}>${tipologia}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4 ">
+                                        <label for="venditaIndirizzo">Indirizzo:</label>
+                                        <input type="text" class="form-control" placeholder="Inserisci via"
+                                            id="venditaIndirizzo" value="${annuncio.posizione.indirizzo}" required>
+                                    </div>
+                                    <div class="form-group col-md-4 ">
+                                        <label for="venditaCap">Cap:</label>
+                                        <input type="number" class="form-control" placeholder="Inserisci cap" id="venditaCap"
+                                        value="${annuncio.posizione.cap}" required>
+                                    </div>
+                                    <div class="form-group col-md-4 ">
+                                        <label for="venditaCitta">Citta:</label>
+                                        <input type="text" class="form-control" placeholder="Inserisci citta" id="venditaCitta"
+                                        value="${annuncio.posizione.citta}" required>
+                                    </div>
+                                </div>
+                                <center>
+                                    <button type="submit" class="btn btn-primary"
+                                        onclick="javascript:modificaAnnuncio()" id="tastoRegistrati">Salva</button>
+                                </center>                           
+                            </form>
+                        </div>                
+                    </div>
+                </div>
+            </div>
+
+          
 
         </body>
 

@@ -188,7 +188,6 @@ function inserisciAnnuncio() {
     formData.append("tipologia",tipologia);
     formData.append("citta",citta);
     formData.append("indirizzo",indirizzo);
-    formData.append("titolo",titolo);
     formData.append("cap",cap);
     formData.append("affitto",affitto);
     $.ajax({

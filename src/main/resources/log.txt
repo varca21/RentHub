@@ -37,3 +37,4 @@
 2022-03-09T21:31:40.392:Utente mario_rossi bannato! true
 2022-03-09T21:31:44.339:Utente mario_rossi bannato! false
 2022-03-13T11:10:45.307:utente alfio87 aggiornato con successo
+2022-03-24T20:53:10.511631500:utente luca_ro registrato con successo

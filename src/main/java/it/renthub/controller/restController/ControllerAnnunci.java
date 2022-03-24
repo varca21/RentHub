@@ -33,7 +33,7 @@ public class ControllerAnnunci {
     void aggiungiAnnuncio(@RequestPart String titolo, @RequestPart String descrizione, @RequestPart String metriQuadri, @RequestPart String prezzo,
                           @RequestPart String tipologia, @RequestPart String citta, @RequestPart String indirizzo,
                           @RequestPart String affitto, @RequestPart String cap, @RequestPart MultipartFile[] foto, HttpSession sessione) throws SQLException, IOException, IOException, SQLException {
-        
+
         Annuncio nuovoAnnuncio = new Annuncio();
         nuovoAnnuncio.setTitolo(titolo);
         nuovoAnnuncio.setDescrizione(descrizione);
@@ -89,6 +89,43 @@ public class ControllerAnnunci {
 
 
         DBManager.getInstance().getAnnuncioDao().save(nuovoAnnuncio);
+
+    }
+
+    @PostMapping(value = "/modifica/{id}")
+    void aggiungiAnnuncio(@RequestPart String titolo, @RequestPart String descrizione, @RequestPart String metriQuadri,
+                          @RequestPart String tipologia, @RequestPart String citta, @RequestPart String indirizzo,
+                          @RequestPart String cap, HttpSession sessione, @PathVariable("id") String id) {
+
+
+        Annuncio annuncio = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(id));
+
+        annuncio.setTitolo(titolo);
+        annuncio.setDescrizione(descrizione);
+        annuncio.setMetriQuadri(Integer.parseInt(metriQuadri));
+        annuncio.setTipologia(Tipologia.valueOf(tipologia));
+        annuncio.getPosizione().setCitta(citta);
+        annuncio.getPosizione().setCap(Integer.parseInt(cap));
+        annuncio.getPosizione().setIndirizzo(indirizzo);
+
+        //controllo errori
+        if (utenteCorrente(sessione) == null)
+            throw new RuntimeException("utente non loggato");
+        if (annuncio.getTitolo() == null)
+            throw new RuntimeException("inserire titolo");
+        if (annuncio.getDescrizione() == null)
+            throw new RuntimeException("inserire descrizione");
+        if (annuncio.getTipologia() == null)
+            throw new RuntimeException("inserire tiplogia");
+        if (annuncio.getPosizione().getCitta() == null)
+            throw new RuntimeException("inserire citta");
+        if (annuncio.getPosizione().getCap() == 0)
+            throw new RuntimeException("inserire cap");
+        if (annuncio.getPosizione().getIndirizzo() == null)
+            throw new RuntimeException("inserire indirizzo");
+
+
+        DBManager.getInstance().getAnnuncioDao().update(annuncio);
 
     }
 

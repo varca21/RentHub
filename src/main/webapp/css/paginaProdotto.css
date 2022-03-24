@@ -335,7 +335,13 @@ body{
     height: 1000px;
 }
 
-label {
+#map {
+    width: 600px;
+    height: 400px;
+  }
+  
+
+label.tipologia {
 
     font-family: 'Heebo', sans-serif;
     font-size: 0.75rem;
