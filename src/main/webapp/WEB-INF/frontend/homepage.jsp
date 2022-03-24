@@ -139,7 +139,7 @@
                         </div>
                         <div class="form-group">
                             <label for="venditaFoto" class="form-label">Inserisci immagini</label>
-                            <input class="form-control" type="file" id="venditaFoto"  accept="image/png, image/jpeg"  multiple />
+                            <input class="form-control" type="file" id="venditaFoto"  accept="image/png, image/jpeg"  multiple required/>
                         </div>
                         <div class="form-group">
                             <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
