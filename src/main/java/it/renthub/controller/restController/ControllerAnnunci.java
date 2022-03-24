@@ -62,11 +62,11 @@ public class ControllerAnnunci {
                 nuovoAnnuncio.setFoto(nuovoAnnuncio.getFoto() + "," + file.getOriginalFilename());
             }
 
-            File temp = new File("src/main/resources/immagini/" + nextId);
+            File temp = new File("src/main/webapp/immagini/annunci/" + nextId);
             if (!temp.exists()) {
                 temp.mkdirs();
             }
-            Path filepath = Paths.get("src/main/resources/immagini/" + nextId, file.getOriginalFilename());
+            Path filepath = Paths.get("src/main/webapp/immagini/annunci/" + nextId, file.getOriginalFilename());
             file.transferTo(filepath);
         }
 

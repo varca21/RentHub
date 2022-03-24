@@ -23,26 +23,28 @@
                             <div class="product-image">
                                 <div id="myCarousel-2" class="carousel slide">
                                     <ol class="carousel-indicators">
-                                        <li data-target="#myCarousel-2" data-slide-to="0" class=""></li>
-                                        <li data-target="#myCarousel-2" data-slide-to="1" class="active"></li>
-                                        <li data-target="#myCarousel-2" data-slide-to="2" class=""></li>
+                                        <c:forEach var="immagine" items="${immagini}" varStatus="loop">                                  
+                                            <c:if test="${loop.index==0}">
+                                                <li data-target="#myCarousel-2" data-slide-to="${loop}" class="active"></li>
+                                            </c:if>
+                                            <c:if test="${loop.index!=0}">
+                                                <li data-target="#myCarousel-2" data-slide-to="${loop}" class=""></li>
+                                            </c:if>                             
+                                        </c:forEach>            
                                     </ol>
                                     <div class="carousel-inner">
-                                        <!-- Slide 1 -->
-                                        <div class="item active">
-                                            <img src="https://via.placeholder.com/700x400/FFB6C1/000000"
-                                                class="img-responsive" alt="" />
-                                        </div>
-                                        <!-- Slide 2 -->
-                                        <div class="item">
-                                            <img src="https://via.placeholder.com/700x400/87CEFA/000000"
-                                                class="img-responsive" alt="" />
-                                        </div>
-                                        <!-- Slide 3 -->
-                                        <div class="item">
-                                            <img src="https://via.placeholder.com/700x400/B0C4DE/000000"
-                                                class="img-responsive" alt="" />
-                                        </div>
+                                        <c:forEach var="immagine" items="${immagini}" varStatus="loop">
+                                            <c:if test="${loop.index==0}">
+                                                <div class="item active">
+                                                    <img src="${immagine}"class="img-responsive" alt="" />
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${loop.index!=0}">
+                                                <div class="item">
+                                                    <img src="${immagine}"class="img-responsive" alt="" />
+                                                </div>
+                                            </c:if>                             
+                                        </c:forEach>                     
                                     </div>
                                     <a class="left carousel-control" href="#myCarousel-2" data-slide="prev"> <span
                                             class="glyphicon glyphicon-chevron-left"></span> </a>

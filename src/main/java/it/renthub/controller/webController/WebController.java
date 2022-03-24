@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 @Controller
 public class WebController {
@@ -48,8 +51,19 @@ public class WebController {
     @GetMapping("/annuncio/{idAnnuncio}")
     public String annuncio(@PathVariable String idAnnuncio, HttpSession sessione) {
         Annuncio a = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(idAnnuncio));
-        if (a != null)
+        List<String> immagini = new ArrayList<>();
+        StringTokenizer st = new StringTokenizer(a.getFoto(), ",");
+
+        while (st.hasMoreTokens())
+            immagini.add("/immagini/annunci/" + a.getIdAnnuncio()+"/"+st.nextToken());
+
+        System.out.println(immagini.size());
+
+        if (a != null) {
             sessione.setAttribute("annuncio", a);
+            sessione.setAttribute("immagini", immagini);
+        }
+
 
         return "paginaProdotto";
     }
