@@ -55,13 +55,13 @@ public class WebController {
         StringTokenizer st = new StringTokenizer(a.getFoto(), ",");
 
         while (st.hasMoreTokens())
-            immagini.add("/immagini/annunci/" + a.getIdAnnuncio()+"/"+st.nextToken());
+            immagini.add("/immagini/annunci/" + a.getIdAnnuncio() + "/" + st.nextToken());
 
-        System.out.println(immagini.size());
 
         if (a != null) {
             sessione.setAttribute("annuncio", a);
             sessione.setAttribute("immagini", immagini);
+            sessione.setAttribute("recensioni", DBManager.getInstance().getRecensioneDao().findByAnnuncio(a));
         }
 
 

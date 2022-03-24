@@ -91,33 +91,31 @@ public class RecensioneDaoJdbc implements RecensioneDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca delle recensioni per l'annuncio " + annuncio.getIdAnnuncio() + "\n" + e.toString());
         }
-        if (recensioni.isEmpty())
-            throw new RuntimeException("Nessuna recensione trovata per l'annuncio " + annuncio.getIdAnnuncio());
         return recensioni;
     }
 
     @Override
     public Recensione find(Annuncio a, Utente u) {
-        Recensione r=null;
+        Recensione r = null;
         try {
             Connection conn = dbSource.getConnection();
             String query = "SELECT * FROM recensione where id_annuncio=? AND  id_utente=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setInt(1, a.getIdAnnuncio());
-            st.setString(2,u.getIdUtente());
+            st.setString(2, u.getIdUtente());
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 String titolo = rs.getString("titolo");
                 String descrizione = rs.getString("descrizione");
 
-                r=new Recensione();
+                r = new Recensione();
                 r.setUtente(u);
                 r.setAnnuncio(a);
                 r.setTitolo(titolo);
                 r.setDescrizione(descrizione);
             }
         } catch (SQLException e) {
-            Logger.LOG("Errore nella ricerca delle recensioni per l'annuncio " + a.getIdAnnuncio() + "e utente "+u.getIdUtente()+ "\n" + e.toString());
+            Logger.LOG("Errore nella ricerca delle recensioni per l'annuncio " + a.getIdAnnuncio() + "e utente " + u.getIdUtente() + "\n" + e.toString());
         }
         return r;
     }
@@ -154,7 +152,7 @@ public class RecensioneDaoJdbc implements RecensioneDao {
     public void update(Recensione r) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE recensione SET " +" titolo=?" + ", descrizione=? WHERE id_utente=? AND id_annuncio=?";
+            String query = "UPDATE recensione SET " + " titolo=?" + ", descrizione=? WHERE id_utente=? AND id_annuncio=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, r.getTitolo());
             st.setString(2, r.getDescrizione());

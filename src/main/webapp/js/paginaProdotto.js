@@ -33,3 +33,29 @@ function modificaAnnuncio() {
         },
     })
 }
+
+function aggiungiRecensione(){
+    var descrizione = document.querySelector("#recensione").value;
+    var id = document.querySelector("#idAnnuncio").value;
+    var utente = document.querySelector("#idUtente").value;
+    $.ajax({
+        url: "/rest/recensioni/nuova",
+        method: "GET",
+        data:{
+            "idUtente":utente,
+            "idAnnuncio":id,
+            "recensione":descrizione
+        },
+        success: function (response) {//se la chiamata ajax restituisce codice 200
+            alert("recensione inserita");
+        },
+        error: function (jqxhr) {
+            console.log(jqxhr);
+            alert("errore");
+            var errore = JSON.parse(jqxhr.responseText).message;
+            alert(errore);
+            console.log(errore);
+           
+        },
+    })
+}
