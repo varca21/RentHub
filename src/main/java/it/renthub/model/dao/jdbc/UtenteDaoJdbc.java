@@ -35,6 +35,7 @@ public class UtenteDaoJdbc implements UtenteDao {
             else
                 st.setDate(4, null);
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'utente " + u.getIdUtente() + "\n" + e.toString());
         }
@@ -71,6 +72,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setBannato(bannato);
 
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca dell'utente " + idUtente + "\n" + e.toString());
         }
@@ -108,6 +110,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setBannato(bannato);
 
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca dell'utente " + email + "\n" + e.toString());
         }
@@ -145,6 +148,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 u.setBannato(bannato);
                 utenti.add(u);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli utenti" + "\n" + e.toString());
         }
@@ -170,6 +174,7 @@ public class UtenteDaoJdbc implements UtenteDao {
             else
                 st.setDate(3, null);
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento dell'utente " + "\n" + u.getIdUtente() + e.toString());
         }
