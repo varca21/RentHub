@@ -41,6 +41,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setDate(12, new java.sql.Date(System.currentTimeMillis()));
 
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
         }
@@ -86,6 +87,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 a.setAffitto(isAffitto);
                 a.setData(data);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca dell' annuncio " + idAnnuncio + "\n" + e.toString());
         }
@@ -135,6 +137,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
                 annunci.add(annuncio);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per l'utente " + u.getIdUtente() + "\n" + e.toString());
         }
@@ -188,6 +191,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
                 annunci.add(annuncio);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci \n" + e.toString());
         }
@@ -215,6 +219,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(12, a.getIdAnnuncio());
 
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento dell' annuncio " + a.getIdAnnuncio() + "\n" + e.toString());
         }
@@ -232,8 +237,10 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         Statement st = conn.createStatement();
         ResultSet rs = st.executeQuery(query2);
         while (rs.next()) {
+            conn.close();
             return rs.getLong(1) + 1;
         }
+        conn.close();
         return null;
     }
 
