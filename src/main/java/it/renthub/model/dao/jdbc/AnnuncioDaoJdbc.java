@@ -37,6 +37,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setString(9, annuncio.getFoto());
             st.setString(10,annuncio.getTipologia().toString());
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
         }
@@ -76,6 +77,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 a.setMetriQuadri(metriQuadri);
                 a.setTipologia(tipologia);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca dell' annuncio " + idAnnuncio + "\n" + e.toString());
         }
@@ -120,6 +122,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
                 annunci.add(annuncio);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per l'utente " + u.getIdUtente() + "\n" + e.toString());
         }
@@ -167,6 +170,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
                 annunci.add(annuncio);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci \n" + e.toString());
         }
@@ -193,6 +197,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
 
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento dell' annuncio " + a.getIdAnnuncio() + "\n" + e.toString());
         }

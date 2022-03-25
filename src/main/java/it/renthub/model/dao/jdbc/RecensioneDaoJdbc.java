@@ -144,6 +144,7 @@ public class RecensioneDaoJdbc implements RecensioneDao {
 
                 recensioni.add(recensione);
             }
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca delle recensioni  " + e.toString());
         }
@@ -161,6 +162,7 @@ public class RecensioneDaoJdbc implements RecensioneDao {
             st.setString(3, r.getUtente().getIdUtente());
             st.setInt(4, r.getAnnuncio().getIdAnnuncio());
             st.executeUpdate();
+            conn.close();
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento della recensione dell'utente " + r.getUtente().getIdUtente() + " " + " per l'annuncio " + r.getAnnuncio().getIdAnnuncio() + "\n" + e.toString());
         }
