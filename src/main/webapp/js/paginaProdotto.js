@@ -62,4 +62,33 @@ function aggiungiRecensione(){
            
         },
     })
+
 }
+
+function visualizzaInfoUtente(idUtente){
+    $.ajax({
+        url: "/rest/utenti/ricerca",
+        method: "GET",
+        data:{
+            "id":idUtente,       
+        },
+        success: function (response) {//se la chiamata ajax restituisce codice 200
+            document.querySelector("#nome").value=response.nome;
+            document.querySelector("#cognome").value=response.cognome;
+            if(response.numTelefono!="null")
+                document.querySelector("#numTelefono").value=response.numTelefono;
+            document.querySelector("#email").value=response.email;
+            document.querySelector("#idU").value=response.idUtente;
+            $('#modalInfoUtente').modal('show');
+        },
+        error: function (jqxhr) {
+            console.log(jqxhr);
+            alert("errore");
+            var errore = JSON.parse(jqxhr.responseText).message;
+            alert(errore);
+            console.log(errore);
+           
+        },
+    })
+}
+

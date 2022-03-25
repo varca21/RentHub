@@ -64,7 +64,7 @@
                                 <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
                                     <button class="btn"><i class="fa fa-bars" data-toggle="modal" data-target="#modalModifica"></i></button>
                                 </c:if>
-                                <small>Annuncio di <a href="javascript:void(0);">${annuncio.utente.idUtente}</a></small>                
+                                <small>Annuncio di <a href="javascript:visualizzaInfoUtente('${annuncio.utente.idUtente}');">${annuncio.utente.idUtente}</a></small>                
                             </h2>
                             <hr />
                             <h3 class="price-container">
@@ -152,7 +152,7 @@
                                                 <c:forEach var="recensione" items="${recensioni}">
                                                     <li class="message">                                   
                                                         <span class="message-text">
-                                                            <a href="javascript:void(0);" class="username">
+                                                            <a href="javascript:visualizzaInfoUtente('${recensione.utente.idUtente}');" class="username">
                                                                 ${recensione.utente.idUtente}                                                  
                                                             </a>
                                                             </br>
@@ -187,7 +187,7 @@
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"><center>MODIFICA ARTICOLO</center></h4
+                            <h4 class="modal-title"><center>MODIFICA ARTICOLO</center></h4>
                         </div>
 
                         <!-- Modal body -->
@@ -262,6 +262,45 @@
             </div>
 
           
+            <!-- MODAL INFORMAZIONI UTENTE -->
+            <div class="modal fade" id="modalInfoUtente">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><center>INFORMAZIONI UTENTE</center></h4>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="idU">ID Utente:</label>
+                                    <input type="text" class="form-control" id="idU" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cognome">Cognome:</label>
+                                    <input type="text" class="form-control" id="cognome" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nome">Nome:</label>
+                                    <input type="text" class="form-control" id="nome" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">numTelefono:</label>
+                                    <input type="text" class="form-control" id="numTelefono" value="Non presente" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">E-mail:</label>
+                                    <input type="text" class="form-control" id="email" readonly> 
+                                </div>
+                            </form>
+                        </div>                
+                    </div>
+                </div>
+            </div>
 
         </body>
 
