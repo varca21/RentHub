@@ -104,7 +104,6 @@ function cancellaAnnuncio(idAnnuncio){
         },
         error: function (jqxhr) {
             console.log(jqxhr);
-            alert("errore");
             var errore = JSON.parse(jqxhr.responseText).message;
             alert(errore);
             console.log(errore);

@@ -325,11 +325,7 @@
                                         <button type="button" class="btn btn-light text-muted" data-dismiss="modal">Annulla</button>
                                         <button type="button" onclick="javascript:cancellaAnnuncio('${annuncio.idAnnuncio}')" class="btn btn-danger px-4" >Cancella</button>
                                     </div>
-                                </center>
-                                    
-                                       
-                                    
-                                
+                                </center>                                                                                                                      
                             </div>
                         </div>                
                     </div>
