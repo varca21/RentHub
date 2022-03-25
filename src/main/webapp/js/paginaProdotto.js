@@ -92,3 +92,24 @@ function visualizzaInfoUtente(idUtente){
     })
 }
 
+function cancellaAnnuncio(idAnnuncio){
+    $.ajax({
+        url: "/rest/annunci/cancella",
+        method: "GET",
+        data:{
+            "id":idAnnuncio,       
+        },
+        success: function (response) {//se la chiamata ajax restituisce codice 200
+            window.location.replace("/");
+        },
+        error: function (jqxhr) {
+            console.log(jqxhr);
+            alert("errore");
+            var errore = JSON.parse(jqxhr.responseText).message;
+            alert(errore);
+            console.log(errore);
+           
+        },
+    })
+}
+

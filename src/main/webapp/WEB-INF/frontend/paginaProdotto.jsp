@@ -63,6 +63,7 @@
                                 ${annuncio.titolo}
                                 <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
                                     <button class="btn"><i class="fa fa-bars" data-toggle="modal" data-target="#modalModifica"></i></button>
+                                    <button class="btn"><i class="fa fa-trash" data-toggle="modal" data-target="#modalConfermaEliminazione"></i></button>
                                 </c:if>
                                 <small>Annuncio di <a href="javascript:visualizzaInfoUtente('${annuncio.utente.idUtente}');">${annuncio.utente.idUtente}</a></small>                
                             </h2>
@@ -297,6 +298,39 @@
                                     <input type="text" class="form-control" id="email" readonly> 
                                 </div>
                             </form>
+                        </div>                
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Modal: modalConfirmDelete-->
+            <div class="modal fade" id="modalConfermaEliminazione">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><center>Conferma eliminazione</center></h4>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body p-0">
+                            <div class="card border-0 p-sm-3 p-2 justify-content-center">
+                                <center>                    
+                                    <div class="card-header pb-0 bg-white border-0 ">
+                                        <p class="font-weight-bold mb-2"> Sei sicuro di voler cancellare questo annuncio ?</p>
+                                    </div>
+                                    <div class="col-auto"> 
+                                        <button type="button" class="btn btn-light text-muted" data-dismiss="modal">Annulla</button>
+                                        <button type="button" onclick="javascript:cancellaAnnuncio('${annuncio.idAnnuncio}')" class="btn btn-danger px-4" >Cancella</button>
+                                    </div>
+                                </center>
+                                    
+                                       
+                                    
+                                
+                            </div>
                         </div>                
                     </div>
                 </div>

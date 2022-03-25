@@ -31,6 +31,7 @@ public class RecensioneDaoJdbc implements RecensioneDao {
             st.setString(3, r.getTitolo());
             st.setString(4, r.getDescrizione());
             st.executeUpdate();
+            Logger.LOG("Inserita recensione per l'annuncio "+r.getAnnuncio().getIdAnnuncio());
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento della recensione " + r.getUtente().getIdUtente() + " " + r.getAnnuncio().getIdAnnuncio() + "\n" + e.toString());
         }

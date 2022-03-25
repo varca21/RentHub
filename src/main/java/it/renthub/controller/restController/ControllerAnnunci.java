@@ -131,6 +131,17 @@ public class ControllerAnnunci {
 
     }
 
+    @GetMapping("/cancella")
+    void cancellaAnnuncio(@RequestParam int id, HttpSession sessione) {
+        Utente utenteCorrente = utenteCorrente(sessione);
+        Annuncio annuncio = DBManager.getInstance().getAnnuncioDao().findById(id);
+        if (!utenteCorrente.getRuolo().equals("AMMINISTRATORE") && !utenteCorrente.getIdUtente().equals(annuncio.getUtente().getIdUtente()))
+            throw new RuntimeException("Utente non abilitato, "+utenteCorrente.getIdUtente()+" "+annuncio.getUtente().getIdUtente());
+        if (annuncio == null)
+            throw new RuntimeException("Annuncio non esistente");
+        DBManager.getInstance().getAnnuncioDao().delete(annuncio);
+    }
+
 
     private Utente utenteCorrente(HttpSession sessione) {
         return (Utente) sessione.getAttribute("utenteLoggato");

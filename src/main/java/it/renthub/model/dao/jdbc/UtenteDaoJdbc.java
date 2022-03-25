@@ -36,6 +36,7 @@ public class UtenteDaoJdbc implements UtenteDao {
                 st.setDate(4, null);
             st.executeUpdate();
             conn.close();
+            Logger.LOG("L'utente  "+ u.getIdUtente()+" si è registrato");
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'utente " + u.getIdUtente() + "\n" + e.toString());
         }
@@ -175,14 +176,10 @@ public class UtenteDaoJdbc implements UtenteDao {
                 st.setDate(3, null);
             st.executeUpdate();
             conn.close();
+            Logger.LOG("L'utente  "+ u.getIdUtente()+" ha modificato i suoi dati");
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento dell'utente " + "\n" + u.getIdUtente() + e.toString());
         }
     }
 
-    //TODO delete utente
-    @Override
-    public void delete(Utente u) {
-
-    }
 }

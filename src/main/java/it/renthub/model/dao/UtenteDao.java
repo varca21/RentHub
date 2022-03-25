@@ -16,5 +16,4 @@ public interface UtenteDao {
 
     public void update(Utente u); //modifiche su Utente già esistente
 
-    public void delete(Utente u);
 }

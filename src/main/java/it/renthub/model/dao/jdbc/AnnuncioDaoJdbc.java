@@ -42,6 +42,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
             st.executeUpdate();
             conn.close();
+            Logger.LOG("Inserito nuovo annuncio "+annuncio.getTitolo());
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
         }
@@ -220,6 +221,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
             st.executeUpdate();
             conn.close();
+            Logger.LOG("Annuncio "+a.getIdAnnuncio()+" modificato");
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento dell' annuncio " + a.getIdAnnuncio() + "\n" + e.toString());
         }
@@ -234,6 +236,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(1,a.getIdAnnuncio());
             st.executeUpdate();
             conn.close();
+            Logger.LOG("Annuncio "+a.getIdAnnuncio()+" eliminato");
         }catch (Exception e){
             Logger.LOG("Problema nell'eliminazione dell'annuncio " + a.getIdAnnuncio()+e.toString());
         }
