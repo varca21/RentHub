@@ -204,6 +204,11 @@
                                         id="venditaMetriQuadri" value="${annuncio.metriQuadri}" required>
                                 </div>
                                 <div class="form-group">
+                                    <label for="venditaMetriQuadri">Prezzo:</label>
+                                    <input type="number" class="form-control" placeholder="Inserisci prezzo"
+                                        id="venditaPrezzo" value="${annuncio.prezzo}" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>
                                     <select class="custom-select" id="selezioneTipologiaVendita">
                                         <option selected>${annuncio.tipologia}</option>
