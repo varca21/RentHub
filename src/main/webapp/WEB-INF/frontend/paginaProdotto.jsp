@@ -64,7 +64,7 @@
                                 <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
                                     <button class="btn"><i class="fa fa-bars" data-toggle="modal" data-target="#modalModifica"></i></button>
                                 </c:if>
-                                <small>Annuncio di <a href="javascript:void(0);">${annuncio.utente.nome}</a></small>                
+                                <small>Annuncio di <a href="javascript:void(0);">${annuncio.utente.idUtente}</a></small>                
                             </h2>
                             <hr />
                             <h3 class="price-container">
@@ -153,7 +153,7 @@
                                                     <li class="message">                                   
                                                         <span class="message-text">
                                                             <a href="javascript:void(0);" class="username">
-                                                                ${recensione.utente.nome} ${recensione.utente.cognome}                                                      
+                                                                ${recensione.utente.idUtente}                                                  
                                                             </a>
                                                             </br>
                                                             ${recensione.descrizione}
@@ -179,7 +179,7 @@
             </div>
 
 
-            <!-- MODAL LOGIN -->
+            <!-- MODAL MODIFICA -->
             <div class="modal fade" id="modalModifica">
                 <div class="modal-dialog">
                     <div class="modal-content">
