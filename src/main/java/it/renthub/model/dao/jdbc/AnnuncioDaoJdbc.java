@@ -227,7 +227,16 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
     @Override
     public void delete(Annuncio a) {
-
+        try{
+            Connection conn=dbSource.getConnection();
+            String query2 = "DELETE FROM annuncio WHERE id_annuncio=?";
+            PreparedStatement st=conn.prepareStatement(query2);
+            st.setInt(1,a.getIdAnnuncio());
+            st.executeUpdate();
+            conn.close();
+        }catch (Exception e){
+            Logger.LOG("Problema nell'eliminazione dell'annuncio " + a.getIdAnnuncio()+e.toString());
+        }
     }
 
     @Override
