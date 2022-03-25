@@ -11,6 +11,7 @@ public class Annuncio {
     String titolo;
     String foto;
     double prezzo;
+    double prezzoScontato;
     int metriQuadri;
     Tipologia tipologia;
     boolean affitto;
@@ -105,6 +106,17 @@ public class Annuncio {
         this.data = data;
     }
 
+    public double getPrezzoScontato() {
+        return prezzoScontato;
+    }
+
+    public void setPrezzoScontato(double prezzoScontato) {
+        if (prezzoScontato == this.prezzo)
+            this.prezzoScontato = 0;
+        else
+            this.prezzoScontato = prezzoScontato;
+    }
+
     @Override
     public String toString() {
         return "Annuncio{" +
@@ -115,6 +127,7 @@ public class Annuncio {
                 ", titolo='" + titolo + '\'' +
                 ", foto='" + foto + '\'' +
                 ", prezzo=" + prezzo +
+                ", prezzo scontato=" + prezzoScontato +
                 ", metriQuadri=" + metriQuadri +
                 ", tipologia=" + tipologia +
                 ", affitto=" + affitto +
@@ -127,7 +140,7 @@ public class Annuncio {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Annuncio annuncio = (Annuncio) o;
-        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && metriQuadri == annuncio.metriQuadri && affitto == annuncio.affitto && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia && annuncio.getData().compareTo(data) == 0;
+        return idAnnuncio == annuncio.idAnnuncio && Double.compare(annuncio.prezzo, prezzo) == 0 && Double.compare(annuncio.prezzoScontato, prezzoScontato) == 0 && metriQuadri == annuncio.metriQuadri && affitto == annuncio.affitto && Objects.equals(utente, annuncio.utente) && Objects.equals(posizione, annuncio.posizione) && Objects.equals(descrizione, annuncio.descrizione) && Objects.equals(titolo, annuncio.titolo) && Objects.equals(foto, annuncio.foto) && tipologia == annuncio.tipologia && annuncio.getData().compareTo(data) == 0;
     }
 
 

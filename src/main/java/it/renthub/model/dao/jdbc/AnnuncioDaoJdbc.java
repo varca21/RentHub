@@ -66,6 +66,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
+                Double prezzoScontato = rs.getDouble("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -79,6 +80,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 a.setTitolo(titolo);
                 a.setFoto(foto);
                 a.setPrezzo(prezzo);
+                a.setPrezzoScontato(prezzoScontato);
                 a.setMetriQuadri(metriQuadri);
                 a.setTipologia(tipologia);
                 a.setAffitto(isAffitto);
@@ -112,6 +114,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
+                Double prezzoScontato = rs.getDouble("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -124,6 +127,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 annuncio.setTitolo(titolo);
                 annuncio.setFoto(foto);
                 annuncio.setPrezzo(prezzo);
+                annuncio.setPrezzoScontato(prezzoScontato);
                 annuncio.setMetriQuadri(metriQuadri);
                 annuncio.setTipologia(tipologia);
                 annuncio.setAffitto(isAffitto);
@@ -163,6 +167,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
                 Double prezzo = rs.getDouble("prezzo");
+                Double prezzoScontato = rs.getDouble("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -175,6 +180,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 annuncio.setTitolo(titolo);
                 annuncio.setFoto(foto);
                 annuncio.setPrezzo(prezzo);
+                annuncio.setPrezzoScontato(prezzoScontato);
                 annuncio.setMetriQuadri(metriQuadri);
                 annuncio.setTipologia(tipologia);
                 annuncio.setAffitto(isAffitto);
@@ -192,7 +198,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     public void update(Annuncio a) {
         try {
             Connection conn = dbSource.getConnection();
-            String query = "UPDATE annuncio" + " SET indirizzo=?" + ", citta=?" + ", cap=?" + ", descrizione=?" + ", prezzo=?"
+            String query = "UPDATE annuncio" + " SET indirizzo=?" + ", citta=?" + ", cap=?" + ", descrizione=?" + ", prezzo=?" + ",prezzoscontato=?"
                     + ", metri_quadri=?" + ", titolo=?" + ", foto=?" + ", tipologia=CAST(? AS tipologia)" + ", affitto=?" + " WHERE id_annuncio=?";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, a.getPosizione().getIndirizzo());
@@ -200,13 +206,13 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
             st.setInt(3, a.getPosizione().getCap());
             st.setString(4, a.getDescrizione());
             st.setDouble(5, a.getPrezzo());
-            st.setInt(6, a.getMetriQuadri());
-            st.setString(7, a.getTitolo());
-            st.setString(8, a.getFoto());
-            st.setString(9, a.getTipologia().toString());
-            st.setBoolean(10, a.isAffitto());
-            st.setInt(11, a.getIdAnnuncio());
-
+            st.setDouble(6, a.getPrezzoScontato());
+            st.setInt(7, a.getMetriQuadri());
+            st.setString(8, a.getTitolo());
+            st.setString(9, a.getFoto());
+            st.setString(10, a.getTipologia().toString());
+            st.setBoolean(11, a.isAffitto());
+            st.setInt(12, a.getIdAnnuncio());
 
             st.executeUpdate();
         } catch (SQLException e) {
@@ -230,4 +236,5 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         }
         return null;
     }
+
 }

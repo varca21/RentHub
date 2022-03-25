@@ -68,7 +68,13 @@
                             </h2>
                             <hr />
                             <h3 class="price-container">
-                                &#8364; ${annuncio.prezzo}
+                                &#8364;
+                                <c:if test="${annuncio.prezzoScontato!=0}">
+                                    <span class="strike">${annuncio.prezzo}</span> ${annuncio.prezzoScontato}
+                                </c:if>
+                                <c:if test="${annuncio.prezzoScontato==0}">
+                                    ${annuncio.prezzo} 
+                                </c:if> 
                                 <c:if test="${annuncio.affitto}">
                                     <small>al mese</small>
                                 </c:if>
@@ -204,9 +210,18 @@
                                         id="venditaMetriQuadri" value="${annuncio.metriQuadri}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="venditaMetriQuadri">Prezzo:</label>
+                                    <label for="venditaPrezzo">Prezzo:</label>
                                     <input type="number" class="form-control" placeholder="Inserisci prezzo"
-                                        id="venditaPrezzo" value="${annuncio.prezzo}" required>
+                                        id="venditaPrezzo" value="${annuncio.prezzo}" required
+                                        <c:if test="${utenteLoggato.idUtente!=annuncio.utente.idUtente}">disabled</c:if>
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label for="venditaPrezzoScontato">Prezzo Scontato:</label>
+                                    <input type="number" class="form-control" placeholder="Inserisci prezzo scontato"
+                                        id="venditaPrezzoScontato" value="${annuncio.prezzoScontato}" required
+                                        <c:if test="${utenteLoggato.idUtente!=annuncio.utente.idUtente}">disabled</c:if>
+                                    >
                                 </div>
                                 <div class="form-group">
                                     <label for="selezioneTipologiaVendita">Seleziona tipologia immobile</label>

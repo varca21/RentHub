@@ -360,6 +360,9 @@ label.tipologia {
     border-color: #ffa31a;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    -box-shadow: none;
-    
-    }
+    -box-shadow: none;  
+}
+
+span.strike{
+  text-decoration: line-through;
+}

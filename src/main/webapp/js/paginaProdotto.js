@@ -7,6 +7,7 @@ function modificaAnnuncio() {
     var indirizzo = document.querySelector("#venditaIndirizzo").value;
     var cap = document.querySelector("#venditaCap").value;
     var prezzo = document.querySelector("#venditaPrezzo").value;
+    var prezzoScontato = document.querySelector("#venditaPrezzoScontato").value;
     var id = document.querySelector("#idAnnuncio").value;
     var formData = new FormData();
 
@@ -18,6 +19,7 @@ function modificaAnnuncio() {
     formData.append("cap", cap);
     formData.append("indirizzo", indirizzo);
     formData.append("prezzo", prezzo);
+    formData.append("prezzoScontato", prezzoScontato);
 
     $.ajax({
         url: "/rest/annunci/modifica/" + id,
