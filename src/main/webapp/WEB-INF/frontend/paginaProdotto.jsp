@@ -170,7 +170,7 @@
                             <hr />
                             <div class="row">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <button class="btn btn-white btn-default"><i class="fa fa-envelope"></i> Contatta il
+                                    <button class="btn btn-white btn-default" data-toggle="modal"  data-target="#modalContattaVenditore"><i class="fa fa-envelope"></i> Contatta il
                                         venditore</button>
                                 </div>
                             </div>
@@ -331,6 +331,35 @@
                     </div>
                 </div>
             </div>
+
+
+              <!-- MODAL CONTATTA IL VENDITORE -->
+              <div class="modal fade" id="modalContattaVenditore">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><center>CONTATTA IL VENDITORE</center></h4>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form action="javascript:contattaVenditore('${annuncio.utente.email}','${annuncio.idAnnuncio}')">
+                                <div class="form-group">
+                                    <label for="messaggio">Inserisci il messaggio da inviare a ${annuncio.utente.email}:</label>
+                                    <textarea id="messaggio"  class="form-control"> </textarea> </br>
+                                    <center>
+                                        <button type="submit" class="btn btn-primary">Invia</button>
+                                    </center>    
+                                </div>
+                            </form>
+                        </div>                
+                    </div>
+                </div>
+            </div>
+
 
         </body>
 

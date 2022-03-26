@@ -2,7 +2,9 @@ package it.renthub.controller.restController;
 
 import it.renthub.Logger;
 import it.renthub.model.DBManager;
+import it.renthub.model.bean.Annuncio;
 import it.renthub.model.bean.Utente;
+import it.renthub.util.email.GestoreEmail;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -163,6 +165,19 @@ public class ControllerUtenti {
             }
         }
         return false;
+    }
+
+    @GetMapping("/contattautente")
+    public void contattaUtente(@RequestParam String destinatario, @RequestParam int idAnnuncio, @RequestParam String messaggio, HttpSession sessione) {
+        if (utenteCorrente(sessione) == null)
+            throw new RuntimeException("Utente non loggato!");
+
+        Annuncio annuncio = DBManager.getInstance().getAnnuncioDao().findById(idAnnuncio);
+
+        if (annuncio == null)
+            throw new RuntimeException("Annuncio non esistente");
+
+        GestoreEmail.inviaMail(destinatario, utenteCorrente(sessione), messaggio, annuncio);
     }
 
     private boolean isUtenteCorrenteBannato(HttpSession sessione) {

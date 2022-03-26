@@ -112,3 +112,25 @@ function cancellaAnnuncio(idAnnuncio){
     })
 }
 
+
+function contattaVenditore(destinatario,idAnnuncio){
+    alert(destinatario);
+    $.ajax({
+        url: "/rest/utenti/contattautente",
+        method: "GET",
+        data:{
+            "destinatario":destinatario,  
+            "idAnnuncio":idAnnuncio,
+            "messaggio":document.querySelector("#messaggio").value
+        },
+        success: function (response) {//se la chiamata ajax restituisce codice 200
+            window.location.replace("/");
+        },
+        error: function (jqxhr) {
+            console.log(jqxhr);
+            var errore = JSON.parse(jqxhr.responseText).message;
+            console.log(errore);
+           
+        },
+    })
+}
