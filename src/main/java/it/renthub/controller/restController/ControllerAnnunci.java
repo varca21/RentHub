@@ -93,22 +93,22 @@ public class ControllerAnnunci {
     }
 
     @PostMapping(value = "/modifica/{id}")
-    void modificaAnnuncio(@RequestPart String titolo, @RequestPart String descrizione, @RequestPart int metriQuadri,
+    void modificaAnnuncio(@RequestPart String titolo, @RequestPart String descrizione, @RequestPart String metriQuadri,
                           @RequestPart String tipologia, @RequestPart String citta, @RequestPart String indirizzo,
-                          @RequestPart String cap, HttpSession sessione, @RequestPart double prezzo, @RequestPart double prezzoScontato, @PathVariable("id") String id) {
+                          @RequestPart String cap, HttpSession sessione, @RequestPart String prezzo, @RequestPart String prezzoScontato, @PathVariable("id") String id) {
 
 
         Annuncio annuncio = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(id));
 
         annuncio.setTitolo(titolo);
         annuncio.setDescrizione(descrizione);
-        annuncio.setMetriQuadri(metriQuadri);
+        annuncio.setMetriQuadri(Integer.parseInt(metriQuadri));
         annuncio.setTipologia(Tipologia.valueOf(tipologia));
         annuncio.getPosizione().setCitta(citta);
         annuncio.getPosizione().setCap(Integer.parseInt(cap));
         annuncio.getPosizione().setIndirizzo(indirizzo);
-        annuncio.setPrezzo(prezzo);
-        annuncio.setPrezzoScontato(prezzoScontato);
+        annuncio.setPrezzo(Double.parseDouble(prezzo));
+        annuncio.setPrezzoScontato(Double.parseDouble(prezzoScontato));
 
         //controllo errori
         if (utenteCorrente(sessione) == null)

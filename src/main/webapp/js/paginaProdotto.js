@@ -114,7 +114,6 @@ function cancellaAnnuncio(idAnnuncio){
 
 
 function contattaVenditore(destinatario,idAnnuncio){
-    alert(destinatario);
     $.ajax({
         url: "/rest/utenti/contattautente",
         method: "GET",
