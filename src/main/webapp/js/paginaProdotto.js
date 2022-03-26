@@ -60,6 +60,9 @@ function aggiungiRecensione(){
             },
         })
     }
+    else{
+        alert("inserisci recensione!");
+    }
    
 
 }
