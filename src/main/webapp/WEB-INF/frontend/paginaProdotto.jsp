@@ -6,16 +6,19 @@
             <script src="/js/paginaProdotto.js"></script>
             <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>        
             <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+            
+            
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="/css/paginaProdotto.css">
             <script src="/js/paginaProdotto.js"></script>
         </head>
 
         <body>
 
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+        
             <div class="container">
                 <!-- product -->
                 <div class="product-content product-wrap clearfix product-deatil">
@@ -143,11 +146,11 @@
                                     <div class="tab-pane fade" id="reviews">
                                         <br />
                                         <c:if test="${utenteLoggato!=null}">
-                                            <form onsubmit="aggiungiRecensione()">
-                                                <textarea rows="2" class="form-control" required
-                                                    placeholder="Scrivi una recensione" id="recensione"></textarea>
+                                            <form>
+                                                <textarea rows="2" class="form-control" 
+                                                    placeholder="Scrivi una recensione" id="recensione" required></textarea>
                                                 <div class="margin-top-100">
-                                                    <button type="submit" class="btn btn-sm btn-primary pull-right">
+                                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="aggiungiRecensione()">
                                                         Inserisci recensione
                                                     </button>
                                                 </div>
@@ -156,9 +159,9 @@
                                             </br>
                                         </c:if>
                                         <div class="chat-body">
-                                            <ul>
+                                            <ul id="listarecensioni">
                                                 <c:forEach var="recensione" items="${recensioni}">
-                                                    <li class="message">
+                                                    <li class="message" >
                                                         <span class="message-text">
                                                             <a href="javascript:visualizzaInfoUtente('${recensione.utente.idUtente}');"
                                                                 class="username">
@@ -374,7 +377,7 @@
                             action="javascript:contattaVenditore('${annuncio.utente.email}','${annuncio.idAnnuncio}')">
                             <div class="form-group">
                                 <label for="messaggio">Inserisci il messaggio da inviare a
-                                    ${annuncio.utente.email}:</label>
+                                    ${annuncio.utente.idUtente}:</label>
                                 <textarea id="messaggio" class="form-control"> </textarea> </br>
                                 <center>
                                     <button type="submit" class="btn btn-primary">Invia</button>

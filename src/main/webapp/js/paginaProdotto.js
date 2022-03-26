@@ -40,30 +40,31 @@ function modificaAnnuncio() {
 
 function aggiungiRecensione(){
     var descrizione = document.querySelector("#recensione").value;
-    var id = document.querySelector("#idAnnuncio").value;
-    var utente = document.querySelector("#idUtente").value;
-    $.ajax({
-        url: "/rest/recensioni/nuova",
-        method: "GET",
-        data:{
-            "idUtente":utente,
-            "idAnnuncio":id,
-            "recensione":descrizione
-        },
-        success: function (response) {//se la chiamata ajax restituisce codice 200
-            alert("recensione inserita");
-        },
-        error: function (jqxhr) {
-            console.log(jqxhr);
-            alert("errore");
-            var errore = JSON.parse(jqxhr.responseText).message;
-            alert(errore);
-            console.log(errore);
-           
-        },
-    })
+    if(descrizione.length>0){
+        var id = document.querySelector("#idAnnuncio").value;
+        var utente = document.querySelector("#idUtente").value;
+        $.ajax({
+            url: "/rest/recensioni/nuova",
+            method: "GET",
+            data:{
+                "idUtente":utente,
+                "idAnnuncio":id,
+                "recensione":descrizione
+            },
+            success: function (response) {//se la chiamata ajax restituisce codice 200
+                $("#listarecensioni").append($("<li>").html("<span class='message-text'><a href='javascript:visualizzaInfoUtente('"+utente+"');\"class='username'>"+utente+"</a></br> "+recensione.value+"</span>"));           
+                $('#recensione').val('');   
+            },
+            error: function (jqxhr) {
+                console.log(errore); 
+            },
+        })
+    }
+   
 
 }
+
+
 
 function visualizzaInfoUtente(idUtente){
     $.ajax({
@@ -122,8 +123,9 @@ function contattaVenditore(destinatario,idAnnuncio){
             "idAnnuncio":idAnnuncio,
             "messaggio":document.querySelector("#messaggio").value
         },
-        success: function (response) {//se la chiamata ajax restituisce codice 200
-            window.location.replace("/");
+        success: function (response) {//se la chiamata ajax restituisce codice 200        
+            $('#modalContattaVenditore').modal('hide'); 
+            $('#messaggio').val('');    
         },
         error: function (jqxhr) {
             console.log(jqxhr);
