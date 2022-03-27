@@ -81,25 +81,21 @@
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
-                                    <select class="custom-select">
-                                        <option selected>Affito</option>
-                                        <option selected>Vendita</option>
-                                    </select>
-                                    <select class="custom-select">
-                                        <option selected>Seleziona tipologia</option>
-                                        <c:forEach var="tipologia" items="${tipologie}">
-                                            <option>${tipologia}</option>
-                                        </c:forEach>
-                                    </select>
-                                </li>
-                                <form class="d-flex">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                        aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">
-                                        Cerca
-                                    </button>
-                                </form>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <input type="text" class="form-control search-slt" placeholder="Enter Search">
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12 p-0">
+                                        <select class="form-control search-slt">
+                                            <c:forEach var="tipologia" items="${tipologie}">
+                                                <option>${tipologia}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <button type="button" class="btn btn-danger wrn-btn">Search</button>
+                                    </div>
+                                </div>
                             </ul>
                         </div>
                     </nav>

@@ -42,7 +42,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
             st.executeUpdate();
             conn.close();
-            Logger.LOG("Inserito nuovo annuncio "+annuncio.getTitolo());
+            Logger.LOG("Inserito nuovo annuncio " + annuncio.getTitolo());
         } catch (SQLException e) {
             Logger.LOG("Problema nell'inserimento dell'annuncio " + annuncio.getIdAnnuncio() + " dell'utente " + annuncio.getUtente().getIdUtente() + "\n" + e.toString());
         }
@@ -151,6 +151,165 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
     }
 
     @Override
+    public List<Annuncio> findByCitta(String citta) {
+        List<Annuncio> annunci = new ArrayList<>();
+        try {
+            Connection conn = dbSource.getConnection();
+            String query = "SELECT * FROM annuncio where LOWER(citta)=LOWER(?)";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, citta);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Annuncio annuncio = new Annuncio();
+
+                Utente utente = DBManager.getInstance().getUtenteDao().findById("id_utente");
+                int idAnnuncio = rs.getInt("id_annuncio");
+                Posizione posizione = new Posizione();
+                posizione.setCap(rs.getInt("cap"));
+                posizione.setCitta(rs.getString("citta"));
+                posizione.setIndirizzo(rs.getString("indirizzo"));
+                String descrizione = rs.getString("descrizione");
+                String titolo = rs.getString("titolo");
+                String foto = rs.getString("foto");
+                Double prezzo = rs.getDouble("prezzo");
+                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int metriQuadri = rs.getInt("metri_quadri");
+                Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
+                Boolean isAffitto = rs.getBoolean("affitto");
+                Date data = rs.getDate("data");
+
+                annuncio.setUtente(utente);
+                annuncio.setIdAnnuncio(idAnnuncio);
+                annuncio.setPosizione(posizione);
+                annuncio.setDescrizione(descrizione);
+                annuncio.setTitolo(titolo);
+                annuncio.setFoto(foto);
+                annuncio.setPrezzo(prezzo);
+                annuncio.setPrezzoScontato(prezzoScontato);
+                annuncio.setMetriQuadri(metriQuadri);
+                annuncio.setTipologia(tipologia);
+                annuncio.setAffitto(isAffitto);
+                annuncio.setData(data);
+
+                annunci.add(annuncio);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            Logger.LOG("Errore nella ricerca degli annunci per la citta" + citta + "\n" + e.toString());
+        }
+        if (annunci.isEmpty())
+            throw new RuntimeException("Impossibile trovare annunci nella citta " + citta);
+
+        return annunci;
+    }
+
+    @Override
+    public List<Annuncio> findByTipologia(Tipologia t) {
+        List<Annuncio> annunci = new ArrayList<>();
+        try {
+            Connection conn = dbSource.getConnection();
+            String query = "SELECT * FROM annuncio where tipologia='"+t.toString()+"'";
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) {
+                Annuncio annuncio = new Annuncio();
+
+                Utente utente = DBManager.getInstance().getUtenteDao().findById("id_utente");
+                int idAnnuncio = rs.getInt("id_annuncio");
+                Posizione posizione = new Posizione();
+                posizione.setCap(rs.getInt("cap"));
+                posizione.setCitta(rs.getString("citta"));
+                posizione.setIndirizzo(rs.getString("indirizzo"));
+                String descrizione = rs.getString("descrizione");
+                String titolo = rs.getString("titolo");
+                String foto = rs.getString("foto");
+                Double prezzo = rs.getDouble("prezzo");
+                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int metriQuadri = rs.getInt("metri_quadri");
+                Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
+                Boolean isAffitto = rs.getBoolean("affitto");
+                Date data = rs.getDate("data");
+
+                annuncio.setUtente(utente);
+                annuncio.setIdAnnuncio(idAnnuncio);
+                annuncio.setPosizione(posizione);
+                annuncio.setDescrizione(descrizione);
+                annuncio.setTitolo(titolo);
+                annuncio.setFoto(foto);
+                annuncio.setPrezzo(prezzo);
+                annuncio.setPrezzoScontato(prezzoScontato);
+                annuncio.setMetriQuadri(metriQuadri);
+                annuncio.setTipologia(tipologia);
+                annuncio.setAffitto(isAffitto);
+                annuncio.setData(data);
+
+                annunci.add(annuncio);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            Logger.LOG("Errore nella ricerca degli annunci per la tipologia" + t.toString() + "\n" + e.toString());
+        }
+        if (annunci.isEmpty())
+            throw new RuntimeException("Impossibile trovare annunci per la tipologia " + t.toString());
+
+        return annunci;
+    }
+
+    @Override
+    public List<Annuncio> findByTipologiaCitta(Tipologia t, String citta) {
+        List<Annuncio> annunci = new ArrayList<>();
+        try {
+            Connection conn = dbSource.getConnection();
+            String query = "SELECT * FROM annuncio where LOWER(citta)=LOWER(?) and tipologia='"+t.toString()+"'";
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, citta);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Annuncio annuncio = new Annuncio();
+
+                Utente utente = DBManager.getInstance().getUtenteDao().findById("id_utente");
+                int idAnnuncio = rs.getInt("id_annuncio");
+                Posizione posizione = new Posizione();
+                posizione.setCap(rs.getInt("cap"));
+                posizione.setCitta(rs.getString("citta"));
+                posizione.setIndirizzo(rs.getString("indirizzo"));
+                String descrizione = rs.getString("descrizione");
+                String titolo = rs.getString("titolo");
+                String foto = rs.getString("foto");
+                Double prezzo = rs.getDouble("prezzo");
+                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int metriQuadri = rs.getInt("metri_quadri");
+                Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
+                Boolean isAffitto = rs.getBoolean("affitto");
+                Date data = rs.getDate("data");
+
+                annuncio.setUtente(utente);
+                annuncio.setIdAnnuncio(idAnnuncio);
+                annuncio.setPosizione(posizione);
+                annuncio.setDescrizione(descrizione);
+                annuncio.setTitolo(titolo);
+                annuncio.setFoto(foto);
+                annuncio.setPrezzo(prezzo);
+                annuncio.setPrezzoScontato(prezzoScontato);
+                annuncio.setMetriQuadri(metriQuadri);
+                annuncio.setTipologia(tipologia);
+                annuncio.setAffitto(isAffitto);
+                annuncio.setData(data);
+
+                annunci.add(annuncio);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            Logger.LOG("Errore nella ricerca degli annunci per la citta" + citta + "e tipologia " + t.toString() + "\n" + e.toString());
+        }
+        if (annunci.isEmpty())
+            throw new RuntimeException("Impossibile trovare annunci nella citta " + citta + "e tipologia " + t.toString());
+
+        return annunci;
+
+    }
+
+    @Override
     public List<Annuncio> findAll() {
         List<Annuncio> annunci = new ArrayList<>();
         try {
@@ -221,7 +380,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
             st.executeUpdate();
             conn.close();
-            Logger.LOG("Annuncio "+a.getIdAnnuncio()+" modificato");
+            Logger.LOG("Annuncio " + a.getIdAnnuncio() + " modificato");
         } catch (SQLException e) {
             Logger.LOG("Problema nell'aggiornamento dell' annuncio " + a.getIdAnnuncio() + "\n" + e.toString());
         }
@@ -229,16 +388,16 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
 
     @Override
     public void delete(Annuncio a) {
-        try{
-            Connection conn=dbSource.getConnection();
+        try {
+            Connection conn = dbSource.getConnection();
             String query2 = "DELETE FROM annuncio WHERE id_annuncio=?";
-            PreparedStatement st=conn.prepareStatement(query2);
-            st.setInt(1,a.getIdAnnuncio());
+            PreparedStatement st = conn.prepareStatement(query2);
+            st.setInt(1, a.getIdAnnuncio());
             st.executeUpdate();
             conn.close();
-            Logger.LOG("Annuncio "+a.getIdAnnuncio()+" eliminato");
-        }catch (Exception e){
-            Logger.LOG("Problema nell'eliminazione dell'annuncio " + a.getIdAnnuncio()+e.toString());
+            Logger.LOG("Annuncio " + a.getIdAnnuncio() + " eliminato");
+        } catch (Exception e) {
+            Logger.LOG("Problema nell'eliminazione dell'annuncio " + a.getIdAnnuncio() + e.toString());
         }
     }
 

@@ -1,6 +1,7 @@
 package it.renthub.model.dao;
 
 import it.renthub.model.bean.Annuncio;
+import it.renthub.model.bean.Tipologia;
 import it.renthub.model.bean.Utente;
 
 import java.sql.SQLException;
@@ -12,6 +13,12 @@ public interface AnnuncioDao {
     public Annuncio findById(int idAnnuncio);
 
     public List<Annuncio> findByUtente(Utente u);
+
+    public List<Annuncio> findByCitta(String citta);
+
+    public List<Annuncio> findByTipologia(Tipologia t);
+
+    public List<Annuncio> findByTipologiaCitta(Tipologia t, String citta);
 
     public List<Annuncio> findAll();
 

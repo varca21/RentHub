@@ -16,7 +16,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -136,12 +138,29 @@ public class ControllerAnnunci {
         Utente utenteCorrente = utenteCorrente(sessione);
         Annuncio annuncio = DBManager.getInstance().getAnnuncioDao().findById(id);
         if (!utenteCorrente.getRuolo().equals("AMMINISTRATORE") && !utenteCorrente.getIdUtente().equals(annuncio.getUtente().getIdUtente()))
-            throw new RuntimeException("Utente non abilitato, "+utenteCorrente.getIdUtente()+" "+annuncio.getUtente().getIdUtente());
+            throw new RuntimeException("Utente non abilitato, " + utenteCorrente.getIdUtente() + " " + annuncio.getUtente().getIdUtente());
         if (annuncio == null)
             throw new RuntimeException("Annuncio non esistente");
         DBManager.getInstance().getAnnuncioDao().delete(annuncio);
     }
 
+    @GetMapping("/cercaannuncio")
+    List<Annuncio> cercaAnnuncio(@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo) {
+        List<Annuncio> ris = null;
+        if (citta == null)
+            ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
+        else {
+            if (tipologia == null)
+                ris = DBManager.getInstance().getAnnuncioDao().findByCitta(citta);
+            else
+                ris = DBManager.getInstance().getAnnuncioDao().findByTipologiaCitta(Tipologia.valueOf(tipologia), citta);
+        }
+
+        if(indirizzo!=null)
+            ris.removeIf(x->!x.getPosizione().getIndirizzo().toLowerCase(Locale.ROOT).contains(indirizzo));
+
+        return ris;
+    }
 
     private Utente utenteCorrente(HttpSession sessione) {
         return (Utente) sessione.getAttribute("utenteLoggato");
