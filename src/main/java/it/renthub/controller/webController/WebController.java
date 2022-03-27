@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 @Controller
-public class WebController {
+public class
+WebController {
 
     @GetMapping("/")
     public String homepage(HttpSession sessione) {
@@ -51,6 +52,9 @@ public class WebController {
     @GetMapping("/annuncio/{idAnnuncio}")
     public String annuncio(@PathVariable String idAnnuncio, HttpSession sessione) {
         Annuncio a = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(idAnnuncio));
+            if(a==null)
+                return "annuncionontrovato";
+            
         List<String> immagini = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(a.getFoto(), ",");
 
