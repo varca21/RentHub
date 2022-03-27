@@ -7,10 +7,12 @@ import it.renthub.model.bean.Utente;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 @Controller
@@ -35,26 +37,12 @@ WebController {
         return homepage(sessione);
     }
 
-    private boolean isUtenteCorrenteBannato(HttpSession sessione) {
-        Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
-        if (utenteLoggato != null && utenteLoggato.getBannato())
-            return true;
-        return false;
-    }
-
-    private boolean isUtenteCorrenteAmministratore(HttpSession sessione) {
-        Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
-        if (utenteLoggato != null && !(isUtenteCorrenteBannato(sessione)) && utenteLoggato.getRuolo().equals("AMMINISTRATORE"))
-            return true;
-        return false;
-    }
-
     @GetMapping("/annuncio/{idAnnuncio}")
     public String annuncio(@PathVariable String idAnnuncio, HttpSession sessione) {
         Annuncio a = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(idAnnuncio));
-            if(a==null)
-                return "annuncionontrovato";
-            
+        if (a == null)
+            return "annuncionontrovato";
+
         List<String> immagini = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(a.getFoto(), ",");
 
@@ -72,4 +60,54 @@ WebController {
         return "paginaProdotto";
     }
 
+
+    @GetMapping("/cercaAnnuncio")
+    public String cercaAnnuncio(@RequestParam (required = false) String testo ,@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, HttpSession sessione) {
+        List<Annuncio> ris = null;
+        if (citta == null) {
+            if (tipologia != null)
+                ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
+            else
+                ris = DBManager.getInstance().getAnnuncioDao().findAll();
+        }
+        else {
+            if (tipologia == null)
+                ris = DBManager.getInstance().getAnnuncioDao().findByCitta(citta);
+            else
+                ris = DBManager.getInstance().getAnnuncioDao().findByTipologiaCitta(Tipologia.valueOf(tipologia), citta);
+        }
+
+        if (indirizzo != null)
+            ris.removeIf(x -> !x.getPosizione().getIndirizzo().toLowerCase(Locale.ROOT).contains(indirizzo));
+
+        if(indirizzo!=null)
+            ris.removeIf(x-> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
+
+
+        if (ris == null)
+            return "annuncionontrovato";
+
+
+        sessione.setAttribute("risultatiRicerca", ris);
+
+        //TODO PAGINA RICERCA
+        return ("nuovapagina");
+
+
+    }
+
+
+    private boolean isUtenteCorrenteBannato(HttpSession sessione) {
+        Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
+        if (utenteLoggato != null && utenteLoggato.getBannato())
+            return true;
+        return false;
+    }
+
+    private boolean isUtenteCorrenteAmministratore(HttpSession sessione) {
+        Utente utenteLoggato = (Utente) sessione.getAttribute("utenteLoggato");
+        if (utenteLoggato != null && !(isUtenteCorrenteBannato(sessione)) && utenteLoggato.getRuolo().equals("AMMINISTRATORE"))
+            return true;
+        return false;
+    }
 }
