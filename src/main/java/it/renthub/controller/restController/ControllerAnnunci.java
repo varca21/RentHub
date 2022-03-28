@@ -145,26 +145,25 @@ public class ControllerAnnunci {
     }
 
     @GetMapping("/cercaannuncio")
-    List<Annuncio> cercaAnnuncio(@RequestParam (required = false) String testo ,@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo) {
+    List<Annuncio> cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo) {
         List<Annuncio> ris = null;
         if (citta == null) {
             if (tipologia != null)
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findAll();
-        }
-        else {
+        } else {
             if (tipologia == null)
                 ris = DBManager.getInstance().getAnnuncioDao().findByCitta(citta);
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologiaCitta(Tipologia.valueOf(tipologia), citta);
         }
 
-        if (indirizzo != null)
+        if (StringUtils.isEmpty(indirizzo))
             ris.removeIf(x -> !x.getPosizione().getIndirizzo().toLowerCase(Locale.ROOT).contains(indirizzo));
 
-        if(testo!=null)
-            ris.removeIf(x-> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
+        if (StringUtils.isEmpty(testo))
+            ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
 
 
         return ris;

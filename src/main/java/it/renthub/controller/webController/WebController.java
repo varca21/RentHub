@@ -5,6 +5,7 @@ import it.renthub.model.bean.Annuncio;
 import it.renthub.model.bean.Tipologia;
 import it.renthub.model.bean.Utente;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -77,11 +78,11 @@ WebController {
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologiaCitta(Tipologia.valueOf(tipologia), citta);
         }
 
-        if (indirizzo != null)
+        if (StringUtils.isEmpty(indirizzo))
             ris.removeIf(x -> !x.getPosizione().getIndirizzo().toLowerCase(Locale.ROOT).contains(indirizzo));
 
-        if(indirizzo!=null)
-            ris.removeIf(x-> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
+        if (StringUtils.isEmpty(testo))
+            ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
 
 
         if (ris == null)
