@@ -12,11 +12,8 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
       <title> AMMINISTRAZIONE </title>
-
       <script type="text/javascript" src="/js/jquery.tablesorter.js"></script>
-
       <script src="/js/amministrazione.js"></script>
-
       <link rel="stylesheet" href="/css/amministrazione.css">
     </head>
     

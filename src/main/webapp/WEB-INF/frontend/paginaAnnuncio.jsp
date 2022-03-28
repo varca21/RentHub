@@ -8,9 +8,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>        
             <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-            
-            
+            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">        
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="/css/paginaAnnuncio.css">
             <script src="/js/paginaAnnuncio.js"></script>
@@ -25,7 +23,7 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-xs-12">
                             <div class="product-image">
-                                <div id="myCarousel-2" class="carousel slide">
+                                <div id="myCarousel-2" class="carousel slide ">
                                     <ol class="carousel-indicators">
                                         <c:forEach var="immagine" items="${immagini}" varStatus="loop">
                                             <c:if test="${loop.index==0}">

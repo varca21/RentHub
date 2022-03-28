@@ -145,7 +145,7 @@ public class ControllerAnnunci {
     }
 
     @GetMapping("/cercaannuncio")
-    List<Annuncio> cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo) {
+    List<Annuncio> cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, @RequestParam(required = false) String tipoVendita) {
         List<Annuncio> ris = null;
         if (citta == null) {
             if (tipologia != null)
@@ -164,6 +164,13 @@ public class ControllerAnnunci {
 
         if (StringUtils.isEmpty(testo))
             ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
+
+        if(!StringUtils.isEmpty(tipoVendita)) {
+            if (tipoVendita.equals("vendita"))
+                ris.removeIf(x -> x.isAffitto());
+            if (tipoVendita.equals("affitto"))
+                ris.removeIf(x -> !x.isAffitto());
+        }
 
 
         return ris;
