@@ -1,7 +1,6 @@
 package it.renthub.model.bean;
 
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 public class Annuncio {
     int idAnnuncio;
@@ -10,13 +9,15 @@ public class Annuncio {
     String descrizione;
     String titolo;
     String foto;
+
+    String fotoCopertina;
+
     double prezzo;
     double prezzoScontato;
     int metriQuadri;
     Tipologia tipologia;
     boolean affitto;
     Date data;
-
 
     public Utente getUtente() {
         return utente;
@@ -56,6 +57,10 @@ public class Annuncio {
 
     public void setFoto(String foto) {
         this.foto = foto;
+        StringTokenizer st = new StringTokenizer(foto, ",");
+        if (st.hasMoreTokens())
+            fotoCopertina="/immagini/annunci/" + this.getIdAnnuncio() + "/" + st.nextToken();
+
     }
 
     public double getPrezzo() {
@@ -115,6 +120,10 @@ public class Annuncio {
             this.prezzoScontato = 0;
         else
             this.prezzoScontato = prezzoScontato;
+    }
+
+    public String getFotoCopertina() {
+        return fotoCopertina;
     }
 
     @Override

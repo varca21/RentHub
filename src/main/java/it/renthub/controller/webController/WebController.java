@@ -58,32 +58,38 @@ WebController {
         }
 
 
-        return "paginaProdotto";
+        return "paginaAnnuncio";
     }
 
 
     @GetMapping("/cercaAnnuncio")
-    public String cercaAnnuncio(@RequestParam (required = false) String testo ,@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, HttpSession sessione) {
+    public String cercaAnnuncio(@RequestParam (required = false) String testo ,@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo,@RequestParam(required = false) String tipoVendita, HttpSession sessione) {
         List<Annuncio> ris = null;
-        if (citta == null) {
-            if (tipologia != null)
+        if (StringUtils.isEmpty(citta)) {
+            if (!StringUtils.isEmpty(tipologia))
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findAll();
         }
         else {
-            if (tipologia == null)
+            if (StringUtils.isEmpty(tipologia))
                 ris = DBManager.getInstance().getAnnuncioDao().findByCitta(citta);
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologiaCitta(Tipologia.valueOf(tipologia), citta);
         }
 
-        if (StringUtils.isEmpty(indirizzo))
+        if (!StringUtils.isEmpty(indirizzo))
             ris.removeIf(x -> !x.getPosizione().getIndirizzo().toLowerCase(Locale.ROOT).contains(indirizzo));
 
-        if (StringUtils.isEmpty(testo))
+        if (!StringUtils.isEmpty(testo))
             ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
 
+        if(!StringUtils.isEmpty(tipoVendita)) {
+            if (tipoVendita.equals("vendita"))
+                ris.removeIf(x -> x.isAffitto());
+            if (tipoVendita.equals("affitto"))
+                ris.removeIf(x -> !x.isAffitto());
+        }
 
         if (ris == null)
             return "annuncionontrovato";
@@ -91,8 +97,7 @@ WebController {
 
         sessione.setAttribute("risultatiRicerca", ris);
 
-        //TODO PAGINA RICERCA
-        return ("nuovapagina");
+        return ("risultatiricerca");
 
 
     }

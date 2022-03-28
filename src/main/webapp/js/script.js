@@ -207,3 +207,19 @@ function inserisciAnnuncio() {
     })
 }
 
+function ricerca(){
+    var titolo = document.querySelector("#cercaTitolo").value;
+    var citta = document.querySelector("#cercaCitta").value;
+    var indirizzo = document.querySelector("#cercaIndirizzo").value;
+    var tipologiaImmobile = document.querySelector("#cercaTipologiaImmobile").value;
+    var tipologiaVendita=document.querySelector("#cercaTipologiaVendita").value;
+
+    var url="/cercaAnnuncio?testo="+titolo+"&citta="+citta+"&indirizzo="+indirizzo;
+    if(tipologiaImmobile!="niente")
+        url=url+"&tipologia="+tipologiaImmobile;
+    if(tipologiaVendita!="niente")
+        url=url+"&tipoVendita="+tipologiaVendita;
+        
+        document.location.href = url;
+
+}

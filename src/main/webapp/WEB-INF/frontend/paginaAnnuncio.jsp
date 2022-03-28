@@ -3,7 +3,7 @@
         <html>
 
         <head>
-            <script src="/js/paginaProdotto.js"></script>
+            <script src="/js/paginaAnnuncio.js"></script>
             <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>        
@@ -12,8 +12,8 @@
             
             
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-            <link rel="stylesheet" href="/css/paginaProdotto.css">
-            <script src="/js/paginaProdotto.js"></script>
+            <link rel="stylesheet" href="/css/paginaAnnuncio.css">
+            <script src="/js/paginaAnnuncio.js"></script>
         </head>
 
         <body>
