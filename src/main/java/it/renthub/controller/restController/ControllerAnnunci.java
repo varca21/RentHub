@@ -145,30 +145,31 @@ public class ControllerAnnunci {
     }
 
     @GetMapping("/cercaannuncio")
-    List<Annuncio> cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, @RequestParam(required = false) String tipoVendita) {
+    List<Annuncio> cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, @RequestParam(required = false) String tipovendita) {
         List<Annuncio> ris = null;
-        if (citta == null) {
-            if (tipologia != null)
+
+        if (StringUtils.isEmpty(citta)) {
+            if (!StringUtils.isEmpty(tipologia))
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findAll();
         } else {
-            if (tipologia == null)
+            if (StringUtils.isEmpty(tipologia))
                 ris = DBManager.getInstance().getAnnuncioDao().findByCitta(citta);
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologiaCitta(Tipologia.valueOf(tipologia), citta);
         }
 
-        if (StringUtils.isEmpty(indirizzo))
+        if (!StringUtils.isEmpty(indirizzo))
             ris.removeIf(x -> !x.getPosizione().getIndirizzo().toLowerCase(Locale.ROOT).contains(indirizzo));
 
-        if (StringUtils.isEmpty(testo))
+        if (!StringUtils.isEmpty(testo))
             ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
 
-        if(!StringUtils.isEmpty(tipoVendita)) {
-            if (tipoVendita.equals("vendita"))
+        if (!StringUtils.isEmpty(tipovendita)) {
+            if (tipovendita.equals("vendita"))
                 ris.removeIf(x -> x.isAffitto());
-            if (tipoVendita.equals("affitto"))
+            if (tipovendita.equals("affitto"))
                 ris.removeIf(x -> !x.isAffitto());
         }
 

@@ -65,6 +65,7 @@ WebController {
     @GetMapping("/cercaAnnuncio")
     public String cercaAnnuncio(@RequestParam (required = false) String testo ,@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo,@RequestParam(required = false) String tipoVendita, HttpSession sessione) {
         List<Annuncio> ris = null;
+        sessione.setAttribute("tipologie", Tipologia.values());
         if (StringUtils.isEmpty(citta)) {
             if (!StringUtils.isEmpty(tipologia))
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
