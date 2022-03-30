@@ -1,4 +1,8 @@
-
+body{
+   background: url("/immagini/sfondo.png");
+    background-size: cover;
+    background-position: center center;
+}
   
   .s002 {
     min-height: 100vh;
@@ -9,9 +13,7 @@
     -ms-flex-align: center;
         align-items: center;
     font-family: 'Poppins', sans-serif;
-    background: url("/immagini/sfondo.png");
-    background-size: cover;
-    background-position: center center;
+   
     padding: 15px;
   }
   
@@ -70,4 +72,4 @@
     .search-sec{
         top: -114px;
     }
-}
+} 
