@@ -208,10 +208,8 @@ function inserisciAnnuncio() {
 }
 
 function ricerca(){
-    var url = new URL("cercaannuncio");
+    var url = new URL(document.location.href+"cercaAnnuncio");
     var search_params = url.searchParams;
-    
- 
 
     var titolo = document.querySelector("#cercaTitolo").value;
     var citta = document.querySelector("#cercaCitta").value;
@@ -219,20 +217,21 @@ function ricerca(){
     var tipologiaImmobile = document.querySelector("#cercaTipologiaImmobile").value;
     var tipologiaVendita=document.querySelector("#cercaTipologiaVendita").value;
 
-    if(titolo!="")
-        search_params.set('titolo',titolo);
 
-    if(citta!="")
+    if(titolo.length>0)
+        search_params.set('testo',titolo);
+
+    if(citta.length>0)
         search_params.set('citta',citta);
 
-    if(indirizzo!="")
+    if(indirizzo.length>0)
         search_params.set('indirizzo',indirizzo);
 
 
-    var url="/cercaAnnuncio?testo="+titolo+"&citta="+citta+"&indirizzo="+indirizzo;
+    
     if(tipologiaImmobile!="niente")
         search_params.set('tipologia',tipologiaImmobile);
-    if(tipologiaVendita!="tipoVendita")
+    if(tipologiaVendita!="niente")
         search_params.set('tipoVendita',tipologiaVendita);
         
         document.location.href = url.toString();

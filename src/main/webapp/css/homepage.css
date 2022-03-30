@@ -1,0 +1,73 @@
+
+  
+  .s002 {
+    min-height: 100vh;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center;
+    font-family: 'Poppins', sans-serif;
+    background: url("/immagini/sfondo.png");
+    background-size: cover;
+    background-position: center center;
+    padding: 15px;
+  }
+  
+  .s002 form {
+    width: 100%;
+    max-width: 1190px;
+  }
+  
+  .s002 form legend {
+    font-size: 60px;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 60px;
+    font-weight: 400;
+    text-align: center;
+  }
+  
+  .s002 form .inner-form {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 50px;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+    -ms-flex-align: center;
+        align-items: center;
+  }
+  
+  
+  /*search box css start here*/
+.search-sec{
+    padding: 5rem;
+}
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(4rem + 2px) !important;
+    border-radius:0;
+}
+.wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(4rem + 2px) !important;
+    border-radius:0;
+}
+@media (min-width: 2000px){
+    .search-sec{
+        top: -114px;
+    }
+}

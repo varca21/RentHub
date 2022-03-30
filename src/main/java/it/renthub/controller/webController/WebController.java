@@ -92,9 +92,9 @@ WebController {
             ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
 
         if (!StringUtils.isEmpty(tipoVendita)) {
-            if (tipoVendita.equals("vendita"))
+            if (tipoVendita.toLowerCase(Locale.ROOT).equals("vendita"))
                 ris.removeIf(x -> x.isAffitto());
-            if (tipoVendita.equals("affitto"))
+            if (tipoVendita.toLowerCase(Locale.ROOT).equals("affitto"))
                 ris.removeIf(x -> !x.isAffitto());
         }
 

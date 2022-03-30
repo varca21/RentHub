@@ -9,6 +9,7 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+            <link rel="stylesheet" href="/css/homepage.css">
         </head>
 
         <body>
@@ -78,27 +79,54 @@
             <div class="tab-content" id="myTabContent">
                 <!-- TAB CERCA -->
                 <div class="tab-pane p-4 fade show active" id="tabCerca" role="tabpanel" aria-labelledby="tab1-tab">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <input type="text" class="form-control search-slt" placeholder="Enter Search">
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12 p-0">
-                                        <select class="form-control search-slt">
-                                            <c:forEach var="tipologia" items="${tipologie}">
-                                                <option>${tipologia}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <button type="button" class="btn btn-danger wrn-btn">Search</button>
-                                    </div>
+                    <div class="s002">
+                        <form>
+                          <fieldset>
+                            <legend>CERCA ANNUNCIO</legend>
+                          </fieldset>
+                          <div class="inner-form">
+                            <section class="search-sec">
+                                <div class="container">
+                                    <form action="#" method="post" novalidate="novalidate">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="row">
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 p-0">
+                                                        <input type="text" id="cercaTitolo" class="form-control search-slt" placeholder="Titolo">
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 p-0">
+                                                        <input type="text" id="cercaCitta" class="form-control search-slt" placeholder="Comune">
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 p-0">
+                                                        <input type="text" id="cercaIndirizzo" class="form-control search-slt" placeholder="Indirizzo">
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 p-0">
+                                                        <select id="cercaTipologiaImmobile" class="form-control search-slt" id="exampleFormControlSelect1">
+                                                            <option selected value="niente">Tipologia</option>
+                                                            <c:forEach var="tipologia" items="${tipologie}">
+                                                                <option value=${tipologia}>${tipologia}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 p-0">
+                                                        <select id="cercaTipologiaVendita" class="form-control search-slt" id="exampleFormControlSelect1">
+                                                            <option selected value="niente">Contratto</option>
+                                                            <option value="affitto">Affitto</option>
+                                                            <option value="vendita">Vendita</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-3 col-sm-4 p-0">
+                                                        <button type="button" class="btn btn-danger wrn-btn" onclick="javascript:ricerca()">Cerca</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </ul>
-                        </div>
-                    </nav>
+                            </section>
+                          </div>
+                        </form>
+                      </div>
                 </div>
 
 
