@@ -195,9 +195,6 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per la citta" + citta + "\n" + e.toString());
         }
-        if (annunci.isEmpty())
-            throw new RuntimeException("Impossibile trovare annunci nella citta " + citta);
-
         return annunci;
     }
 
@@ -206,7 +203,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         List<Annuncio> annunci = new ArrayList<>();
         try {
             Connection conn = dbSource.getConnection();
-            String query = "SELECT * FROM annuncio where tipologia='"+t.toString()+"'";
+            String query = "SELECT * FROM annuncio where tipologia='" + t.toString() + "'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
@@ -247,8 +244,6 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per la tipologia" + t.toString() + "\n" + e.toString());
         }
-        if (annunci.isEmpty())
-            throw new RuntimeException("Impossibile trovare annunci per la tipologia " + t.toString());
 
         return annunci;
     }
@@ -258,7 +253,7 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         List<Annuncio> annunci = new ArrayList<>();
         try {
             Connection conn = dbSource.getConnection();
-            String query = "SELECT * FROM annuncio where LOWER(citta)=LOWER(?) and tipologia='"+t.toString()+"'";
+            String query = "SELECT * FROM annuncio where LOWER(citta)=LOWER(?) and tipologia='" + t.toString() + "'";
             PreparedStatement st = conn.prepareStatement(query);
             st.setString(1, citta);
             ResultSet rs = st.executeQuery();
@@ -300,9 +295,6 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per la citta" + citta + "e tipologia " + t.toString() + "\n" + e.toString());
         }
-        if (annunci.isEmpty())
-            throw new RuntimeException("Impossibile trovare annunci nella citta " + citta + "e tipologia " + t.toString());
-
         return annunci;
 
     }

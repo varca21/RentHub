@@ -59,7 +59,7 @@ public class Annuncio {
         this.foto = foto;
         StringTokenizer st = new StringTokenizer(foto, ",");
         if (st.hasMoreTokens())
-            fotoCopertina="/immagini/annunci/" + this.getIdAnnuncio() + "/" + st.nextToken();
+            fotoCopertina = "/immagini/annunci/" + this.getIdAnnuncio() + "/" + st.nextToken();
 
     }
 

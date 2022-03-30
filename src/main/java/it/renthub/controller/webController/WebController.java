@@ -63,7 +63,7 @@ WebController {
 
 
     @GetMapping("/cercaAnnuncio")
-    public String cercaAnnuncio(@RequestParam (required = false) String testo ,@RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo,@RequestParam(required = false) String tipoVendita, HttpSession sessione) {
+    public String cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, @RequestParam(required = false) String tipoVendita, HttpSession sessione) {
         List<Annuncio> ris = null;
         sessione.setAttribute("tipologie", Tipologia.values());
         if (StringUtils.isEmpty(citta)) {
@@ -71,8 +71,7 @@ WebController {
                 ris = DBManager.getInstance().getAnnuncioDao().findByTipologia(Tipologia.valueOf(tipologia));
             else
                 ris = DBManager.getInstance().getAnnuncioDao().findAll();
-        }
-        else {
+        } else {
             if (StringUtils.isEmpty(tipologia))
                 ris = DBManager.getInstance().getAnnuncioDao().findByCitta(citta);
             else
@@ -85,7 +84,7 @@ WebController {
         if (!StringUtils.isEmpty(testo))
             ris.removeIf(x -> !x.getTitolo().toLowerCase(Locale.ROOT).contains(testo.toLowerCase(Locale.ROOT)));
 
-        if(!StringUtils.isEmpty(tipoVendita)) {
+        if (!StringUtils.isEmpty(tipoVendita)) {
             if (tipoVendita.equals("vendita"))
                 ris.removeIf(x -> x.isAffitto());
             if (tipoVendita.equals("affitto"))
