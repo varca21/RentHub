@@ -208,18 +208,33 @@ function inserisciAnnuncio() {
 }
 
 function ricerca(){
+    var url = new URL("cercaannuncio");
+    var search_params = url.searchParams;
+    
+ 
+
     var titolo = document.querySelector("#cercaTitolo").value;
     var citta = document.querySelector("#cercaCitta").value;
     var indirizzo = document.querySelector("#cercaIndirizzo").value;
     var tipologiaImmobile = document.querySelector("#cercaTipologiaImmobile").value;
     var tipologiaVendita=document.querySelector("#cercaTipologiaVendita").value;
 
+    if(titolo!="")
+        search_params.set('titolo',titolo);
+
+    if(citta!="")
+        search_params.set('citta',citta);
+
+    if(indirizzo!="")
+        search_params.set('indirizzo',indirizzo);
+
+
     var url="/cercaAnnuncio?testo="+titolo+"&citta="+citta+"&indirizzo="+indirizzo;
     if(tipologiaImmobile!="niente")
-        url=url+"&tipologia="+tipologiaImmobile;
-    if(tipologiaVendita!="niente")
-        url=url+"&tipoVendita="+tipologiaVendita;
+        search_params.set('tipologia',tipologiaImmobile);
+    if(tipologiaVendita!="tipoVendita")
+        search_params.set('tipoVendita',tipologiaVendita);
         
-        document.location.href = url;
+        document.location.href = url.toString();
 
 }
