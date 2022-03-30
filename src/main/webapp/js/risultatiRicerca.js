@@ -74,7 +74,6 @@ function cambioFiltri() {
                     prezzo.appendChild(prezzoScontato);
                 }else{
                     let prezzoVero=document.createElement('div');
-                    prezzoVero.className='del mr-2';
                     prezzoVero.innerHTML="<span class='text-dark'>"+annuncio.prezzo+"&#8364;</span>"
                     prezzo.appendChild(prezzoVero);
                 }
