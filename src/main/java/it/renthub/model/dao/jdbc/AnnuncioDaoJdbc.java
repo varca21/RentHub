@@ -142,8 +142,6 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
         } catch (SQLException e) {
             Logger.LOG("Errore nella ricerca degli annunci per l'utente " + u.getIdUtente() + "\n" + e.toString());
         }
-        if (annunci.isEmpty())
-            throw new RuntimeException("Impossibile trovare annunci dell'utente " + u.getIdUtente());
 
         return annunci;
 
