@@ -40,6 +40,10 @@ WebController {
 
     @GetMapping("/annuncio/{idAnnuncio}")
     public String annuncio(@PathVariable String idAnnuncio, HttpSession sessione) {
+        if (isUtenteCorrenteBannato(sessione))
+            return "bannato";
+
+
         Annuncio a = DBManager.getInstance().getAnnuncioDao().findById(Integer.parseInt(idAnnuncio));
         if (a == null)
             return "annuncionontrovato";
@@ -64,6 +68,9 @@ WebController {
 
     @GetMapping("/cercaAnnuncio")
     public String cercaAnnuncio(@RequestParam(required = false) String testo, @RequestParam(required = false) String tipologia, @RequestParam(required = false) String citta, @RequestParam(required = false) String indirizzo, @RequestParam(required = false) String tipoVendita, HttpSession sessione) {
+        if (isUtenteCorrenteBannato(sessione))
+            return "bannato";
+
         List<Annuncio> ris = null;
         sessione.setAttribute("tipologie", Tipologia.values());
         if (StringUtils.isEmpty(citta)) {
