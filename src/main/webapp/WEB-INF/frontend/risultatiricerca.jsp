@@ -29,24 +29,16 @@
                                        <option value=${tipologia}>${tipologia}</option>
                                     </c:forEach>
                                 </select>
-                                <button class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box" aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()"> <span class="fas fa-plus"></span> </button> </div>
-                            <div id="inner-box" class="collapse mt-2 mr-1">
-                                <div class="my-1"> <label class="tick">Windbreaker <input type="checkbox" checked="checked"> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Jumpsuit <input type="checkbox"> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Jacket <input type="checkbox"> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Coat <input type="checkbox"> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Raincoat <input type="checkbox"> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Handbag <input type="checkbox" checked> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Warm vest <input type="checkbox"> <span class="check"></span> </label> </div>
-                                <div class="my-1"> <label class="tick">Wallets <input type="checkbox" checked> <span class="check"></span> </label> </div>
-                            </div>
+                            </div>                     
                         </div>
                         <div class="box border-bottom">
-                            TO-BE: ORDINAMENTO PER PREZZO
-                        </div>
-                        <div class="box border-bottom">
-                            TO-BE: ORDINAMENTO METRI QUADRI
-                        </div>                   
+                            Ordina per:
+                            <select class="custom-select" id="selezioneFiltri" onchange="cambioFiltri()">
+                                <option value ="nessuno " selected></option>
+                                <option value="prezzodown">Prezzo &#8595 <i class="fas fa-sort"></i></option>
+                                <option value="metridown">Metri Quadri &#8595 </option>
+                            </select>
+                        </div>                                     
                     </div>
                     <div>
                         <div class="row mx-0"  id="prodotti">
