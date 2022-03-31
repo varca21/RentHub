@@ -138,3 +138,26 @@ function contattaVenditore(destinatario,idAnnuncio){
         },
     })
 }
+
+window.onload=function(){
+    $.ajax({
+        url: "https://nominatim.openstreetmap.org",
+        method: "GET",
+        data:{
+            "format":"json",
+            "postalcode":$("#postalcode").text(),  
+            "city":$("#city").text(),  
+            "street":$("#street").text() 
+        },
+        success: function (response) {//se la chiamata ajax restituisce codice 200 
+            //non funziona perché ha bisogno dell'api key (a pagamento)
+            //$('[id*=mappa]').attr('src', "https://www.google.com/maps/embed/v1/view?key=&center="+response[0].lat+","+response[0].lon+"&zoom=18");                                 
+        },
+        error: function (jqxhr) {
+            console.log(jqxhr);
+            var errore = JSON.parse(jqxhr.responseText).message;
+            console.log(errore);
+           
+        },
+    })
+}
