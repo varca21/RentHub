@@ -11,14 +11,33 @@
             <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">        
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="/css/paginaAnnuncio.css">
+            <script src="/js/script.js"></script>
             <script src="/js/paginaAnnuncio.js"></script>
         </head>
 
         <body>
-
+            
         
             <div class="container">
-                <!-- product -->
+                  <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href="/"><img src="/immagini/logo/logo.png" height="30"></a>
+                      </div>
+                      
+                      <ul class="nav navbar-nav">
+                        <c:if test="${utenteLoggato==null}">
+                            <!-- TASTO LOGIN -->
+                            <li class="active" data-toggle="modal" data-target="#Accedi"><a href="#">Login</a></li>
+                        </c:if>
+                        <c:if test="${utenteLoggato!=null}">
+                            <!-- TASTO LOGOUT -->
+                            <li class="active" onclick="javascript:logout()"><a href="#">Logout</a></li>
+                        </c:if>                      
+                      </ul>
+                    </div>
+                  </nav>
+                <!-- product -->           
                 <div class="product-content product-wrap clearfix product-deatil">
                     <div class="row">
                         <div class="col-md-5 col-sm-12 col-xs-12">
@@ -388,6 +407,46 @@
         </div>
 
 
+         <!-- MODAL LOGIN -->
+         <div class="modal fade" id="Accedi">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">ACCEDI</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="javascript:login()">
+                            <div class="form-group">
+                                <label for="email">Email o ID Utente:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
+                                    id="email" required>
+                                <div class="invalid-feedback" id="messaggioValidazioneId">Account non esistente.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" placeholder="Inserisci password"
+                                    id="pwd" required>
+                                <div class="invalid-feedback" id="messaggioValidazionePwd">Password errata.</div>
+                            </div>
+
+                            <center>
+                                <button type="submit" class="btn btn-primary">Accedi</button>
+                            </center>
+                        </form>
+                    </div>
+
+                    <center>
+                        <a href="#modalRegistrazione" data-toggle="modal" data-dismiss="modal"
+                            data-target="#modalRegistrazione">Non sei ancora registrato? Registrati!</a>
+                    </center>
+                </div>
+            </div>
+        </div>
 
         </html>

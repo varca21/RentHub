@@ -13,12 +13,12 @@
 
         <body>
             <div class="container">
-                <div class="bg-white rounded d-flex align-items-center justify-content-between" id="header">
-                    <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse"
-                        data-target="#filterbar" aria-expanded="false" aria-controls="filterbar" id="filter-btn"> <span
-                            class="fas fa-angle-left" id="filter-angle"></span> <span id="btn-txt">Nascondi
-                            filtri</span> </button>
-                test
+                <div class="bg-dark rounded d-flex align-items-center justify-content-between" id="header">
+                    <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse" data-target="#filterbar" aria-expanded="false" aria-controls="filterbar" id="filter-btn"> 
+                        <span class="fas fa-angle-left" id="filter-angle"></span> 
+                        <span id="btn-txt">Nascondi filtri</span> 
+                    </button>
+                    <a href="/"><img src="/immagini/logo/logo.png" height=60 > </a>                       
                 </div>
                 <div id="content" class="my-5">
                     <div id="filterbar" class="collapse">
