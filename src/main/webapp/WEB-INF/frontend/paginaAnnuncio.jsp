@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                             <hr />
-                            <c:if test="${utenteLoggato.idUtente!=annuncio.utente.idUtente}">
+                            <c:if test="${utenteLoggato!=null && utenteLoggato.idUtente!=annuncio.utente.idUtente}">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <button class="btn btn-white btn-default" data-toggle="modal"

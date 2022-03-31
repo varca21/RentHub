@@ -1,19 +1,19 @@
 function cambioFiltri() {
-    var tipologiavendita;
+    
     var tipologia = $("#selezioneTipologiaVendita option:selected").text();
-
     filtroAffitto = $('#checkAffitto').is(":checked");
     filtroVendita = $('#checkVendita').is(":checked");
-
-   
-
+    
+    
+    var tipologiavendita;
     if (filtroAffitto != filtroVendita) {
         if (filtroAffitto)           
-            tipologiavendita='affitto';
+        tipologiavendita='affitto';
         if (filtroVendita)
-            tipologiavendita='vendita';
+        tipologiavendita='vendita';
     }
- 
+    
+    var ordinamento = $("#selezioneFiltri").val();
 
     $('#prodotti').empty();
     $.ajax({
@@ -25,7 +25,32 @@ function cambioFiltri() {
         },
         success: function (response) {
             var annunci = response;
+
+            if(ordinamento=="prezzodown"){
+                annunci.sort(ordinamentoPrezziDown);
+                $("#selezioneFiltri option[value=prezzodown]").attr('value', 'prezzoup');
+                $("#selezioneFiltri").find(":selected").html('Prezzo &#8593');
+            }
+
+            if(ordinamento=="metridown"){
+                annunci.sort(ordinamentoMetriDown);
+                $("#selezioneFiltri option[value=metridown]").attr('value', 'metriup');
+                $("#selezioneFiltri").find(":selected").html('Metri  &#8593');
+            }
         
+            if(ordinamento=="prezzoup"){
+                annunci.sort(ordinamentoPrezziUp);
+                $("#selezioneFiltri option[value=prezzoup]").attr('value', 'prezzodown');
+                $("#selezioneFiltri").find(":selected").html('Prezzo &#8595');
+            }
+
+            if(ordinamento=="metriup"){
+                annunci.sort(ordinamentoMetriUp);
+                $("#selezioneFiltri option[value=metriup]").attr('value', 'metridown');
+                $("#selezioneFiltri").find(":selected").html('Metri &#8595');
+
+            }
+            
             annunci.forEach(annuncio => {
                 let card = document.createElement('div');
                 card.className = 'col-lg-4 col-md-6';
@@ -70,7 +95,7 @@ function cambioFiltri() {
 
                     let prezzoScontato=document.createElement('div');
                     prezzoScontato.className='font-weight-bold';
-                    prezzoScontato.innerHTML=annuncio.prezzo+" &#8364"
+                    prezzoScontato.innerHTML=annuncio.prezzoScontato+" &#8364"
                     prezzo.appendChild(prezzoScontato);
                 }else{
                     let prezzoVero=document.createElement('div');
@@ -93,7 +118,7 @@ function cambioFiltri() {
                 card.appendChild(cardstyle);
                 $('#prodotti').append(card);
             });
-            
+            $("#selezioneFiltri").prop('selectedIndex', 0);
         },
         error: function (jqxhr) {
             var errore = JSON.Parse(jqxhr.responseText).message;
@@ -119,4 +144,54 @@ window.onload=function(){
     }
 
     
+}
+
+function ordinamentoMetriUp( a, b ) {
+    if ( a.metriQuadri < b.metriQuadri ){
+      return -1;
+    }
+    if ( a.metriQuadri >= b.metriQuadri ){
+      return 1;
+    }
+    return 0;
+}
+
+function ordinamentoMetriDown( a, b ) {
+    if ( a.metriQuadri > b.metriQuadri ){
+      return -1;
+    }
+    if ( a.metriQuadri <= b.metriQuadri ){
+      return 1;
+    }
+    return 0;
+}
+
+function ordinamentoPrezziUp( a, b ) {
+    var prezzoa;
+    var prezzob;
+    a.prezzoScontato!=0 ? prezzoa=a.prezzoScontato : prezzoa=a.prezzo;
+    b.prezzoScontato!=0 ? prezzob=b.prezzoScontato : prezzob=b.prezzo;
+
+    if (prezzoa<prezzob){
+      return -1;
+    }
+    if (prezzoa>=prezzob){
+      return 1;
+    }
+    return 0;
+}
+
+function ordinamentoPrezziDown( a, b ) {
+    var prezzoa;
+    var prezzob;
+    a.prezzoScontato!=0 ? prezzoa=a.prezzoScontato : prezzoa=a.prezzo;
+    b.prezzoScontato!=0 ? prezzob=b.prezzoScontato : prezzob=b.prezzo;
+
+    if (prezzoa>prezzob){
+      return -1;
+    }
+    if (prezzoa<=prezzob){
+      return 1;
+    }
+    return 0;
 }
