@@ -4,6 +4,7 @@
 
         <head>
             <script src="/js/paginaAnnuncio.js"></script>
+            <script src="/js/login.js"></script>
             <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>        
@@ -11,7 +12,6 @@
             <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">        
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="/css/paginaAnnuncio.css">
-            <script src="/js/script.js"></script>
             <script src="/js/paginaAnnuncio.js"></script>
         </head>
 
@@ -32,7 +32,7 @@
                         </c:if>
                         <c:if test="${utenteLoggato!=null}">
                             <!-- TASTO LOGOUT -->
-                            <li class="active" onclick="javascript:logout()"><a href="#">Logout</a></li>
+                            <li class="active" onclick="javascript:logout()" ><a href="#" id="tastologin">Logout</a></li>
                         </c:if>                      
                       </ul>
                     </div>

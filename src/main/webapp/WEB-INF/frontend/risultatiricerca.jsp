@@ -9,6 +9,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
             <link rel="stylesheet" href="/css/risultatiricerca.css">
             <script src="/js/risultatiRicerca.js"></script>
+            <script src="/js/login.js"></script>
         </head>
 
         <body>

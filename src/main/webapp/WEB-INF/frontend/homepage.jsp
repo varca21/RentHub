@@ -5,6 +5,7 @@
 
         <head>
             <script src="/js/script.js"></script>
+            <script src="/js/login.js"></script>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -21,7 +22,7 @@
                         <li class="nav-item">
                             <c:if test="${utenteLoggato==null}">
                                 <!-- TASTO LOGIN -->
-                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                <button type="button" class="btn btn-success" data-toggle="modal" 
                                     data-target="#Accedi">Login</button>
                             </c:if>
                             <c:if test="${utenteLoggato!=null}">
