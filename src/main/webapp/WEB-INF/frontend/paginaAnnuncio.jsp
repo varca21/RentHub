@@ -6,9 +6,9 @@
             <script src="/js/paginaAnnuncio.js"></script>
             <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>        
+            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
             <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">        
+            <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
             <link rel="stylesheet" href="/css/paginaAnnuncio.css">
             <script src="/js/paginaAnnuncio.js"></script>
@@ -16,8 +16,28 @@
 
         <body>
 
-        
             <div class="container">
+                <nav class="navbar navbar-scura">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a href="/"><img class="tst" src="/immagini/logo/logo.png" height="50"> </a>
+                        </div>
+
+                        <ul class="nav test navbar-nav inte navbar-right">
+                            <c:if test="${utenteLoggato==null}">
+                                <!-- TASTO LOGIN -->
+                                <li class="tasto" data-toggle="modal" data-target="#Accedi"><a class="login">Login</a></li>
+                            </c:if>
+                            <c:if test="${utenteLoggato!=null}">
+                                <li><div class="saluto">Ciao,${utenteLoggato.nome}!</div></li>
+                                <!-- TASTO LOGOUT -->
+                                <li class="tasto" onclick="javascript:logout()"><a  id="tastologin">Logout</a>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </div>
+                </nav>
+
                 <!-- product -->
                 <div class="product-content product-wrap clearfix product-deatil">
                     <div class="row">
@@ -56,14 +76,15 @@
                                 </div>
                             </div>
                             <c:if test="${annuncio.data!=null}">
-                                <p class="data">Pubblicato il ${annuncio.data}</p>
+                                <p class="data sottotitoli">Pubblicato il ${annuncio.data}</p>
                             </c:if>
                         </div>
 
                         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
                             <h2 class="name">
                                 ${annuncio.titolo}
-                                <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
+                                <c:if
+                                    test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
                                     <button class="btn"><i class="fa fa-bars" data-toggle="modal"
                                             data-target="#modalModifica"></i></button>
                                     <button class="btn"><i class="fa fa-trash" data-toggle="modal"
@@ -106,34 +127,33 @@
                             </c:if>
                             <hr />
                             <div class="description description-tabs">
-                                <ul id="myTab" class="nav nav-pills">
-                                    <li class="active"><a href="#more-information" data-toggle="tab"
-                                            class="no-margin">Descrizione </a></li>
-                                    <li class=""><a href="#specifiche" data-toggle="tab">Caratteristiche</a></li>
-                                    <li class=""><a href="#reviews" data-toggle="tab">Recensioni</a></li>
+                                <ul id="myTab" class="nav nav-pills ">
+                                    <li class="active tasti"><a href="#more-information" data-toggle="tab"class="no-margin">Descrizione </a></li>
+                                    <li class="tasti"><a href="#specifiche" data-toggle="tab">Caratteristiche</a></li>
+                                    <li class="tasti"><a href="#reviews" data-toggle="tab">Recensioni</a></li>
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
                                     <div class="tab-pane fade active in" id="more-information">
                                         <br />
-                                        <strong>Descrizione</strong>
-                                        <p>
+                                        <strong class="titoli2">Descrizione</strong>
+                                        <p class="sottotitoli">
                                             ${annuncio.descrizione}
                                         </p>
                                     </div>
                                     <div class="tab-pane fade" id="specifiche">
                                         <br />
                                         <dl class="">
-                                            <dt>Dimensione dell'immobile: </dt>
-                                            <dd>${annuncio.metriQuadri} m&#178;</dd>
+                                            <dt class="titoli2">Dimensione dell'immobile: </dt>
+                                            <dd class="sottotitoli">${annuncio.metriQuadri} m&#178;</dd>
                                             <br />
-                                            <dt>Tipologia immobile:</dt>
-                                            <dd>${annuncio.tipologia}</dd>
+                                            <dt class="titoli2">Tipologia immobile:</dt>
+                                            <dd class="sottotitoli">${annuncio.tipologia}</dd>
                                             <br />
-                                            <dt>Indirizzo:</dt>
-                                            <dd>${annuncio.posizione.indirizzo} , ${annuncio.posizione.citta}</dd>
+                                            <dt class="titoli2">Indirizzo:</dt>
+                                            <dd class="sottotitoli">${annuncio.posizione.indirizzo} , ${annuncio.posizione.citta}</dd>
                                             <br />
-                                            <dt>CAP:</dt>
-                                            <dd>${annuncio.posizione.cap} </dd>
+                                            <dt class="titoli2">CAP:</dt>
+                                            <dd class="sottotitoli">${annuncio.posizione.cap} </dd>
                                             <br />
                                             <iframe
                                                 src="https://maps.google.com/maps?q=10.305385,77.923029&hl=es;z=14&amp;output=embed"
@@ -145,28 +165,31 @@
                                         <br />
                                         <c:if test="${utenteLoggato!=null}">
                                             <form>
-                                                <textarea rows="2" class="form-control" 
-                                                    placeholder="Scrivi una recensione" id="recensione" required></textarea>
-                                                <div class="margin-top-100">
-                                                    <button type="button" class="btn btn-sm btn-primary pull-right" onclick="aggiungiRecensione()">
-                                                        Inserisci recensione
-                                                    </button>
-                                                </div>
+                                                <textarea rows="2" class="form-control"
+                                                    placeholder="Scrivi una recensione" id="recensione"
+                                                    required></textarea>
+                                                
+                                                    
+                                               
                                             </form>
+                                            <button type="button" class="tastorecensioni"
+                                                        onclick="aggiungiRecensione()">
+                                                        Inserisci
+                                                    </button>
                                             </br>
                                             </br>
                                         </c:if>
                                         <div class="chat-body">
                                             <ul id="listarecensioni">
                                                 <c:forEach var="recensione" items="${recensioni}">
-                                                    <li class="message" >
+                                                    <li class="message">
                                                         <span class="message-text">
-                                                            <a href="javascript:visualizzaInfoUtente('${recensione.utente.idUtente}');"
+                                                            <a class="titoli " href="javascript:visualizzaInfoUtente('${recensione.utente.idUtente}');"
                                                                 class="username">
                                                                 ${recensione.utente.idUtente}
                                                             </a>
                                                             </br>
-                                                            ${recensione.descrizione}
+                                                            <div class="sottotitoli">${recensione.descrizione}</div>
                                                         </span>
                                                     </li>
                                                 </c:forEach>
@@ -181,15 +204,16 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <button class="btn btn-white btn-default" data-toggle="modal"
-                                            data-target="#modalContattaVenditore"><i class="fa fa-envelope"></i> Contatta il
+                                            data-target="#modalContattaVenditore"><i class="fa fa-envelope"></i>
+                                            Contatta il
                                             venditore
-                                        </button>                                      
+                                        </button>
                                     </div>
                                 </div>
                             </c:if>
+                        </div>
                     </div>
                 </div>
-            </div>
         </body>
 
         <!-- MODAL MODIFICA -->
@@ -387,7 +411,40 @@
             </div>
         </div>
 
+        <!-- MODAL LOGIN -->
+        <div class="modal fade" id="Accedi">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">ACCEDI</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
 
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="javascript:login()">
+                            <div class="form-group">
+                                <label for="email">Email o ID Utente:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
+                                    id="idlogin" required>
+                                <div class="invalid-feedback" id="messaggioValidazioneId">Account non esistente.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" placeholder="Inserisci password" id="pwd"
+                                    required>
+                                <div class="invalid-feedback" id="messaggioValidazionePwd">Password errata.</div>
+                            </div>
 
+                            <center>
+                                <button type="submit" class="btn btn-primary">Accedi</button>
+                            </center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         </html>

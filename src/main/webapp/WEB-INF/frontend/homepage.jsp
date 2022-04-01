@@ -17,7 +17,7 @@
             <!--BARRA DI NAVIGAZIONE-->
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto ">
                         <li class="nav-item">
                             <c:if test="${utenteLoggato==null}">
                                 <!-- TASTO LOGIN -->
@@ -233,9 +233,9 @@
                         <div class="modal-body">
                             <form action="javascript:login()">
                                 <div class="form-group">
-                                    <label for="email">Email o ID Utente:</label>
+                                    <label for="idlogin">Email o ID Utente:</label>
                                     <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
-                                        id="email" required>
+                                        id="idlogin" required>
                                     <div class="invalid-feedback" id="messaggioValidazioneId">Account non esistente.
                                     </div>
                                 </div>

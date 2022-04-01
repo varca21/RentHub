@@ -52,7 +52,7 @@ function aggiungiRecensione(){
                 "recensione":descrizione
             },
             success: function (response) {//se la chiamata ajax restituisce codice 200
-                $("#listarecensioni").append($("<li>").html("<span class='message-text'><a href='javascript:visualizzaInfoUtente('"+utente+"');\"class='username'>"+utente+"</a></br> "+recensione.value+"</span>"));           
+                $("#listarecensioni").append($("<li>").html("<span class='message-text'><a class='titoli' href='javascript:visualizzaInfoUtente('"+utente+"');\"class='username'>"+utente+"</a></br><div class='sottotitoli'> "+recensione.value+"</div></span>"));           
                 $('#recensione').val('');   
             },
             error: function (jqxhr) {
@@ -104,7 +104,7 @@ function cancellaAnnuncio(idAnnuncio){
             "id":idAnnuncio,       
         },
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            window.location.replace("/");
+            window.location.replace("/cercaAnnuncio");
         },
         error: function (jqxhr) {
             console.log(jqxhr);
@@ -161,3 +161,4 @@ window.onload=function(){
         },
     })
 }
+

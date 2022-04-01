@@ -147,25 +147,7 @@ function impostazioniAccount() {
 }
 
 
-function invalidaCampo(campo, label, messaggio) {
-    campo.classList.remove("is-valid");
-    campo.classList.add("is-invalid");
-    label.text = messaggio;
-    label.show;
-}
 
-function cancellaValidazione(campo, label) {
-    var listaClassi = campo.classList;
-    campo.classList.remove("is-valid");
-    campo.classList.remove("is-invalid");
-    label.hide;
-}
-
-function validaCampo(campo, label) {
-    campo.classList.remove("is-invalid");
-    campo.classList.add("is-valid");
-    label.hide;
-}
 
 function inserisciAnnuncio() {
     var titolo = document.querySelector("#venditaTitolo").value;

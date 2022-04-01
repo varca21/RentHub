@@ -4,6 +4,96 @@ body{
 }
 
 
+
+
+
+.nav-pills a{
+    color:#ffa31a;
+}
+
+.nav-pills>li.active>a, 
+.nav-pills>li.active>a:focus {
+    border-radius: 10px;
+    background-color: #ffa31a;
+    color: #292929;
+    font-size: 17px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: black;
+    border-radius: 10px;
+ }
+ 
+.tasti{
+    background-color: #373636;
+    font-size: 17px;
+    border-radius: 10px;
+}
+
+.nav-pills>li.active>a:hover{
+    background-color: 	#ffa31a;
+    color:white;
+}
+
+.tasto{
+    background-color: #ffa31a;
+    border-radius: 10px 30px;
+}
+
+.tastorecensioni{
+    background-color: #ffa31a;
+    border-radius: 10px;
+    padding:8;
+    font-size: 16px;
+    border: 0px;
+}
+
+.tastorecensioni:hover{
+    color:white;
+}
+
+ul.test a:hover { 
+    color: #fff;
+    background-color: #ffa31a;
+    border-radius: 20px 90px;
+}
+
+.titoli{
+    font-size: 20px;
+}
+
+.titoli2{
+    font-size: 16px;
+}
+
+.sottotitoli{
+    font-size: 16px;
+    padding-bottom:10px;
+}
+
+.saluto{
+    color:ffa31a;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Courier New",monospace;
+}
+.tasto>a{
+    color:black;
+    font-size: 17px;
+    
+}
+
+
+img.tst{
+    vertical-align: text-top;
+}
+
+.navbar-scura{
+    background-color: 	#343a40;
+}
+
+
+
 .product-content {
     border: 1px solid #dfe5e9;
     margin-bottom: 20px;
@@ -327,8 +417,10 @@ body{
 }
 
 .data {
-    font-size: small;
+    padding-top: 20px;
 }
+
+
 
 .immagini{
     width:  1000px;
@@ -366,3 +458,4 @@ label.tipologia {
 span.strike{
   text-decoration: line-through;
 }
+
