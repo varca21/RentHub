@@ -4,6 +4,7 @@
 
         <head>
             <script src="/js/paginaAnnuncio.js"></script>
+            <script src="/js/login.js"></script>
             <title>${annuncio.titolo} - renthub.com</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

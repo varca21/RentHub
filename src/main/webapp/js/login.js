@@ -14,6 +14,7 @@ function login() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (response) {
+
             location.reload();
         },
         error: function (jqxhr) {
@@ -23,6 +24,7 @@ function login() {
             }
             if (errore == "Password errata") {
                 validaCampo(document.querySelector("#idlogin"), document.querySelector("#messaggioValidazioneId"));
+
                 invalidaCampo(document.querySelector("#pwd"), document.querySelector("#messaggioValidazionePwd"), errore);
             }
         },
@@ -41,6 +43,7 @@ function logout() {
             alert(errore);
         },
     })
+
 }
 
 function cancellaValidazione(campo, label) {

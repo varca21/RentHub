@@ -40,10 +40,10 @@ function conferma(messaggio, link, utente, flag) {
 
 function logout() {
     $.ajax({
-        url: "rest/utenti/logout",
+        url: "/rest/utenti/logout",
         type: "GET",
         success: function (response) {
-            window.location.replace("/");
+            location.href="/";
         },
         error: function (jqxhr) {
             var errore = JSON.parse(jqxhr.responseText).message;
