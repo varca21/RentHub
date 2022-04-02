@@ -16,6 +16,19 @@
         </head>
 
         <body>
+            <div class="share-btn-container">
+                <a href="#" id="facebook-btn">
+                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
+                </a>
+            
+                <a href="#" id="twitter-btn">
+                    <i class="fa fa-twitter" aria-hidden="true"></i>
+                </a>     
+            
+                <a href="#" id="whatsapp-btn">
+                    <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                </a>
+            </div>
 
             <div class="container">
                 <nav class="navbar navbar-scura">

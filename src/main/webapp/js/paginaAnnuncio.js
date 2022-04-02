@@ -38,51 +38,51 @@ function modificaAnnuncio() {
     })
 }
 
-function aggiungiRecensione(){
+function aggiungiRecensione() {
     var descrizione = document.querySelector("#recensione").value;
-    if(descrizione.length>0){
+    if (descrizione.length > 0) {
         var id = document.querySelector("#idAnnuncio").value;
         var utente = document.querySelector("#idUtente").value;
         $.ajax({
             url: "/rest/recensioni/nuova",
             method: "GET",
-            data:{
-                "idUtente":utente,
-                "idAnnuncio":id,
-                "recensione":descrizione
+            data: {
+                "idUtente": utente,
+                "idAnnuncio": id,
+                "recensione": descrizione
             },
             success: function (response) {//se la chiamata ajax restituisce codice 200
-                $("#listarecensioni").append($("<li>").html("<span class='message-text'><a class='titoli' href='javascript:visualizzaInfoUtente('"+utente+"');\"class='username'>"+utente+"</a></br><div class='sottotitoli'> "+recensione.value+"</div></span>"));           
-                $('#recensione').val('');   
+                $("#listarecensioni").append($("<li>").html("<span class='message-text'><a class='titoli' href='javascript:visualizzaInfoUtente('" + utente + "');\"class='username'>" + utente + "</a></br><div class='sottotitoli'> " + recensione.value + "</div></span>"));
+                $('#recensione').val('');
             },
             error: function (jqxhr) {
-                console.log(errore); 
+                console.log(errore);
             },
         })
     }
-    else{
+    else {
         alert("inserisci recensione!");
     }
-   
+
 
 }
 
 
 
-function visualizzaInfoUtente(idUtente){
+function visualizzaInfoUtente(idUtente) {
     $.ajax({
         url: "/rest/utenti/ricerca",
         method: "GET",
-        data:{
-            "id":idUtente,       
+        data: {
+            "id": idUtente,
         },
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            document.querySelector("#nome").value=response.nome;
-            document.querySelector("#cognome").value=response.cognome;
-            if(response.numTelefono!="null")
-                document.querySelector("#numTelefono").value=response.numTelefono;
-            document.querySelector("#email").value=response.email;
-            document.querySelector("#idU").value=response.idUtente;
+            document.querySelector("#nome").value = response.nome;
+            document.querySelector("#cognome").value = response.cognome;
+            if (response.numTelefono != "null")
+                document.querySelector("#numTelefono").value = response.numTelefono;
+            document.querySelector("#email").value = response.email;
+            document.querySelector("#idU").value = response.idUtente;
             $('#modalInfoUtente').modal('show');
         },
         error: function (jqxhr) {
@@ -91,17 +91,17 @@ function visualizzaInfoUtente(idUtente){
             var errore = JSON.parse(jqxhr.responseText).message;
             alert(errore);
             console.log(errore);
-           
+
         },
     })
 }
 
-function cancellaAnnuncio(idAnnuncio){
+function cancellaAnnuncio(idAnnuncio) {
     $.ajax({
         url: "/rest/annunci/cancella",
         method: "GET",
-        data:{
-            "id":idAnnuncio,       
+        data: {
+            "id": idAnnuncio,
         },
         success: function (response) {//se la chiamata ajax restituisce codice 200
             window.location.replace("/cercaAnnuncio");
@@ -111,43 +111,44 @@ function cancellaAnnuncio(idAnnuncio){
             var errore = JSON.parse(jqxhr.responseText).message;
             alert(errore);
             console.log(errore);
-           
+
         },
     })
 }
 
 
-function contattaVenditore(destinatario,idAnnuncio){
+function contattaVenditore(destinatario, idAnnuncio) {
     $.ajax({
         url: "/rest/utenti/contattautente",
         method: "GET",
-        data:{
-            "destinatario":destinatario,  
-            "idAnnuncio":idAnnuncio,
-            "messaggio":document.querySelector("#messaggio").value
+        data: {
+            "destinatario": destinatario,
+            "idAnnuncio": idAnnuncio,
+            "messaggio": document.querySelector("#messaggio").value
         },
         success: function (response) {//se la chiamata ajax restituisce codice 200        
-            $('#modalContattaVenditore').modal('hide'); 
-            $('#messaggio').val('');    
+            $('#modalContattaVenditore').modal('hide');
+            $('#messaggio').val('');
         },
         error: function (jqxhr) {
             console.log(jqxhr);
             var errore = JSON.parse(jqxhr.responseText).message;
             console.log(errore);
-           
+
         },
     })
 }
 
-window.onload=function(){
+window.onload = function () {
+    inizializzaCondivisioni();
     $.ajax({
         url: "https://nominatim.openstreetmap.org",
         method: "GET",
-        data:{
-            "format":"json",
-            "postalcode":$("#postalcode").text(),  
-            "city":$("#city").text(),  
-            "street":$("#street").text() 
+        data: {
+            "format": "json",
+            "postalcode": $("#postalcode").text(),
+            "city": $("#city").text(),
+            "street": $("#street").text()
         },
         success: function (response) {//se la chiamata ajax restituisce codice 200 
             //non funziona perché ha bisogno dell'api key (a pagamento)
@@ -157,8 +158,22 @@ window.onload=function(){
             console.log(jqxhr);
             var errore = JSON.parse(jqxhr.responseText).message;
             console.log(errore);
-           
+
         },
     })
+}
+
+
+
+
+
+function inizializzaCondivisioni() {
+
+    var postUrl = encodeURI(document.location.href);
+    var postTitle = encodeURI("Ciao!, dai un occhiata a questo annuncio su RentHub: ");
+
+    $("#facebook-btn").attr("href", "https://www.facebook.com/sharer.php?u=" + postUrl);
+    $("#twitter-btn").attr("href", "https://www.twitter.com/share?url=" + postUrl + "&text=" + postTitle);
+    $("#whatsapp-btn").attr("href", "https://wa.me/?text=" + postTitle + " " + postUrl);
 }
 
