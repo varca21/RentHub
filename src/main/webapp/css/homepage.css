@@ -23,6 +23,20 @@ body{
     max-width: 1190px;
   }
   
+  .titolo{
+    color: #ffa31a;
+    font-size: 20px;
+  }
+
+  .trasparente{
+    padding-left: 20%;
+    width: 80%;
+    border:15px;
+    color:white;
+    background-color: transparent;
+    font-size: 15px;
+  }
+
   legend {
     padding-top: 90px;
     font-size: 40px;

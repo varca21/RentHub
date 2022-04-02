@@ -21,7 +21,7 @@
   
       <div class="bg-dark rounded d-flex align-items-center justify-content-between" id="header">
         <a href="/"><img src="/immagini/logo/logo.png" height=60 > </a>  
-        <button class="btn btn-hide text-uppercase" type="button"  onclick="logout()"> 
+        <button class="btn btn-hide text-uppercase tastocerca" type="button"  onclick="logout()"> 
             <span class="fas fa-angle-left" id="filter-angle"></span> 
             <span id="btn-txt">Logout</span> 
         </button>

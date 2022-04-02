@@ -88,10 +88,10 @@
                             <div class="sottotitolo">Trovarlo e' semplicissimo!</div>
                             <div class="sottotitolo">Sogna ad occhi aperti, al resto ci pensiamo noi...</div>
                           </fieldset>
-                          <div class="inner-form">
+                          <div class="inner-form ">
                             <section class="search-sec">
                                 <div class="container">
-                                    <form action="#" method="post" novalidate="novalidate">
+                                    <form action="#" method="post" novalidate="novalidate" >
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="row">
@@ -136,8 +136,8 @@
 
                 <!-- TAB VENDI -->
                 <div class="tab-pane p-4 fade" id="tabVendi" role="tabpanel" aria-labelledby="tab3-tab">
-                    <div class="card border-info mb-3">
-                        <div class="card-header">
+                    <div class="card border-info mb-3 trasparente">
+                        <div class="card-header titolo bg-dark">
                             <center>Inserisci annuncio di vendita/affitto</center>
                         </div>
                         <c:if test="${utenteLoggato==null}">
@@ -213,7 +213,7 @@
 
                         <center>
 
-                            <button type="submit" class="btn btn-primary">Pubblica annuncio</button>
+                            <button type="submit" class="btn tastocerca">Pubblica annuncio</button>
                         </center>
                         </form>
                     </div>
@@ -230,7 +230,7 @@
                         <!-- Modal Header -->
                         <div class="modal-header">
                             <h4 class="modal-title">ACCEDI</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button"  class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
@@ -251,7 +251,7 @@
                                 </div>
 
                                 <center>
-                                    <button type="submit" class="btn btn-primary">Accedi</button>
+                                    <button type="submit" class="btn tastocerca">Accedi</button>
                                 </center>
                             </form>
                         </div>
@@ -319,7 +319,7 @@
                                         id="numTel">
                                 </div>
                                 <center>
-                                    <button type="submit" class="btn btn-primary"
+                                    <button type="submit" class="btn tastocerca"
                                         id="tastoRegistrati">Registrati</button>
                                 </center>
                             </form>
