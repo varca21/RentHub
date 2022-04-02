@@ -15,6 +15,7 @@ body{
     font-family: 'Poppins', sans-serif;
    
     padding: 15px;
+    
   }
   
   .s002 form {
@@ -22,11 +23,21 @@ body{
     max-width: 1190px;
   }
   
-  .s002 form legend {
-    font-size: 60px;
+  legend {
+    padding-top: 90px;
+    font-size: 40px;
     line-height: 1;
     color: #fff;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  .sottotitolo {
+    font-size: 20px;
+    line-height: 1;
+    color: black;
+    margin-bottom: 30px;
     font-weight: 400;
     text-align: center;
   }
@@ -73,3 +84,24 @@ body{
         top: -114px;
     }
 } 
+
+.saluto {
+    color: ffa31a;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Courier New", monospace;
+}
+
+
+.nav-link active{
+  background-color: blue;
+}
+
+.tastocerca{
+  background-color:#ffa31a;
+}
+
+.tastocerca:hover{
+  box-shadow: 15px 15px 25px #383838;
+  color:white;
+}

@@ -18,17 +18,18 @@
             <!--BARRA DI NAVIGAZIONE-->
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                    <a href="/"><img src="/immagini/logo/logo.png" height=60> </a>
                     <ul class="navbar-nav ml-auto ">
                         <li class="nav-item">
                             <c:if test="${utenteLoggato==null}">
                                 <!-- TASTO LOGIN -->
-                                <button type="button" class="btn btn-success" data-toggle="modal" 
+                                <button type="button" class="btn tastocerca" data-toggle="modal" 
                                     data-target="#Accedi">Login</button>
                             </c:if>
                             <c:if test="${utenteLoggato!=null}">
-                                Ciao ${utenteLoggato.nome}!
+                                <span class="saluto">Ciao ${utenteLoggato.nome}!</span>
                                 <!-- TASTO IMPOSTAZIONI -->
-                                <button type="button" class="btn btn-secondary"
+                                <button type="button" class="btn tastocerca"
                                     onclick="javascript:impostazioniAccount()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-gear" viewBox="0 0 16 16">
@@ -44,7 +45,7 @@
 
                                 <c:if test="${utenteLoggato.ruolo=='AMMINISTRATORE'}">
 
-                                    <button type="button" class="btn btn-success"
+                                    <button type="button" class="btn tastocerca"
                                         onclick="window.location.href='/amministrazione'">Amministrazione
                                     </button>
                                 </c:if>
@@ -52,7 +53,7 @@
 
 
                                 <!-- TASTO LOGOUT -->
-                                <button type="button" class="btn btn-success" onclick="javascript:logout()">Logout
+                                <button type="button" class="btn tastocerca" onclick="javascript:logout()">Logout
                                 </button>
 
                             </c:if>
@@ -80,10 +81,12 @@
             <div class="tab-content" id="myTabContent">
                 <!-- TAB CERCA -->
                 <div class="tab-pane p-4 fade show active" id="tabCerca" role="tabpanel" aria-labelledby="tab1-tab">
-                    <div class="s002">
+                    
                         <form>
                           <fieldset>
-                            <legend>CERCA ANNUNCIO</legend>
+                            <legend>Cerchi un immobile da sogno? </legend>
+                            <div class="sottotitolo">Trovarlo e' semplicissimo!</div>
+                            <div class="sottotitolo">Sogna ad occhi aperti, al resto ci pensiamo noi...</div>
                           </fieldset>
                           <div class="inner-form">
                             <section class="search-sec">
@@ -117,7 +120,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="col-lg-2 col-md-3 col-sm-4 p-0">
-                                                        <button type="button" class="btn btn-danger wrn-btn" onclick="javascript:ricerca()">Cerca</button>
+                                                        <button type="button" class="btn tastocerca wrn-btn" onclick="javascript:ricerca()">Cerca</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -127,7 +130,7 @@
                             </section>
                           </div>
                         </form>
-                      </div>
+                      
                 </div>
 
 

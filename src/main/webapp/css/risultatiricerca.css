@@ -12,8 +12,27 @@ body {
 }
 
 .container {
-    margin: 40px auto
+    margin: 10px auto
 }
+
+.tastologin:hover {
+  color:black;
+}
+.tastologin {
+    background-color: #ffa31a;
+    border-radius: 10px 30px;
+    border: 0px;
+    color:white;
+}
+
+.saluto {
+    color: #ffa31a;
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Courier New", monospace;
+}
+
+
 
 
 #header {
@@ -38,8 +57,8 @@ button.btn.btn-hide {
     border-bottom-right-radius: 0px
 }
 
-button.btn.btn-hide:hover{
-    color:black
+button.btn.btn-hide:hover {
+    color: black
 }
 
 
@@ -288,13 +307,18 @@ label {
 
 .card {
     padding: 10px;
+    padding-bottom: 10px;
     cursor: pointer;
     transition: .3s all ease-in-out;
     height: 350px
 }
 
+#filterbar:hover{
+    box-shadow: 10px 10px 20px #383838;
+}
 .card:hover {
-    box-shadow: 2px 2px 15px #ffa31a;
+    box-shadow: 5px 5px 20px #1b1b1b;
+    background-color: #ffa31a;
     transform: scale(1.02);
     color: inherit;
 }
@@ -566,7 +590,9 @@ input[type=range]::-webkit-slider-thumb {
     }
 }
 
-a { color: inherit; } 
+a {
+    color: inherit;
+}
 
 @media(max-width: 767.5px) {
     #filterbar {
@@ -598,4 +624,3 @@ a { color: inherit; }
         display: none
     }
 }
-

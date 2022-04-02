@@ -22,7 +22,22 @@
                             <span class="fas fa-angle-left" id="filter-angle"></span>
                             <span id="btn-txt">Nascondi filtri</span>
                         </button>
-                        <a href="/"><img src="/immagini/logo/logo.png" height=60> </a>
+                        <div class="row">
+                            <c:if test="${utenteLoggato==null}"> 
+                                  <button class="btn  tastologin" type="button" data-toggle="modal" data-target="#Accedi">login</button>                        
+                            </c:if>
+                            <c:if test="${utenteLoggato!=null}">
+                                <div class="row mt-2">
+                                    <div class="saluto">Ciao,${utenteLoggato.nome}!</div>
+                                </div>
+                              
+                                    <button class="btn  tastologin" onclick="javascript:logout()"><a id="tastologin">Logout</a></button>
+                       
+                            </c:if>
+                            <div class="row px-5">
+                                <a href="/"><img src="/immagini/logo/logo.png" height=60> </a>
+                            </div>
+                        </div>               
                     </div>
                     <div id="content" class="my-5">
                         <div id="filterbar" class="collapse">
@@ -96,5 +111,42 @@
                     </div>
                 </div>
         </body>
+
+         <!-- MODAL LOGIN -->
+         <div class="modal fade" id="Accedi">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">ACCEDI</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="javascript:login()">
+                            <div class="form-group">
+                                <label for="idlogin">Email o ID Utente:</label>
+                                <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
+                                    id="idlogin" required>
+                                <div class="invalid-feedback" id="messaggioValidazioneId">Account non esistente.
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" class="form-control" placeholder="Inserisci password"
+                                    id="pwd" required>
+                                <div class="invalid-feedback" id="messaggioValidazionePwd">Password errata.</div>
+                            </div>
+
+                            <center>
+                                <button type="submit" class="btn btn-primary">Accedi</button>
+                            </center>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </html>
