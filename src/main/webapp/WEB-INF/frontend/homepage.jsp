@@ -27,7 +27,7 @@
                                     data-target="#Accedi">Login</button>
                             </c:if>
                             <c:if test="${utenteLoggato!=null}">
-                                <span class="saluto">Ciao ${utenteLoggato.nome}!</span>
+                                <span class="saluto">Ciao, ${utenteLoggato.nome}!</span>
                                 <!-- TASTO IMPOSTAZIONI -->
                                 <button type="button" class="btn tastocerca"
                                     onclick="javascript:impostazioniAccount()">
