@@ -443,14 +443,13 @@
                                 <label for="email">Email o ID Utente:</label>
                                 <input type="text" class="form-control" placeholder="Inserisci e-mail o ID Utente"
                                     id="idlogin" required>
-                                <div class="invalid-feedback" id="messaggioValidazioneId">Account non esistente.
-                                </div>
+                                <div class="valid-feedback" id="messaggioValidazioneId">Account non esistente.</div>
                             </div>
                             <div class="form-group">
                                 <label for="pwd">Password:</label>
                                 <input type="password" class="form-control" placeholder="Inserisci password" id="pwd"
                                     required>
-                                <div class="invalid-feedback" id="messaggioValidazionePwd">Password errata.</div>
+                                <div class="valid-feedback" id="messaggioValidazionePwd">Password errata.</div>
                             </div>
 
                             <center>
