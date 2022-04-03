@@ -11,6 +11,7 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
             <link rel="stylesheet" href="/css/homepage.css">
+            <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
         </head>
 
         <body>
@@ -84,7 +85,7 @@
                     
                         <form>
                           <fieldset>
-                            <legend>Cerchi un immobile da sogno? </legend>
+                            <legend>Cerchi un immobile da sogno? &#128564 </legend>
                             <div class="sottotitolo">Trovarlo e' semplicissimo!</div>
                             <div class="sottotitolo">Sogna ad occhi aperti, al resto ci pensiamo noi...</div>
                           </fieldset>
@@ -327,6 +328,49 @@
                     </div>
                 </div>
             </div>
+
+
+            <nav class="navbar fixed-bottom navbar-expand-sm  bg-dark navfoot">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-content"
+                    aria-controls="nav-content" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <!-- Brand -->
+               
+            
+                <!-- Links -->
+                <div class=" navbar-collapse" id="nav-content">
+                    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <span class="navfooter"><i class="far fa-copyright"></i> 2022 Renthub.it</span> 
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mx-auto order-0">
+                        <ul class="navbar-nav mr-auto px-2">
+                            <li><div class="navfooter"> Seguici</div>  </li>
+                            <li class="px-2"><div class="navfooter"> su:</div></li>
+                            <li class="px-2"><a href="https://www.facebook.com/renthubproject/" ><i class="fab fa-facebook fa-2x"></i></a> <li>          </li>
+                            <li class="px-2"><a href="https://wa.me/3465842805" ><i class="fab fa-whatsapp fa-2x"></i></a></li>
+                            
+                        </ul>
+                         
+                    </div>
+                
+                    
+            
+                    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contatti:</a>
+                            </li>
+                            <li class="px-2"><a href="mailto:renthub2022@gmail.com" ><i class="fas fa-envelope fa-2x"></i> </a></li>
+                            <li class="px-2"><a href="tel:+393465842805" ><i class="fas fa-phone fa-2x" ></i> </a></li>
+                        </ul>
+                    </div>         
+            </nav>
 
         </body>
 

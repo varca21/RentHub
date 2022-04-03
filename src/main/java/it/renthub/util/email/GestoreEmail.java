@@ -40,7 +40,7 @@ public class GestoreEmail {
             Message message = new MimeMessage(session);
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
             message.setSubject(mittente.getIdUtente() + " sta cercando di contattarti su RentHub!");
-            message.setText("hai ricevuto un messaggio da " + mittente.getIdUtente() + " in merito all'annuncio : " + annuncio.getTitolo() + " : \n \n"
+            message.setText("hai ricevuto un messaggio da " + mittente.getIdUtente() + " in merito all'annuncio  " + annuncio.getTitolo() + " : \n \n"
                     + messaggio + "\n \n" + "puoi contattare "+mittente.getIdUtente()+" all'indirizzo email: " + mittente.getEmail());
             Transport.send(message);
             Logger.LOG("Inviata mail da " + mittente.getIdUtente() + " a " + destinatario);

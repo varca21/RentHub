@@ -68,7 +68,33 @@ body{
         align-items: center;
   }
   
-  
+
+.nav-link,
+.navfooter
+{
+   color:#ffa31a;
+}
+
+.nav-link:hover
+{
+   color:white;
+}
+
+
+.fa-whatsapp{
+  color:#25D366;
+}
+.fa-facebook{
+  color:#4267B2;
+}
+
+.fa-envelope{
+  color:wheat;
+}
+.fa-phone{
+  color:rgba(152, 83, 5, 0.958);
+}
+
   /*search box css start here*/
 .search-sec{
     padding: 5rem;
