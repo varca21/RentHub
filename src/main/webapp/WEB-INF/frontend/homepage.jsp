@@ -353,7 +353,7 @@
                             <li><div class="navfooter"> Seguici</div>  </li>
                             <li class="px-2"><div class="navfooter"> su:</div></li>
                             <li class="px-2"><a href="https://www.facebook.com/renthubproject/" ><i class="fab fa-facebook fa-2x"></i></a> <li>          </li>
-                            <li class="px-2"><a href="https://wa.me/3465842805" ><i class="fab fa-whatsapp fa-2x"></i></a></li>
+                            <li class="px-2"><a href="https://wa.me/3351237272" ><i class="fab fa-whatsapp fa-2x"></i></a></li>
                             
                         </ul>
                          
@@ -367,7 +367,7 @@
                                 <a class="nav-link" href="#">Contatti:</a>
                             </li>
                             <li class="px-2"><a href="mailto:renthub2022@gmail.com" ><i class="fas fa-envelope fa-2x"></i> </a></li>
-                            <li class="px-2"><a href="tel:+393465842805" ><i class="fas fa-phone fa-2x" ></i> </a></li>
+                            <li class="px-2"><a href="tel:+3933333333" ><i class="fas fa-phone fa-2x" ></i> </a></li>
                         </ul>
                     </div>         
             </nav>

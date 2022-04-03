@@ -15,6 +15,7 @@
 2022-04-03T10:44:44.474769900:Inserita recensione per l'annuncio 64
 2022-04-03T10:50:19.965807500:Inserito nuovo annuncio Appartamento al bosco verticale
 2022-04-03T10:51:10.723489200:Password errata per l'utente mario_bianchi
+2022-04-03T15:49:23.298:Inviata mail da mario_bianchi a curcio.francesco98@gmail.com
 2022-04-03T10:51:56.513634700:Inserita recensione per l'annuncio 66
 2022-04-03T10:56:57.021136800:Inserito nuovo annuncio Terreno coltivabile a Firmo
 2022-04-03T11:00:43.768217300:Inserito nuovo annuncio terreno agricolo Camigliatello Silano
@@ -22,3 +23,10 @@
 2022-04-03T11:06:46.166393100:Password errata per l'utente mario_bianchi
 2022-04-03T11:08:36.242773100:Inserita recensione per l'annuncio 69
 2022-04-03T11:13:29.606180100:Annuncio 69 modificato
+2022-04-03T15:38:34.044:L'utente  mario_ve si è registrato
+2022-04-03T15:38:34.045:utente mario_ve registrato con successo
+2022-04-03T15:38:53.472:Utente mario_ve eliminato
+2022-04-03T15:39:28.749:Utente varca_21 eliminato
+2022-04-03T15:42:58.833:Utente varca_21 eliminato
+2022-04-03T15:49:23.298:Inviata mail da varca_21 a mariobianchi@gmail.com
+2022-04-03T15:51:55.723:Annuncio 68 modificato
