@@ -7,6 +7,10 @@ import it.renthub.model.bean.Utente;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.util.Properties;
 
 public class GestoreEmail {
@@ -36,6 +40,31 @@ public class GestoreEmail {
     }
 
     public static void inviaMail(String destinatario, Utente mittente, String messaggio, Annuncio annuncio) {
+        TrustManager[] trustAllCerts = new TrustManager[]{
+                new X509TrustManager() {
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                        return null;
+                    }
+                    public void checkClientTrusted(
+                            java.security.cert.X509Certificate[] certs, String authType) {
+                    }
+                    public void checkServerTrusted(
+                            java.security.cert.X509Certificate[] certs, String authType) {
+                    }
+                }};
+
+        try {
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            Logger.LOG("PROBLEMA NELL'INVIO DELLE MAIL, PROBLEMA CON I CERTIFICATI SSL");
+        }
+
+
+
+
+
         try {
             Message message = new MimeMessage(session);
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
