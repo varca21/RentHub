@@ -1,5 +1,6 @@
 package it.renthub.util.email;
 
+import com.sun.mail.util.MailSSLSocketFactory;
 import it.renthub.Logger;
 import it.renthub.model.bean.Annuncio;
 import it.renthub.model.bean.Utente;
@@ -7,6 +8,7 @@ import it.renthub.model.bean.Utente;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 public class GestoreEmail {
@@ -28,11 +30,19 @@ public class GestoreEmail {
 
 
     static {
-        System.out.println("entroooo");
         prop.put("mail.smtp.host", SMTP_HOST_NAME);
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true");
+        try {
+            MailSSLSocketFactory sf = new MailSSLSocketFactory();
+            sf.setTrustAllHosts(true);
+            prop.put("mail.imap.ssl.trust", "*");
+            prop.put("mail.imap.ssl.socketFactory", sf);
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void inviaMail(String destinatario, Utente mittente, String messaggio, Annuncio annuncio) {
