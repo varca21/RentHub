@@ -141,7 +141,7 @@
                             </div>
 
                             <center>
-                                <button type="submit" class="btn btn-primary">Accedi</button>
+                                <button type="submit" class="btn tastocerca">Accedi</button>
                             </center>
                         </form>
                     </div>

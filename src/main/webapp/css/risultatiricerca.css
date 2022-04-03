@@ -25,6 +25,15 @@ body {
     color:white;
 }
 
+.tastocerca{
+    background-color:#ffa31a;
+  }
+  
+  .tastocerca:hover{
+    box-shadow: 15px 15px 25px #383838;
+    color:white;
+  }
+
 .saluto {
     color: #ffa31a;
     padding: 10px;
@@ -310,7 +319,7 @@ label {
     padding-bottom: 10px;
     cursor: pointer;
     transition: .3s all ease-in-out;
-    height: 350px
+    height: 400px
 }
 
 #filterbar:hover{

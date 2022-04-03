@@ -67,8 +67,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
-                Double prezzo = rs.getDouble("prezzo");
-                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int prezzo = rs.getInt("prezzo");
+                int prezzoScontato = rs.getInt("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -116,8 +116,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
-                Double prezzo = rs.getDouble("prezzo");
-                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int prezzo = rs.getInt("prezzo");
+                int prezzoScontato = rs.getInt("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -169,8 +169,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
-                Double prezzo = rs.getDouble("prezzo");
-                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int prezzo = rs.getInt("prezzo");
+                int prezzoScontato = rs.getInt("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -218,8 +218,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
-                Double prezzo = rs.getDouble("prezzo");
-                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int prezzo = rs.getInt("prezzo");
+                int prezzoScontato = rs.getInt("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -269,8 +269,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
-                Double prezzo = rs.getDouble("prezzo");
-                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int prezzo = rs.getInt("prezzo");
+                int prezzoScontato = rs.getInt("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");
@@ -319,8 +319,8 @@ public class AnnuncioDaoJdbc implements AnnuncioDao {
                 String descrizione = rs.getString("descrizione");
                 String titolo = rs.getString("titolo");
                 String foto = rs.getString("foto");
-                Double prezzo = rs.getDouble("prezzo");
-                Double prezzoScontato = rs.getDouble("prezzoscontato");
+                int prezzo = rs.getInt("prezzo");
+                int prezzoScontato = rs.getInt("prezzoscontato");
                 int metriQuadri = rs.getInt("metri_quadri");
                 Tipologia tipologia = Tipologia.valueOf(rs.getString("Tipologia"));
                 Boolean isAffitto = rs.getBoolean("affitto");

@@ -306,7 +306,7 @@
                                 </div>
                             </div>
                             <center>
-                                <button type="submit" class="btn btn-primary" onclick="javascript:modificaAnnuncio()"
+                                <button type="submit" class="btn tastocerca" onclick="javascript:modificaAnnuncio()"
                                     id="tastoRegistrati">Salva</button>
                             </center>
                         </form>
@@ -416,7 +416,7 @@
                                     ${annuncio.utente.idUtente}:</label>
                                 <textarea id="messaggio" class="form-control"> </textarea> </br>
                                 <center>
-                                    <button type="submit" class="btn btn-primary">Invia</button>
+                                    <button type="submit" class="btn tastocerca">Invia</button>
                                 </center>
                             </div>
                         </form>
@@ -453,7 +453,7 @@
                             </div>
 
                             <center>
-                                <button type="submit" class="btn btn-primary">Accedi</button>
+                                <button type="submit" class="btn tastocerca">Accedi</button>
                             </center>
                         </form>
                     </div>

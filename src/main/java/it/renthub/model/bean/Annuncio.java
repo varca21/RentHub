@@ -12,8 +12,8 @@ public class Annuncio {
 
     String fotoCopertina;
 
-    double prezzo;
-    double prezzoScontato;
+    int prezzo;
+    int prezzoScontato;
     int metriQuadri;
     Tipologia tipologia;
     boolean affitto;
@@ -63,11 +63,11 @@ public class Annuncio {
 
     }
 
-    public double getPrezzo() {
+    public int getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(double prezzo) {
+    public void setPrezzo(int prezzo) {
         this.prezzo = prezzo;
     }
 
@@ -111,11 +111,11 @@ public class Annuncio {
         this.data = data;
     }
 
-    public double getPrezzoScontato() {
+    public int getPrezzoScontato() {
         return prezzoScontato;
     }
 
-    public void setPrezzoScontato(double prezzoScontato) {
+    public void setPrezzoScontato(int prezzoScontato) {
         if (prezzoScontato == this.prezzo)
             this.prezzoScontato = 0;
         else

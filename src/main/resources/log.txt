@@ -38,3 +38,24 @@
 2022-03-09T21:31:44.339:Utente mario_rossi bannato! false
 2022-03-13T11:10:45.307:utente alfio87 aggiornato con successo
 2022-03-24T20:53:10.511631500:utente luca_ro registrato con successo
+2022-04-03T09:57:33.019244:Inserito nuovo annuncio Chalet Camigliatello Silano
+2022-04-03T10:09:22.929750500:Inserito nuovo annuncio Quadrilocale a Quattromiglia, balconi colorati
+2022-04-03T10:11:29.452016200:Annuncio 64 modificato
+2022-04-03T10:12:33.799388300:Annuncio 64 modificato
+2022-04-03T10:24:14.934342800:Annuncio 64 modificato
+2022-04-03T10:30:58.745745800:Annuncio 64 modificato
+2022-04-03T10:31:43.666478500:Annuncio 63 modificato
+2022-04-03T10:31:54.669783300:Annuncio 63 modificato
+2022-04-03T10:33:08.083551600:Inserita recensione per l'annuncio 64
+2022-04-03T10:34:33.017820100:Annuncio 64 modificato
+2022-04-03T10:41:34.007248700:Inserito nuovo annuncio Magazzino ad uso commerciale Cosenza 
+2022-04-03T10:44:44.474769900:Inserita recensione per l'annuncio 64
+2022-04-03T10:50:19.965807500:Inserito nuovo annuncio Appartamento al bosco verticale
+2022-04-03T10:51:10.723489200:Password errata per l'utente mario_bianchi
+2022-04-03T10:51:56.513634700:Inserita recensione per l'annuncio 66
+2022-04-03T10:56:57.021136800:Inserito nuovo annuncio Terreno coltivabile a Firmo
+2022-04-03T11:00:43.768217300:Inserito nuovo annuncio terreno agricolo Camigliatello Silano
+2022-04-03T11:06:27.828925900:Inserito nuovo annuncio Vendesi ufficio zona Citylife a Milano
+2022-04-03T11:06:46.166393100:Password errata per l'utente mario_bianchi
+2022-04-03T11:08:36.242773100:Inserita recensione per l'annuncio 69
+2022-04-03T11:13:29.606180100:Annuncio 69 modificato

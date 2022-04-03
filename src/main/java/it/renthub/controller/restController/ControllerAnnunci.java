@@ -40,7 +40,7 @@ public class ControllerAnnunci {
         nuovoAnnuncio.setTitolo(titolo);
         nuovoAnnuncio.setDescrizione(descrizione);
         nuovoAnnuncio.setMetriQuadri(Integer.parseInt(metriQuadri));
-        nuovoAnnuncio.setPrezzo(Double.parseDouble(prezzo));
+        nuovoAnnuncio.setPrezzo(Integer.parseInt(prezzo));
         nuovoAnnuncio.setUtente(utenteCorrente(sessione));
         nuovoAnnuncio.setTipologia(Tipologia.valueOf(tipologia));
         Posizione nuovaPosizione = new Posizione();
@@ -109,8 +109,8 @@ public class ControllerAnnunci {
         annuncio.getPosizione().setCitta(citta);
         annuncio.getPosizione().setCap(Integer.parseInt(cap));
         annuncio.getPosizione().setIndirizzo(indirizzo);
-        annuncio.setPrezzo(Double.parseDouble(prezzo));
-        annuncio.setPrezzoScontato(Double.parseDouble(prezzoScontato));
+        annuncio.setPrezzo(Integer.parseInt(prezzo));
+        annuncio.setPrezzoScontato(Integer.parseInt(prezzoScontato));
 
         //controllo errori
         if (utenteCorrente(sessione) == null)

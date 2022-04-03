@@ -83,6 +83,15 @@ ul.test a:hover {
     
 }
 
+.tastocerca{
+    background-color:#ffa31a;
+  }
+  
+.tastocerca:hover{
+    box-shadow: 15px 15px 25px #383838;
+    color:white;
+}
+
 
 img.tst{
     vertical-align: text-top;
