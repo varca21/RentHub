@@ -1,51 +1,14 @@
-2022-03-06T16:07:39.991273800:Account dsadsads non esiste
-2022-03-06T16:08:17.080256900:Account dsadsads non esiste
-2022-03-06T16:08:17.643962700:Account dsadsads non esiste
-2022-03-06T16:08:18.063329800:Account dsadsads non esiste
-2022-03-06T16:08:22.647902100:Password errata per l'utente admin
-2022-03-06T16:08:23.695966400:Password errata per l'utente admin
-2022-03-06T16:08:23.865593:Password errata per l'utente admin
-2022-03-06T16:08:24.111127900:Password errata per l'utente admin
-2022-03-06T16:08:30.576516200:Account mario_rossiii non esiste
-2022-03-06T16:08:31.525001400:Account mario_rossiii non esiste
-2022-03-06T16:08:45.476248100:utente mario_rossiii registrato con successo
-2022-03-06T16:11:16.706888500:Password errata per l'utente admin
-2022-03-06T16:11:17.192792100:Password errata per l'utente admin
-2022-03-06T16:11:17.613179800:Password errata per l'utente admin
-2022-03-06T16:11:17.996087200:Password errata per l'utente admin
-2022-03-07T22:15:25.362:Utente carlo_97 bannato!
-2022-03-07T22:15:25.363:Impossibile bannare l' utente carlo_97, non esiste!
-2022-03-07T22:15:47.933:Utente admin bannato!
-2022-03-07T22:15:47.933:Impossibile bannare l' utente admin, non esiste!
-2022-03-07T22:20:16.669:Utente pippo97 bannato!
-2022-03-07T22:25:41.523:Utente alfio87 bannato!
-2022-03-07T22:25:50.032:Utente alfio87 bannato!
-2022-03-07T22:28:19.384:Utente mario_rossi bannato! true
-2022-03-07T22:28:23.899:Utente mario_rossi bannato! false
-2022-03-07T22:28:43.170:Utente alfio87 bannato! false
-2022-03-07T22:28:54.110:Utente alfio87 bannato! true
+2022-03-07T22:28:43.170:Utente mario_rossi bannato! true
+2022-03-07T22:28:54.110:Utente mario_rossi bannato! false
 2022-03-07T22:29:12.953:Utente admin bannato! true
-2022-03-07T22:29:56.722:Utente admin bannato! false
-2022-03-07T22:31:49.924:Utente admin bannato! true
-2022-03-07T22:34:27.794:Utente admin bannato! true
-2022-03-07T22:34:31.736:Utente admin bannato! false
-2022-03-07T22:34:43.072:Utente admin bannato! true
-2022-03-09T21:10:45.917:Utente carlo_97 bannato! true
 2022-03-09T21:14:31.067:Utente varca_21 promosso amministratore! true
-2022-03-09T21:14:56.757:Utente varca_21 promosso amministratore! false
-2022-03-09T21:16:14.883:Utente varca_21 promosso amministratore! true
 2022-03-09T21:31:40.392:Utente mario_rossi bannato! true
 2022-03-09T21:31:44.339:Utente mario_rossi bannato! false
-2022-03-13T11:10:45.307:utente alfio87 aggiornato con successo
+2022-03-13T11:10:45.307:utente varca_21 aggiornato con successo
 2022-03-24T20:53:10.511631500:utente luca_ro registrato con successo
 2022-04-03T09:57:33.019244:Inserito nuovo annuncio Chalet Camigliatello Silano
 2022-04-03T10:09:22.929750500:Inserito nuovo annuncio Quadrilocale a Quattromiglia, balconi colorati
 2022-04-03T10:11:29.452016200:Annuncio 64 modificato
-2022-04-03T10:12:33.799388300:Annuncio 64 modificato
-2022-04-03T10:24:14.934342800:Annuncio 64 modificato
-2022-04-03T10:30:58.745745800:Annuncio 64 modificato
-2022-04-03T10:31:43.666478500:Annuncio 63 modificato
-2022-04-03T10:31:54.669783300:Annuncio 63 modificato
 2022-04-03T10:33:08.083551600:Inserita recensione per l'annuncio 64
 2022-04-03T10:34:33.017820100:Annuncio 64 modificato
 2022-04-03T10:41:34.007248700:Inserito nuovo annuncio Magazzino ad uso commerciale Cosenza 
