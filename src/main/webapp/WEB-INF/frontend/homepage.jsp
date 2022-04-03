@@ -17,7 +17,7 @@
 
             <!--BARRA DI NAVIGAZIONE-->
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <div class="navbar-collapse">
                     <a href="/"><img src="/immagini/logo/logo.png" height=60> </a>
                     <ul class="navbar-nav ml-auto ">
                         <li class="nav-item">

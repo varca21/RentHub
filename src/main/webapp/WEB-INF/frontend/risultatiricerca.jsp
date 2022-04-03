@@ -13,32 +13,45 @@
         </head>
 
         <body>
+            
 
             <div>
                 <div class="container">
-                    <div class="bg-dark rounded d-flex align-items-center justify-content-between" id="header">
-                        <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse"
-                            data-target="#filterbar" aria-expanded="false" aria-controls="filterbar" id="filter-btn">
-                            <span class="fas fa-angle-left" id="filter-angle"></span>
-                            <span id="btn-txt">Nascondi filtri</span>
-                        </button>
-                        <div class="row">
-                            <c:if test="${utenteLoggato==null}"> 
-                                  <button class="btn  tastologin" type="button" data-toggle="modal" data-target="#Accedi">login</button>                        
-                            </c:if>
-                            <c:if test="${utenteLoggato!=null}">
-                                <div class="row mt-2">
-                                    <div class="saluto">Ciao,${utenteLoggato.nome}!</div>
-                                </div>
-                              
-                                    <button class="btn  tastologin" onclick="javascript:logout()"><a id="tastologin">Logout</a></button>
+                    <!--BARRA DI NAVIGAZIONE-->
+                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="header">
+                        <div class="navbar-collapse">
                        
-                            </c:if>
-                            <div class="row px-5">
-                                <a href="/"><img src="/immagini/logo/logo.png" height=60> </a>
-                            </div>
-                        </div>               
-                    </div>
+                            
+                            <a href="/"><img src="/immagini/logo/logo.png" height=60> </a>
+                            <button class="btn btn-hide text-uppercase" type="button" data-toggle="collapse"
+                                data-target="#filterbar" aria-expanded="false" aria-controls="filterbar" id="filter-btn">
+                                <span class="fas fa-angle-left" id="filter-angle"></span>
+                                <span id="btn-txt">Nascondi filtri</span>
+                            </button>
+                      
+                            <ul class="navbar-nav ml-auto ">
+                                <li class="nav-item">
+                                </li>
+                                <c:if test="${utenteLoggato==null}">
+                                    <li class="nav-item">
+                                        <button class="btn  tastologin" type="button" data-toggle="modal"
+                                            data-target="#Accedi">login</button>
+                                    </li>
+                                </c:if>
+                                <c:if test="${utenteLoggato!=null}">
+                                    <li class="nav-item px-3">
+                                        <div class="row">
+
+                                            <div class="saluto">Ciao,${utenteLoggato.nome}!</div>
+                                            <button class="btn  tastologin" onclick="javascript:logout()"><a
+                                                id="tastologin">Logout</a></button>
+                                            </div>
+                                    </li>
+                                 
+                                </c:if>                                        
+                            </ul>
+                        </div>
+                    </nav>
                     <div id="content" class="my-5">
                         <div id="filterbar" class="collapse">
                             <div class="box border-bottom">
@@ -69,9 +82,9 @@
                             </div>
                         </div>
                         <div>
-                            <div class="row mx-0" id="prodotti">
+                            <div class="row mx-0 " id="prodotti">
                                 <c:forEach var="annuncio" items="${risultatiRicerca}">
-                                    <div class="col-lg-4 col-md-6">
+                                    <div class="col-lg-4 col-md-6 p-2">
                                         <div class="card d-flex flex-column align-items-center">
                                             <a class="stretched-link" href="/annuncio/${annuncio.idAnnuncio}"
                                                 textdecoration-none>

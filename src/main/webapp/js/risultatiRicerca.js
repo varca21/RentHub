@@ -53,7 +53,7 @@ function cambioFiltri() {
             
             annunci.forEach(annuncio => {
                 let card = document.createElement('div');
-                card.className = 'col-lg-4 col-md-6';
+                card.className = 'col-lg-4 col-md-6 p-2';
 
                 let cardstyle = document.createElement('div');
                 cardstyle.className = 'card d-flex flex-column align-items-center';
