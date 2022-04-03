@@ -46,6 +46,7 @@
                       <th>e-mail</th>
                       <th>Bannato</th>
                       <th>Amministratore</th>
+                      <th>Cancella</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -68,6 +69,9 @@
                           <c:if test="${utente.ruolo!='AMMINISTRATORE'}">
                             <button onclick="rendiAmministratore('${utente.idUtente}')">PROMUOVI AMMINISTRATORE</button>
                           </c:if>
+                        </td>
+                        <td>
+                          <button onclick="cancellaUtente('${utente.idUtente}')">CANCELLA UTENTE</button>
                         </td>
                       </tr>
                     </c:forEach>

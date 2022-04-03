@@ -146,6 +146,17 @@ public class ControllerUtenti {
         return false;
     }
 
+    @GetMapping("/cancella")
+    void cancellaAnnuncio(@RequestParam String id, HttpSession sessione) {
+        Utente utenteCorrente = utenteCorrente(sessione);
+        Utente daEliminare = DBManager.getInstance().getUtenteDao().findById(id);
+        if (!utenteCorrente.getRuolo().equals("AMMINISTRATORE"))
+            throw new RuntimeException("Utente non abilitato a cancellare utenti :" + utenteCorrente.getIdUtente());
+        if (daEliminare == null)
+            throw new RuntimeException("L'utente "+id+" non esiste");
+        DBManager.getInstance().getUtenteDao().delete(daEliminare);
+    }
+
     @GetMapping("/promuoviamministratore")
     public Boolean promuoviAmministratore(HttpSession sessione, @RequestParam String id, @RequestParam Boolean flag) {
         if (isUtenteCorrenteAmministratore(sessione)) {

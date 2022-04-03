@@ -14,6 +14,10 @@ function togliAmministratore(idUtente){
     conferma("Rimuovi amministratore: ","/rest/utenti/promuoviamministratore",idUtente,false);
 }
 
+function cancellaUtente(idUtente){
+    conferma("Cancella utente: ","/rest/utenti/cancella",idUtente,false);
+}
+
 function conferma(messaggio, link, utente, flag) {
     $('#FinestraDialogoModal').modal();
     $('#FinestraDialogoModal').modal().find('.modal-body').text(messaggio + " " + utente);
