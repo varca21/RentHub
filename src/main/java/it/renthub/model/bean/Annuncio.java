@@ -1,6 +1,8 @@
 package it.renthub.model.bean;
 
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Annuncio {
     int idAnnuncio;
@@ -9,9 +11,7 @@ public class Annuncio {
     String descrizione;
     String titolo;
     String foto;
-
     String fotoCopertina;
-
     int prezzo;
     int prezzoScontato;
     int metriQuadri;
