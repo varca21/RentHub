@@ -28,7 +28,24 @@ function modificaAnnuncio() {
         contentType: false,
         processData: false,
         success: function (response) {//se la chiamata ajax restituisce codice 200
-            window.location.reload();
+            $('#titoloannuncio').text(response.titolo);
+            $('#descrizioneAnnuncio').text(response.descrizione);
+            $('#annunciometri').text(response.metriQuadri);
+            if(response.prezzoScontato!="0"){
+                $('#prezzoscontato').text(response.prezzoScontato);
+                $('#annuncioprezzo').text(response.prezzo);
+                $("#annuncioprezzo").addClass("strike");
+            }
+            else{
+                $('#prezzoscontato').text("");
+                $('#annuncioprezzo').text(response.prezzo);  
+                $("#annuncioprezzo").removeClass("strike");
+            }             
+              
+            $("#annunciotipologia").text(response.tipologia);
+            $("#annuncioindirizzo").text(response.posizione.indirizzo +" , "+response.posizione.citta);
+            $("#annunciocap").text(response.posizione.cap);
+            $('#modalModifica').modal('toggle');
         },
         error: function (jqxhr) {
             console.log(jqxhr);

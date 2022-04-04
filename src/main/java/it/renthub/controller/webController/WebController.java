@@ -56,6 +56,7 @@ WebController {
 
 
         if (a != null) {
+            sessione.setAttribute("tipologie", Tipologia.values());
             sessione.setAttribute("annuncio", a);
             sessione.setAttribute("immagini", immagini);
             sessione.setAttribute("recensioni", DBManager.getInstance().getRecensioneDao().findByAnnuncio(a));

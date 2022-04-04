@@ -94,7 +94,7 @@ public class ControllerAnnunci {
     }
 
     @PostMapping(value = "/modifica/{id}")
-    void modificaAnnuncio(@RequestPart String titolo, @RequestPart String descrizione, @RequestPart String metriQuadri,
+    Annuncio modificaAnnuncio(@RequestPart String titolo, @RequestPart String descrizione, @RequestPart String metriQuadri,
                           @RequestPart String tipologia, @RequestPart String citta, @RequestPart String indirizzo,
                           @RequestPart String cap, HttpSession sessione, @RequestPart String prezzo, @RequestPart String prezzoScontato, @PathVariable("id") String id) {
 
@@ -129,6 +129,7 @@ public class ControllerAnnunci {
 
 
         DBManager.getInstance().getAnnuncioDao().update(annuncio);
+        return annuncio;
 
     }
 

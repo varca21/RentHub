@@ -95,8 +95,7 @@
                         </div>
 
                         <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
-                            <h2 class="name">
-                                ${annuncio.titolo}
+                            <h2 class="name" id="titoloannuncio">${annuncio.titolo}</h2>
                                 <c:if
                                     test="${utenteLoggato.ruolo=='AMMINISTRATORE' ||utenteLoggato.idUtente==annuncio.utente.idUtente}">
                                     <button class="btn"><i class="fa fa-bars" data-toggle="modal"
@@ -106,15 +105,15 @@
                                 </c:if>
                                 <small>Annuncio di <a
                                         href="javascript:visualizzaInfoUtente('${annuncio.utente.idUtente}');">${annuncio.utente.idUtente}</a></small>
-                            </h2>
+                            
                             <hr />
                             <h3 class="price-container">
                                 &#8364;
                                 <c:if test="${annuncio.prezzoScontato!=0}">
-                                    <span class="strike">${annuncio.prezzo}</span> ${annuncio.prezzoScontato}
+                                    <span class="strike" id="annuncioprezzo">${annuncio.prezzo}</span> <span id="prezzoscontato">${annuncio.prezzoScontato}</span>
                                 </c:if>
                                 <c:if test="${annuncio.prezzoScontato==0}">
-                                    ${annuncio.prezzo}
+                                    <span id="annuncioprezzo">${annuncio.prezzo}</span> 
                                 </c:if>
                                 <c:if test="${annuncio.affitto}">
                                     <small>al mese</small>
@@ -150,7 +149,7 @@
                                     <div class="tab-pane fade active in" id="more-information">
                                         <br />
                                         <strong class="titoli2">Descrizione</strong>
-                                        <p class="sottotitoli">
+                                        <p class="sottotitoli" id="descrizioneAnnuncio">
                                             ${annuncio.descrizione}
                                         </p>
                                     </div>
@@ -158,16 +157,16 @@
                                         <br />
                                         <dl class="">
                                             <dt class="titoli2">Dimensione dell'immobile: </dt>
-                                            <dd class="sottotitoli">${annuncio.metriQuadri} m&#178;</dd>
+                                            <dd class="sottotitoli" id="annunciometri">${annuncio.metriQuadri} m&#178;</dd>
                                             <br />
                                             <dt class="titoli2">Tipologia immobile:</dt>
-                                            <dd class="sottotitoli">${annuncio.tipologia}</dd>
+                                            <dd class="sottotitoli" id="annunciotipologia">${annuncio.tipologia}</dd>
                                             <br />
                                             <dt class="titoli2">Indirizzo:</dt>
-                                            <dd class="sottotitoli">${annuncio.posizione.indirizzo} , ${annuncio.posizione.citta}</dd>
+                                            <dd class="sottotitoli" id="annuncioindirizzo">${annuncio.posizione.indirizzo} , ${annuncio.posizione.citta}</dd>
                                             <br />
-                                            <dt class="titoli2">CAP:</dt>
-                                            <dd class="sottotitoli">${annuncio.posizione.cap} </dd>
+                                            <dt class="titoli2" id="">CAP:</dt>
+                                            <dd class="sottotitoli" id="annunciocap">${annuncio.posizione.cap} </dd>
                                             <br />
                                             <iframe
                                                 src="https://maps.google.com/maps?q=10.305385,77.923029&hl=es;z=14&amp;output=embed"
@@ -295,7 +294,7 @@
                                         id="venditaIndirizzo" value="${annuncio.posizione.indirizzo}" required>
                                 </div>
                                 <div class="form-group col-md-4 ">
-                                    <label for="venditaCap">Cap:</label>
+                                    <label for="venditaCap" >Cap:</label>
                                     <input type="number" class="form-control" placeholder="Inserisci cap"
                                         id="venditaCap" value="${annuncio.posizione.cap}" required>
                                 </div>
