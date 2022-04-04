@@ -153,7 +153,7 @@ public class ControllerUtenti {
         if (!utenteCorrente.getRuolo().equals("AMMINISTRATORE"))
             throw new RuntimeException("Utente non abilitato a cancellare utenti :" + utenteCorrente.getIdUtente());
         if (daEliminare == null)
-            throw new RuntimeException("L'utente "+id+" non esiste");
+            throw new RuntimeException("L'utente " + id + " non esiste");
         DBManager.getInstance().getUtenteDao().delete(daEliminare);
     }
 
@@ -198,7 +198,7 @@ public class ControllerUtenti {
     }
 
     private boolean isUtenteCorrenteAmministratore(HttpSession sessione) {
-        if (utenteCorrente(sessione) != null && utenteCorrente(sessione).getRuolo().equals("AMMINISTRATORE"))
+        if (utenteCorrente(sessione) != null && utenteCorrente(sessione).getRuolo().equals("AMMINISTRATORE") && !utenteCorrente(sessione).getBannato())
             return true;
         return false;
     }
