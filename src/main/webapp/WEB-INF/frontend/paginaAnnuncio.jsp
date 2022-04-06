@@ -114,6 +114,7 @@
                                 </c:if>
                                 <c:if test="${annuncio.prezzoScontato==0}">
                                     <span id="annuncioprezzo">${annuncio.prezzo}</span> 
+                                    <span id="prezzoscontato"></span>
                                 </c:if>
                                 <c:if test="${annuncio.affitto}">
                                     <small>al mese</small>
