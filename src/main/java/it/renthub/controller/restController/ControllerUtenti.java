@@ -83,7 +83,6 @@ public class ControllerUtenti {
         u.setCognome(parametri.get("cognome"));
         u.setNumTelefono(parametri.get("numTel"));
         u.setEmail(parametri.get("email"));
-        u.setRuolo("COMPRATORE"); //TODO da modificare
 
         Date d;
         try {
